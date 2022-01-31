@@ -1,0 +1,41 @@
+#main-container {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+    height: 100px;
+    align-content: center;
+}
+
+#add-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+#add-input {
+    flex-basis: 30%;
+    height: 30px;
+}
+
+#list-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#list {
+    list-style-type: none;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+input.strike ~ span{
+    text-decoration: line-through;
+}
