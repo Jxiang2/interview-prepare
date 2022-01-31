@@ -1,6 +1,6 @@
 # InterviewPreparation
 
-_This Repo aims to collect potential interview questions that may be asked._
+_This Repo aims to collect and organize potential interview questions that may be asked._
 
 ## Question Types
 * Algorithms
