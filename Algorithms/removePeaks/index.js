@@ -7,7 +7,7 @@ function solution(numbers) {
 	let results = [];
 
 	while (ary.length > 0) {
-		let smallest = null;
+		let peaks = [];
 		for (let i = 0; i < ary.length; i++) {
 			if (ary.length === 1) peaks.push(ary[i]);
 			else if (ary[i] > ary[i + 1] && !ary[i - 1]) peaks.push(ary[i]);
