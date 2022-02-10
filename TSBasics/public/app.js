@@ -1,0 +1,21 @@
+"use strict";
+let characters = [];
+characters.push("hello");
+characters.push("world");
+console.log("characters: ", characters);
+let mixed = [];
+mixed.push("hello");
+mixed.push(20);
+console.log("mixed:", mixed);
+let uid;
+uid = 13;
+console.log(uid);
+uid = "12345";
+console.log(uid);
+let ninjaOne;
+ninjaOne = { name: "xjy", age: 22, belt: "black" };
+console.log(ninjaOne);
+const circ = (diameter) => {
+	return diameter * Math.PI;
+};
+console.log(circ(15));
