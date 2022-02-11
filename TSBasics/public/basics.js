@@ -34,3 +34,18 @@ minus = (a, b) => {
 };
 let result = minus(10, 7);
 console.log(result);
+const me = {
+    name: 'xjy',
+    age: 30,
+    speak(text) {
+        console.log(text);
+    },
+    spend(amount) {
+        console.log('I spent', amount);
+        return amount;
+    }
+};
+const greetperson = (person) => {
+    console.log('hello', person.name);
+};
+greetperson(me);

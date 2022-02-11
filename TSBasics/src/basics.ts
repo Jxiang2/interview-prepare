@@ -53,3 +53,28 @@ minus = (a: number, b: number): number => {
 
 let result = minus(10, 7)
 console.log(result)
+
+// interface: a blueprint
+interface IsPerson {
+    name: string,
+    age: number,
+    speak(a: string): void,
+    spend(a: number): number
+}
+
+const me: IsPerson = {
+    name: 'xjy',
+    age: 30,
+    speak(text: string) {
+        console.log(text);
+    },
+    spend(amount: number) {
+        console.log('I spent', amount)
+        return amount
+    }
+}
+const greetperson = (person: IsPerson) => {
+    console.log('hello', person.name)
+}
+
+greetperson(me)
