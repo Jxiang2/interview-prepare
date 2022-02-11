@@ -1,0 +1,57 @@
+body {
+	background-image: url(https://images.unsplash.com/photo-1644517122882-d6bd0d06b07e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1418&q=80);
+	background-size: cover;
+}
+h2,
+p {
+	color: brown;
+	text-align: center;
+	border: 5px dashed purple;
+	cursor: pointer;
+}
+
+li {
+	list-style: none;
+	display: inline-block;
+}
+
+p {
+	text-decoration: underline;
+	text-transform: uppercase;
+	line-height: 20px;
+	font-weight: bold;
+	font-size: 80%;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+		"Open Sans", "Helvetica Neue", sans-serif;
+}
+
+img {
+	float: left;
+}
+
+footer {
+	clear: both;
+	text-align: center;
+	color: brown;
+}
+
+.box-model {
+	display: inline-block;
+	border: 5px solid red;
+	/* counter-clockwise */
+	padding: 5px 20px 5px 20px;
+	/* updown leftright */
+	margin: 0px 20px;
+
+	/* change content */
+	width: 50px;
+	height: 50px;
+}
+
+.intro {
+	font-size: 1em;
+}
+
+.content {
+	font-size: 0.9em;
+}
