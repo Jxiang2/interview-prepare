@@ -20,7 +20,7 @@ form.addEventListener('submit', (e: Event)=> {
     if (type.value === 'invoice') {
         doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
     } else {
-        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
+        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber)
     }
 
     list.render(doc, type.value, 'end')
