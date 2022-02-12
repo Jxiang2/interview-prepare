@@ -49,3 +49,34 @@ const greetperson = (person) => {
     console.log('hello', person.name);
 };
 greetperson(me);
+// generics
+// capture whatever item we pass in the function
+// I need to pass a object with a property called name
+const addUID = (obj) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { uid });
+};
+let docOne = addUID({ name: 'yoshi', age: 40 });
+console.log(docOne.age);
+const docThree = {
+    uid: 12345,
+    resourceName: 'person',
+    data: 'string data'
+};
+const docFour = {
+    uid: 12345,
+    resourceName: 'person',
+    data: ['string data 1', 'string data 2']
+};
+console.log(docThree);
+console.log(docFour);
+// enums : 0, 1, ,2, 3, 4
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["AUTHOR"] = 1] = "AUTHOR";
+    ResourceType[ResourceType["FILM"] = 2] = "FILM";
+    ResourceType[ResourceType["DIRECTOR"] = 3] = "DIRECTOR";
+    ResourceType[ResourceType["PERSON"] = 4] = "PERSON";
+})(ResourceType || (ResourceType = {}));
+console.log(ResourceType.AUTHOR);
