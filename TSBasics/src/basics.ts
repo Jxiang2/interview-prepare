@@ -18,7 +18,7 @@ uid = '12345'
 console.log(uid)
 
 
-// objects
+// objects, the properties can not be changed once defined
 let ninjaOne: {
     name: string,
     age: number,
