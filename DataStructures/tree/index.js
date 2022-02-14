@@ -36,7 +36,7 @@ class Tree {
 	traverseBF(fn) {
 		const arr = [this.root];
 		while (arr.length) {
-			const node = arr.splice(0, 1)[0];
+			const node = arr.shift();
 			arr.push(...node.children);
 			fn(node);
 		}
@@ -45,8 +45,8 @@ class Tree {
 	traverseDF(fn) {
 		const arr = [this.root];
 		while (arr.length) {
-			const node = arr.splice(0, 1)[0];
-			arr.splice(0, 0, ...node.children);
+			const node = arr.shift();
+			arr.unshift(...node.children);
 			fn(node);
 		}
 	}
