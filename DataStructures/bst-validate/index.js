@@ -1,11 +1,10 @@
 // --- Directions
-// Given a node, validate the binary search tree,
-// ensuring that every node's left hand child is
-// less than the parent node's value, and that
-// every node's right hand child is greater than
-// the parent
+// return true if bst is valid
+// return false if bst is not valid
 
 function validate(node, min = null, max = null) {
+	// idea: setup a minMax range
+
 	if (max !== null && node.data > max) {
 		return false;
 	}
