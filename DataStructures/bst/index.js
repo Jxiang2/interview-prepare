@@ -21,16 +21,12 @@ class Node {
 	insert(data) {
 		if (data < this.data && this.left === null) {
 			this.left = new Node(data);
-			return;
 		} else if (data < this.data && this.left) {
 			this.left.insert(data);
-			return;
 		} else if (data > this.data && this.right === null) {
 			this.right = new Node(data);
-			return;
 		} else if (data > this.data && this.right) {
 			this.right.insert(data);
-			return;
 		}
 	}
 
