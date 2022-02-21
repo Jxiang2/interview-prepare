@@ -96,6 +96,16 @@ console.log(docOne.age)
 
 
 // generics
+// specify the type of input when calling a generic function
+const printAny = <T>(state: T) => {
+    console.log(state);
+}
+
+printAny<string>("hello")
+printAny<number>(1)
+
+
+// generics
 // make an interface field flexible
 // the data property can be any data type
 interface Resource<T> {
@@ -123,3 +133,5 @@ console.log(docFour);
 // enums : 0, 1, ,2, 3, 4
 enum ResourceType {BOOK, AUTHOR, FILM, DIRECTOR, PERSON}
 console.log(ResourceType.AUTHOR)
+
+
