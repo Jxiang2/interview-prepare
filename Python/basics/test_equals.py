@@ -31,3 +31,8 @@ d2 = {
     2: "world"
 }
 print(d1 == d2)
+
+# Strings can use direct equal
+s1 = "jello"
+s2 = "jello"
+print(s1 == s2)
