@@ -16,46 +16,41 @@
 //     [10,  9,  8, 7]]
 
 function matrix(n) {
+	let results = [];
 
-    let results = []
+	// make a n*n empty ary
+	for (let i = 0; i < n; i++) {
+		results.push([]);
+	}
+	console.log(results);
 
-    // make a n*n empty ary
-    for (let i=0; i<n; i++) {
-        results.push([])
-    }
+	let counter = 1;
 
-    let counter = 1
-    
-    let topRow = 0
-    let bottomRow = n-1
-    let leftCol = 0
-    let rightCol = n-1
+	let topRow = 0;
+	let bottomRow = n - 1;
+	let leftCol = 0;
+	let rightCol = n - 1;
 
-    while (topRow <= bottomRow && leftCol <= rightCol) {
+	while (topRow <= bottomRow && leftCol <= rightCol) {
+		// top row
+		for (let i = leftCol; i <= rightCol; i++) results[topRow][i] = counter++;
+		topRow++;
 
-        // top row
-        for (let i=leftCol; i<=rightCol; i++)
-            results[topRow][i] = counter++
-        topRow++
+		// right col
+		for (let i = topRow; i <= bottomRow; i++) results[i][rightCol] = counter++;
+		rightCol--;
 
-        // right col
-        for (let i=topRow; i<=bottomRow; i++)
-            results[i][rightCol] = counter++
-        rightCol--
+		// bottom row
+		for (let i = rightCol; i >= leftCol; i--) results[bottomRow][i] = counter++;
+		bottomRow--;
 
-        // bottom row
-        for (let i=rightCol; i>=leftCol; i--)
-            results[bottomRow][i] = counter++
-        bottomRow--
-
-        // left col
-        for (let i=bottomRow; i>=topRow; i--)
-            results[i][leftCol] = counter++
-        leftCol++
-    }
-    return results
+		// left col
+		for (let i = bottomRow; i >= topRow; i--) results[i][leftCol] = counter++;
+		leftCol++;
+	}
+	return results;
 }
 
-console.log(matrix(4))
+console.log(matrix(4));
 
 module.exports = matrix;
