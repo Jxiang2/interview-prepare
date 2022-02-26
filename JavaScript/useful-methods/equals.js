@@ -1,6 +1,9 @@
 // check if 2 arries are equal
 const arr1 = [1, 2, 3, 4, 5, "hello"];
 const arr2 = [1, 2, 3, 4, 5, "hello"];
+
+console.log(arr2.includes("5"));
+
 console.log(JSON.stringify(arr1) === JSON.stringify(arr2));
 
 // check if 2 objects are equal
