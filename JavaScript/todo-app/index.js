@@ -1,35 +1,35 @@
-window.onload = function() {
+window.onload = function () {
 
-    const addButton = document.getElementById('add-button');
-    const addInput = document.getElementById('add-input');
-    const listHead = document.getElementById('list')
+    const addButton = document.getElementById( 'add-button' );
+    const addInput = document.getElementById( 'add-input' );
+    const listHead = document.getElementById( 'list' );
 
-    const finishTask = (e)=> {
-        if (e.target.checked) {
+    const finishTask = ( e ) => {
+        if ( e.target.checked ) {
             // set a css attribute
-            e.target.setAttribute('class', 'strike');
+            e.target.setAttribute( 'class', 'strike' );
         } else {
-            e.target.removeAttribute('class')
+            e.target.removeAttribute( 'class' );
         }
 
-    }
+    };
 
-    const addItem = (e)=> {
+    const addItem = ( e ) => {
         let inputVal = addInput.value;
-        if (! inputVal) {
+        if ( !inputVal ) {
             return;
         }
 
-        const temp = document.getElementById("temp");
+        const temp = document.getElementById( "temp" );
         // clone a temp
-        const clone = document.importNode(temp.content, true);
-        clone.querySelector('span').textContent = inputVal;
-        clone.querySelector('input').addEventListener("click", finishTask);
+        const clone = document.importNode( temp.content, true );
+        clone.querySelector( 'span' ).textContent = inputVal;
+        clone.querySelector( 'input' ).addEventListener( "click", finishTask );
         // add the template clone to ul list
-        listHead.appendChild(clone);
+        listHead.appendChild( clone );
         // clean input
         addInput.value = "";
-    }
+    };
 
-    addButton.addEventListener('click', addItem);
+    addButton.addEventListener( 'click', addItem );
 };
