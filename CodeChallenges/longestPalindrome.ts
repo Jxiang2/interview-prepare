@@ -29,8 +29,8 @@ function longestPalindrome (s: string): string {
 
         let newStart: number;
         let newEnd: number;
-        let len = Math.max(len1, len2);
 
+        let len = Math.max(len1, len2);
         if (len === len1) {
             newStart = start1;
             newEnd = end1;
