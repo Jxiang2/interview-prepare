@@ -23,15 +23,22 @@ test( -1 )
 
 // example 2
 const task1 = new Promise( ( resolve, reject ) => {
-    resolve( "task 1 done" );
+    setTimeout( () => {
+        resolve( "task 1 done" );
+    }, 200 );
 } );
 
 const task2 = new Promise( ( resolve, reject ) => {
-    resolve( "task 2 done" );
+    setTimeout( () => {
+        resolve( "task 2 done" );
+    }, 200 );
+
 } );
 
 const task3 = new Promise( ( resolve, reject ) => {
-    resolve( "task 2 done" );
+    setTimeout( () => {
+        resolve( "task 1 done" );
+    }, 200 );
 } );
 
 Promise.all( [
