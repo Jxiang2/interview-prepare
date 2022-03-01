@@ -6,7 +6,7 @@
     count number of elements from X to Y = Y -X + 1;
 
 
-2. inclusive adding
+2. inclusive adding for getting substring/ subarray
 subarray/substring of :
     [a, e, f, f, e, b]
      0  2  3  4  5  6
