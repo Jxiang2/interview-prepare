@@ -10,16 +10,16 @@
 
 class Queue {
     constructor () {
-        this._data = []
+        this._data = [];
     }
 
-    add = (record) => {
-        this._data.splice(0, 0, record)
-    }
+    add = ( record ) => {
+        this._data.splice( 0, 0, record );
+    };
 
     remove = () => {
-        return this._data.pop()
-    }
+        return this._data.pop();
+    };
 }
 
 module.exports = Queue;

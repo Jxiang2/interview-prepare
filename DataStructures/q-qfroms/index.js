@@ -12,50 +12,50 @@
 //     q.remove(); // returns 1
 //     q.remove(); // returns 2
 
-const Stack = require('./stack');
+const Stack = require( './stack' );
 
 class Queue {
 
-    constructor() {
-        this.s1 = new Stack()
-        this.s2 = new Stack()
+    constructor () {
+        this.s1 = new Stack();
+        this.s2 = new Stack();
     }
 
-    add = (record) => {
-        this.s1.push(record)
-    }
+    add = ( record ) => {
+        this.s1.push( record );
+    };
 
     remove = () => {
-        while (this.s1.peek()) {
-            let item = this.s1.pop()
-            this.s2.push(item)
+        while ( this.s1.peek() ) {
+            let item = this.s1.pop();
+            this.s2.push( item );
         }
 
-        let toPop = this.s2.pop()
+        let toPop = this.s2.pop();
 
-        while (this.s2.peek()) {
-            let item = this.s2.pop()
-            this.s1.push(item)
+        while ( this.s2.peek() ) {
+            let item = this.s2.pop();
+            this.s1.push( item );
         }
 
-        return toPop
-    }
+        return toPop;
+    };
 
     peek = () => {
-        while (this.s1.peek()) {
-            let item = this.s1.pop()
-            this.s2.push(item)
+        while ( this.s1.peek() ) {
+            let item = this.s1.pop();
+            this.s2.push( item );
         }
 
-        let toPeek = this.s2.peek()
+        let toPeek = this.s2.peek();
 
-        while (this.s2.peek()) {
-            let item = this.s2.pop()
-            this.s1.push(item)
+        while ( this.s2.peek() ) {
+            let item = this.s2.pop();
+            this.s1.push( item );
         }
 
-        return toPeek
-    }
+        return toPeek;
+    };
 }
 
 module.exports = Queue;

@@ -23,13 +23,13 @@ let ninjaOne: {
     age: number,
     belt: string;
 };
-ninjaOne = {name: 'xjy', age: 22, belt: 'black'};
+ninjaOne = { name: 'xjy', age: 22, belt: 'black' };
 console.log(ninjaOne);
 
 
 // functions & type aliases (the first two lines)
 type StringOrNum = string | number;
-type objWithNameUID = {name: string, uid: StringOrNum;};
+type objWithNameUID = { name: string, uid: StringOrNum; };
 
 let greet: (user: objWithNameUID) => void;
 let add: (a: number, b: number) => void;
@@ -39,7 +39,7 @@ greet = (user: objWithNameUID): void => {
     console.log(`${user.name} | ${user.uid}`);
 };
 
-greet({name: 'xjy', uid: 1537572});
+greet({ name: 'xjy', uid: 1537572 });
 
 
 add = (a: number, b: number, c: number | string = 20): void => {
@@ -85,12 +85,12 @@ greetperson(me);
 // generics
 // capture whatever item we pass in the function
 // I need to pass a object with a property called name
-const addUID = <T extends {name: string;}> (obj: T) => {
+const addUID = <T extends { name: string; }> (obj: T) => {
     let uid = Math.floor(Math.random() * 100);
-    return {...obj, uid};
+    return { ...obj, uid };
 };
 
-let docOne = addUID({name: 'yoshi', age: 40});
+let docOne = addUID({ name: 'yoshi', age: 40 });
 console.log(docOne.age);
 
 
@@ -130,7 +130,7 @@ console.log(docFour);
 
 
 // enums : 0, 1, ,2, 3, 4
-enum ResourceType {BOOK, AUTHOR, FILM, DIRECTOR, PERSON}
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
 console.log(ResourceType.AUTHOR);
 
 

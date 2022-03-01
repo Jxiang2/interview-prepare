@@ -1,7 +1,7 @@
-import {Invoice} from './classes/Invoice';
-import {ListTemplate} from './classes/ListTemplates';
-import {Payment} from './classes/Payment';
-import {HasFormatter} from './interfaces/HasFormatter';
+import { Invoice } from './classes/Invoice';
+import { ListTemplate } from './classes/ListTemplates';
+import { Payment } from './classes/Payment';
+import { HasFormatter } from './interfaces/HasFormatter';
 
 const form = document.querySelector('.new-item-form') as HTMLFormElement;
 const type = document.querySelector('#type') as HTMLSelectElement;

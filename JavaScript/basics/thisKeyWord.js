@@ -13,156 +13,156 @@
 let me = {
     name: 'Tyler',
     age: 25,
-    sayName: function() {
-        console.log(this)
+    sayName: function () {
+        console.log( this );
     }
-}
-me.sayName() // -> me
+};
+me.sayName(); // -> me
 
-let Person = function(name, age) {
+let Person = function ( name, age ) {
     return {
         name: name,
         age: age,
-        sayName: function() {
-            console.log(this.name)
+        sayName: function () {
+            console.log( this.name );
         },
         mother: {
             name: "Stacey",
-            sayName: function() {
-                console.log(this.name)
+            sayName: function () {
+                console.log( this.name );
             }
         }
-    }
-}
+    };
+};
 
-let jim = Person('Jim', 42)
-jim.sayName() // -> Jim
-jim.mother.sayName() // -> Stacey
+let jim = Person( 'Jim', 42 );
+jim.sayName(); // -> Jim
+jim.mother.sayName(); // -> Stacey
 
-console.log("#############################################");
+console.log( "#############################################" );
 
 // explict binding: call, apply, bind
-let sayName = function() {
-    console.log(this.name)
-}
+let sayName = function () {
+    console.log( this.name );
+};
 
 var stacey = {
     name: "Stacey",
     age: 34
-}
+};
 // stacy obj invokes sayName
-sayName.call(stacey) // -> Stacey
-let boundFunction = sayName.bind(stacey)
-console.log("now the function sayName is bound to variable boundFunction");
-boundFunction()
+sayName.call( stacey ); // -> Stacey
+let boundFunction = sayName.bind( stacey );
+console.log( "now the function sayName is bound to variable boundFunction" );
+boundFunction();
 
-console.log("#############################################");
+console.log( "#############################################" );
 
 // new binding, js create a new empty obj when creating a new obj using new keyword
-let Animal = function(color, name, type) {
-    console.log(this);
-    this.color = color
-    this.name = name
-    this.type = type
+let Animal = function ( color, name, type ) {
+    console.log( this );
+    this.color = color;
+    this.name = name;
+    this.type = type;
 
-    this.getAttributes = function() {
-        console.log(this)
-    }
-}
+    this.getAttributes = function () {
+        console.log( this );
+    };
+};
 
-let zebra = new Animal('black and white', 'zorro', 'zebra')
-zebra.getAttributes()
+let zebra = new Animal( 'black and white', 'zorro', 'zebra' );
+zebra.getAttributes();
 
-console.log("#############################################");
+console.log( "#############################################" );
 
 // window binding, this keyword is default to the window obj
-let sayAge = function() {
-    console.log(this.age)
-}
+let sayAge = function () {
+    console.log( this.age );
+};
 
 let me2 = {
     age: 25
-}
+};
 
 sayAge();
-globalThis.age = 35
-sayAge()
+globalThis.age = 35;
+sayAge();
 
-console.log("#############################################");
+console.log( "#############################################" );
 
 // class & obj & func unbound cases
 class NewClassC {
-    playGame() {
-        console.log("class-based constructor: ", this);
+    playGame () {
+        console.log( "class-based constructor: ", this );
     }
 }
-let pgc = new NewClassC() // -> empty obj, has no property "playGame"
-console.log(pgc)
+let pgc = new NewClassC(); // -> empty obj, has no property "playGame"
+console.log( pgc );
 let var1 = pgc.playGame;
 var1(); // -> undefiend
 
-function NewClassF() {
-    this.playGame = function() {
-        console.log("function-based constructor: ", this);
-    }
+function NewClassF () {
+    this.playGame = function () {
+        console.log( "function-based constructor: ", this );
+    };
 }
-let pgf = new NewClassF() // -> not a empty obj!, has property "playGame"
-console.log(pgf)
+let pgf = new NewClassF(); // -> not a empty obj!, has property "playGame"
+console.log( pgf );
 let var2 = pgf.playGame;
 var2(); // -> undefiend
 
 let newClassO = {
-    playGame() {
-        console.log("object constructor: ",this);
+    playGame () {
+        console.log( "object constructor: ", this );
     }
 };
-console.log(newClassO);
+console.log( newClassO );
 let var3 = newClassO.playGame;
 var3();
 
-console.log("#############################################");
+console.log( "#############################################" );
 
 // excercises
 // this: object that is excuting the current function/ method
 // arrow function always bind to global object
-const getArgs = (...x) => {
-    console.log("this in arrow function: ", this)
-    console.log(x);
-}
-getArgs(1,2,3,4,5)
+const getArgs = ( ...x ) => {
+    console.log( "this in arrow function: ", this );
+    console.log( x );
+};
+getArgs( 1, 2, 3, 4, 5 );
 
 // this example 1
 const thisProfile = {
     myName: "john",
-    childern: [{
+    childern: [ {
         myName: "peter",
-        getName() {
-            return this
+        getName () {
+            return this;
         }
-    }],
-    getName() {
-        return this
+    } ],
+    getName () {
+        return this;
     }
-}
-console.log(thisProfile.getName()); // -> obj thisProfile
+};
+console.log( thisProfile.getName() ); // -> obj thisProfile
 // pass the function reference of getName to another variable
 const getNameLoose = thisProfile.getName;
 // undefined, since getName is loosely connected to GetArgs
-console.log(getNameLoose()) // -> Window
-console.log(getNameLoose.call(thisProfile)) // -> thisProfile
+console.log( getNameLoose() ); // -> Window
+console.log( getNameLoose.call( thisProfile ) ); // -> thisProfile
 
 // this example 2 (this of anonymous function is undefined)
 class Bear {
-    scratch() {
-        console.log(this)
-        let innerfunction = function() {
+    scratch () {
+        console.log( this );
+        let innerfunction = function () {
 
-            console.log("inner function this: ", this);
-        }
-        return innerfunction
+            console.log( "inner function this: ", this );
+        };
+        return innerfunction;
     }
 }
 polarBear = new Bear();
 let itch = polarBear.scratch(); // -> anoymous function
 itch(); // -> undefined
-itch.call(Bear);
+itch.call( Bear );
