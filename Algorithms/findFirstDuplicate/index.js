@@ -5,13 +5,13 @@
 // If there are no such elements, return -1.
 // a = [2, 1, 3, 5, 3, 2], solution(a) = 3
 
-solution = (a) => {
-    r = new Set()
-    for (number of a)
-        if (r.has(number))
-            return number
-        r.add(number)
-    return -1
-}
+solution = ( a ) => {
+    r = new Set();
+    for ( number of a )
+        if ( r.has( number ) )
+            return number;
+    r.add( number );
+    return -1;
+};
 
-console.log(solution([2, 1, 3, 5, 3, 2]))
+console.log( solution( [ 2, 1, 3, 5, 3, 2 ] ) );

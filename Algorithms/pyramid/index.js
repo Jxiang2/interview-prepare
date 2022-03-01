@@ -19,26 +19,26 @@
 //       '_#####_'
 //       '#######'
 
-const pyramid = (n, row=0, stair='') => {
-    if (row === n)
-        return
+const pyramid = ( n, row = 0, stair = '' ) => {
+    if ( row === n )
+        return;
 
-    if (stair.length === 2*n-1) {
-        console.log(stair)
-        pyramid(n, row+1)
-        return
+    if ( stair.length === 2 * n - 1 ) {
+        console.log( stair );
+        pyramid( n, row + 1 );
+        return;
     }
 
-    if (stair.length >= (n-1) - row && stair.length <= (n-1) + row) {
-        stair += '#'
+    if ( stair.length >= ( n - 1 ) - row && stair.length <= ( n - 1 ) + row ) {
+        stair += '#';
     } else {
-        stair += ' '
+        stair += ' ';
     }
 
-    pyramid(n, row, stair)
-}
+    pyramid( n, row, stair );
+};
 
-pyramid(10)
+pyramid( 10 );
 
 
 module.exports = pyramid;

@@ -5,5 +5,5 @@ def capitalize(str):
         wordList.append(capitalizedWord)
     return ' '.join(wordList)
 
+
 print(capitalize('a short sentence'))
-        

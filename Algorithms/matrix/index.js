@@ -15,14 +15,14 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
-function matrix(n) {
+function matrix ( n ) {
 	let results = [];
 
 	// make a n*n empty ary
-	for (let i = 0; i < n; i++) {
-		results.push([]);
+	for ( let i = 0; i < n; i++ ) {
+		results.push( [] );
 	}
-	console.log(results);
+	console.log( results );
 
 	let counter = 1;
 
@@ -31,26 +31,26 @@ function matrix(n) {
 	let leftCol = 0;
 	let rightCol = n - 1;
 
-	while (topRow <= bottomRow && leftCol <= rightCol) {
+	while ( topRow <= bottomRow && leftCol <= rightCol ) {
 		// top row
-		for (let i = leftCol; i <= rightCol; i++) results[topRow][i] = counter++;
+		for ( let i = leftCol; i <= rightCol; i++ ) results[ topRow ][ i ] = counter++;
 		topRow++;
 
 		// right col
-		for (let i = topRow; i <= bottomRow; i++) results[i][rightCol] = counter++;
+		for ( let i = topRow; i <= bottomRow; i++ ) results[ i ][ rightCol ] = counter++;
 		rightCol--;
 
 		// bottom row
-		for (let i = rightCol; i >= leftCol; i--) results[bottomRow][i] = counter++;
+		for ( let i = rightCol; i >= leftCol; i-- ) results[ bottomRow ][ i ] = counter++;
 		bottomRow--;
 
 		// left col
-		for (let i = bottomRow; i >= topRow; i--) results[i][leftCol] = counter++;
+		for ( let i = bottomRow; i >= topRow; i-- ) results[ i ][ leftCol ] = counter++;
 		leftCol++;
 	}
 	return results;
 }
 
-console.log(matrix(4));
+console.log( matrix( 4 ) );
 
 module.exports = matrix;

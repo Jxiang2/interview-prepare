@@ -8,26 +8,26 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-function anagrams(stringA, stringB) {
-    const lowerStringAObj = {}
-    const lowerStringBObj = {}
-    const lowerStringA = stringA.replace(/[^\w]/g, "").toLowerCase()
-    const lowerStringB = stringB.replace(/[^\w]/g, "").toLowerCase()
-    lowerStringA.split('').forEach(char => {
-        char in lowerStringAObj ? lowerStringAObj[char]+=1 : lowerStringAObj[char]=1
-    });
-    lowerStringB.split('').forEach(char => {
-        char in lowerStringBObj ? lowerStringBObj[char]+=1 : lowerStringBObj[char]=1
-    });
+function anagrams ( stringA, stringB ) {
+    const lowerStringAObj = {};
+    const lowerStringBObj = {};
+    const lowerStringA = stringA.replace( /[^\w]/g, "" ).toLowerCase();
+    const lowerStringB = stringB.replace( /[^\w]/g, "" ).toLowerCase();
+    lowerStringA.split( '' ).forEach( char => {
+        char in lowerStringAObj ? lowerStringAObj[ char ] += 1 : lowerStringAObj[ char ] = 1;
+    } );
+    lowerStringB.split( '' ).forEach( char => {
+        char in lowerStringBObj ? lowerStringBObj[ char ] += 1 : lowerStringBObj[ char ] = 1;
+    } );
     // 2 steps to comapre objects 1. compare lenght 2. compare each key-var pairs using one obj as base
-    if (Object.keys(lowerStringAObj).length !== Object.keys(lowerStringBObj).length) {
-        return false
+    if ( Object.keys( lowerStringAObj ).length !== Object.keys( lowerStringBObj ).length ) {
+        return false;
     }
-    for (let char in lowerStringAObj) {
-        if (lowerStringAObj[char] !== lowerStringBObj[char])
-            return false
+    for ( let char in lowerStringAObj ) {
+        if ( lowerStringAObj[ char ] !== lowerStringBObj[ char ] )
+            return false;
     }
-    return true
+    return true;
 }
 
 module.exports = anagrams;
