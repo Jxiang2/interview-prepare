@@ -16,27 +16,28 @@
 6 If the character has encounter before, i.e., present in the Set, 
   we will increment the start and we will remove the character at start 
   index of the string.
-7 Steps #5 and #6 are moving the window.
+7 Steps #5 and #6 are moving the wsindow.
 8 After the loop terminates, return maxLength.
 ****/
 
 function lengthOfLongestSubstring (s: string): number {
-    let start: number = 0;
-    let end: number = 0;
-    let maxLength: number = 0;
-    let uniqueChars: Set<string> = new Set();
+  let start: number = 0;
+  let end: number = 0;
+  let maxLength: number = 0;
+  let uniqueChars: Set<string> = new Set();
 
-    while (end < s.length) {
-        if (!uniqueChars.has(s[end])) {
-            uniqueChars.add(s[end]);
-            end++;
-            maxLength = Math.max(maxLength, uniqueChars.size);
-        } else {
-            uniqueChars.delete(s[start]);
-            start++;
-        }
+
+  while (end < s.length) {
+    if (!uniqueChars.has(s[end])) {
+      uniqueChars.add(s[end]);
+      end++;
+      maxLength = Math.max(maxLength, uniqueChars.size);
+    } else {
+      uniqueChars.delete(s[start]);
+      start++;
     }
-    return maxLength;
+  }
+  return maxLength;
 };
 
 console.log(lengthOfLongestSubstring("dvdf"));
