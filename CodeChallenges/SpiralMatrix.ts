@@ -16,7 +16,7 @@
 //     [10,  9,  8, 7]]
 
 function matrix (n: number) {
-    let results: any = [];
+    let results: number[][] = [];
 
     // results = [[0] * n for i in range(n)]
 
