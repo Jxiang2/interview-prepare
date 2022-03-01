@@ -1,0 +1,16 @@
+1. count subarray/substring length from index
+    [a, b, c, d, e, f]
+     0  1  2  3  4  5
+
+    count number of elements from b to e = 4 - 1 + 1;
+    count number of elements from X to Y = Y -X + 1;
+
+
+2. inclusive adding
+subarray/substring of :
+    [a, e, f, f, e, b]
+     0  2  3  4  5  6
+        X        Y
+    1. get start point X; (2)
+    2. get length of substring by Y - X + 1; (5-2+1=4)
+    3. substring(X, X + Y - X + 1); (substring(2, 6))
