@@ -96,12 +96,12 @@ console.log(docOne.age);
 
 // generics
 // specify the type of input when calling a generic function
-const printAny = <T> (state: T) => {
+const printAny = <T, U> (state: T, name: U) => {
     console.log(state);
 };
 
-printAny<string>("hello");
-printAny<number>(1);
+printAny<string, string>("hello", "me");
+printAny<number, string>(1, "me");
 
 
 // generics
