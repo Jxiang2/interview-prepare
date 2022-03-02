@@ -13,5 +13,15 @@
         X        Y
 
     1. get start point X; (2)
-    2. get length of substring by Y - X + 1; (5-2+1=4)
-    3. substring(X, X + Y - X + 1); (substring(2, 6))
+    2. get length of substring by length = Y - X + 1; (5-2+1=4)
+    3. substring(X, X + [Y - X + 1]); (substring(2, 6))
+
+
+3. midpoint
+    1. odd array [a, b, c, d, e]
+                  0  1  2  3  4
+    midpoint = floor(len(array)/2) = floor(5/2) = 2 => c
+
+    2. even array [a, b, c, d]  (2 midpoints) 
+                   0  1  2  3
+    midpoint = len(array)/2 - 1 && len(array)/2 = 1, 2 => b, c
