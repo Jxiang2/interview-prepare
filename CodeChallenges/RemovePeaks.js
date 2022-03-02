@@ -15,7 +15,7 @@ function solution ( numbers ) {
 			else if ( ary[ i - 1 ] < ary[ i ] < ary[ i + 1 ] ) peaks.push( ary[ i ] );
 		}
 
-		let min = Math.min.apply( null, peaks );
+		let min = Math.min( ...peaks );
 		results.push( min );
 		const minPeakIndex = ary.indexOf( min );
 		ary.splice( minPeakIndex, 1 );
