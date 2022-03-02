@@ -6,6 +6,7 @@ _This Repo aims to collect and organize potential interview questions that may b
 
 - Algorithms
 - Data Structures
+- LeetCode Challenges
 - Programming Language Basics
 
 ## Programming Languages
