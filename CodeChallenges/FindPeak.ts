@@ -18,7 +18,7 @@ function findPeakElement (nums: number[]): number {
 }
 
 
-findPeakElement([1, 4, 6, 5, 3, 7]);
+console.log(findPeakElement([1, 4, 6, 7, 5, 3]));
 
 // left: 3   right: 3    mid: 3
 // 7        o
