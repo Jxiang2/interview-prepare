@@ -6,11 +6,12 @@
  */
 
 function kthSmallest (matrix: number[][], k: number): number {
+
     let arr: number[] = [];
-    for (let row of matrix) {
-        arr.push(...row);
+    for (let i = 0; i < matrix.length; i++) {
+        arr.push(...matrix[i]);
     }
-    arr.sort((a, b) => a - b);
+    arr.sort((a, b) => (a - b));
     return arr[k - 1];
 };
 
