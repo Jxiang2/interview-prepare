@@ -1,3 +1,7 @@
+/**
+ * find any intersections of 2 arraies
+ */
+
 function intersect (nums1: number[], nums2: number[]): number[] {
 
     nums1.sort((a, b) => a - b);
