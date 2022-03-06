@@ -27,3 +27,9 @@
                    0  1  2  3
     midpoint = len(array)/2 - 1 && len(array)/2 = 1, 2 => b, c
     midpoint = (len(array)-1)/2 ==> 3/2 = <-1.5-> ==> b, c
+
+4. buy & sell
+    +: buy
+    -: sell
+    2 - 3 + 3 - 6 + 6 - 7 = -5 => sell 5
+    2 - 7 = -5 => sell 5
