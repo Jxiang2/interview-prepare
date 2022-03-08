@@ -1,6 +1,8 @@
 package CodeChallenges;
 
-class Solution {
+import java.util.Arrays;
+
+class SearchSortedRanges {
     public int[] searchRange(int[] nums, int target) {
         int l = 0;
         int r = nums.length - 1;
@@ -24,5 +26,13 @@ class Solution {
             }
         }
         return new int[] { -1, -1 };
+    }
+}
+
+class RunSearchSortedRanges {
+    public static void main(String[] args) {
+        SearchSortedRanges sol = new SearchSortedRanges();
+        int[] res = sol.searchRange(new int[] { 5, 7, 7, 8, 8, 10 }, 8);
+        System.out.println(Arrays.toString(res));
     }
 }
