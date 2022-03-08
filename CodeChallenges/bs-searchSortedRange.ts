@@ -26,4 +26,4 @@ function searchRange (nums: number[], target: number): number[] {
     return [-1, -1];
 };
 
-console.log(searchRange([2, 2], 3));
+console.log(searchRange([1], 1));
