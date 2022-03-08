@@ -11,19 +11,26 @@ function searchRange (nums: number[], target: number): number[] {
         } else {
             let first: number = mid;
             let last: number = mid;
-            while (nums[first - 1] === target || nums[last + 1] === target) {
-                if (nums[first - 1] === target) {
-                    first--;
-                }
-                if (nums[last + 1] === target) {
-                    last++;
-                }
+            while (nums[first] === target || nums[last] === target) {
+                (nums[first] === target) && first--;
+                (nums[last] === target) && last++;
             }
-            return [first, last];
+
+            // while (nums[first - 1] === target) {
+            //     first--;
+            // }
+
+            // while (nums[last + 1] === target) {
+            //     last++;
+            // }
+
+            return [first + 1, last - 1];
         }
     }
 
     return [-1, -1];
 };
 
-console.log(searchRange([1], 1));
+console.log(searchRange([5, 7, 7, 8, 8, 10], 8));
+
+console.log(searchRange([5, 7, 7, 8, 8, 10], 8));
