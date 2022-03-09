@@ -14,3 +14,4 @@ _This Repo aims to collect and organize potential interview questions that may b
 - JavaScript
 - TypeScript
 - Python
+- Java
