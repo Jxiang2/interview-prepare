@@ -3,7 +3,7 @@ package CodeChallenges;
 import java.util.Arrays;
 
 class LongestIncSubseq {
-    public String lengthOfLIS(int[] nums) {
+    public int lengthOfLIS(int[] nums) {
         int[] dp = new int[nums.length];
         Arrays.fill(dp, 1);
 
@@ -14,14 +14,21 @@ class LongestIncSubseq {
                 }
             }
         }
-        return Arrays.toString(dp);
+
+        int max = dp[0];
+        for (int i = 0; i < dp.length; i++) {
+            if (dp[i] > max)
+                max = dp[i];
+        }
+
+        return max;
     }
 }
 
 class RunLongestIncSubseq {
     public static void main(String[] args) {
         LongestIncSubseq sol = new LongestIncSubseq();
-        String res = sol.lengthOfLIS(new int[] { 10, 9, 2, 5, 3, 7, 101, 18 });
+        int res = sol.lengthOfLIS(new int[] { 10, 9, 2, 5, 3, 7, 101, 18 });
         System.out.println(res);
     }
 }
