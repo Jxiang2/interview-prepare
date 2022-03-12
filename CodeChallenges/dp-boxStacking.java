@@ -1,3 +1,13 @@
+/**
+Given n boxes with Lengths, Widths and heights.
+Box(Li, Wi, Hi) can be placed on top of Box(Lj, Wj, Hj)
+if Li < Lj; Wi < Wj 
+
+Find the stacked box height
+Subproblem: largest height of stack with box 
+(Li, Wi, Hi) at bottom
+ */
+
 package CodeChallenges;
 
 import java.util.*;
