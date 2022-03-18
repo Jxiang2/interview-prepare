@@ -43,7 +43,7 @@ class AddTwoNums {
         ListNode output = new ListNode(0);
         ListNode cur = output;
         for (int i = result.length() - 1; i >= 0; i--) {
-            cur.next = new ListNode(Character.getNumericValue(result.charAt(i)));
+            cur.next = new ListNode(result.charAt(i) - '0');
             cur = cur.next;
         }
         return output.next;
