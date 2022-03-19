@@ -11,12 +11,18 @@ import java.util.*;
 
 class WordBreak {
     public boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> wordDictSet = new HashSet<>(wordDict);
-
-        boolean[] dp = new boolean[s.length() + 1];
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1];
         dp[0] = true;
-
-        return true;
+        for (int i = 0; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && wordDict.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[n];
     }
 
 }
