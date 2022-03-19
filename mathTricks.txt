@@ -15,7 +15,7 @@
     1. get start point X; (1)
     2. get length of substring by length = Y - X + 1; (4-1+1=4)
     3. substring(X, X + [Y - X + 1]); (substring(1, 5))
-    4. at index 1, add length of XY will get 1 + 4 = 5, 1 index after index 4
+    4. summary: index + range started from index will result in one extra index. Good for substringing
 
 
 3. midpoint
