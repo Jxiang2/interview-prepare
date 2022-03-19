@@ -9,12 +9,13 @@
 2. inclusive adding for getting substring/ subarray
     subarray/substring of starting index X and ending index Y :
     [a, e, f, f, e, b]
-     0  2  3  4  5  6
+     0  1  2  3  4  5
         X        Y
 
-    1. get start point X; (2)
-    2. get length of substring by length = Y - X + 1; (5-2+1=4)
-    3. substring(X, X + [Y - X + 1]); (substring(2, 6))
+    1. get start point X; (1)
+    2. get length of substring by length = Y - X + 1; (4-1+1=4)
+    3. substring(X, X + [Y - X + 1]); (substring(1, 5))
+    4. at index 1, add length of XY will get 1 + 4 = 5, 1 index after index 4
 
 
 3. midpoint
