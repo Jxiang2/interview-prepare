@@ -3,7 +3,7 @@ const testClosure = () => {
     let b = 3;
 
     return () => {
-        console.log( a * b );
+        console.log(a * b);
     };
 };
 

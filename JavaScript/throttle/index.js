@@ -1,28 +1,28 @@
 window.onload = function () {
 
-    const one = document.getElementById( 'one' );
-    const two = document.getElementById( 'two' );
+    const one = document.getElementById('one');
+    const two = document.getElementById('two');
 
-    const throttle = ( fn, delay ) => {
+    const throttle = (fn, delay) => {
         let last = 0;
-        return ( ...args ) => {
+        return (...args) => {
             const now = new Date().getTime();
-            if ( ( now - last ) < delay ) {
+            if ((now - last) < delay) {
                 // do nothing
                 return;
             }
             last = now;
-            return fn( ...args );
+            return fn(...args);
 
         };
     };
 
-    one.addEventListener( 'click', throttle( e => {
-        console.log( "clicked" );
-    }, 2000 ) );
+    one.addEventListener('click', throttle(e => {
+        console.log("clicked");
+    }, 2000));
 
-    two.addEventListener( 'click', throttle( e => {
-        console.log( "clicked" );
-    }, 2000 ) );
+    two.addEventListener('click', throttle(e => {
+        console.log("clicked");
+    }, 2000));
 
-}
+};
