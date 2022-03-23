@@ -1,12 +1,12 @@
-function bsearch ( arr, target ) {
+function bsearch (arr, target) {
     let left = 0;
     let right = arr.length - 1;
 
-    while ( left <= right ) {
-        mid = ( left + right ) / 2;
-        if ( arr[ mid ] === target ) {
+    while (left <= right) {
+        mid = (left + right) / 2;
+        if (arr[mid] === target) {
             return mid;
-        } else if ( target < arr[ mid ] ) {
+        } else if (target < arr[mid]) {
             right = mid - 1;
         } else {
             left = mid + 1;
