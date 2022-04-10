@@ -129,6 +129,16 @@ console.log(docThree);
 console.log(docFour);
 
 
+// extends & types example
+interface Vector1D { x: number; };
+interface Vector2D { x: number, y: number; }
+type subTypeOf<T, U> = T extends U ? true : false;
+
+const var1: subTypeOf<Vector2D, Vector1D> = true;
+const var2: subTypeOf<Vector1D, Vector1D> = true;
+const var3: subTypeOf<Vector1D, Vector2D> = false;
+
+
 // enums : 0, 1, ,2, 3, 4
 enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
 console.log(ResourceType.AUTHOR);
