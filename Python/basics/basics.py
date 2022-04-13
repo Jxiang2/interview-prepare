@@ -20,3 +20,4 @@ print(alist)
 blist = ["a", "b", "c", "d", "e"]
 blist.insert(0, 1)
 print(blist)
+print(blist)
