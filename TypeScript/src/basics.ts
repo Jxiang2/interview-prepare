@@ -138,6 +138,36 @@ const var1: subTypeOf<Vector2D, Vector1D> = true;
 const var2: subTypeOf<Vector1D, Vector1D> = true;
 const var3: subTypeOf<Vector1D, Vector2D> = false;
 
+// dynamic interfaces/ objects
+
+interface IDynamicObj {
+    [index: string]: number;
+}
+
+const id1: IDynamicObj = {
+    k1: 1,
+    k2: 2,
+    k3: 5,
+    helloWord: 15
+};
+console.log(id1);
+
+interface IOptionalObj {
+    id: string,
+    birthDate: Date;
+    avatar?: string;
+    tropies: string[];
+};
+
+const optionalObj: IOptionalObj = {
+    id: "3d2ce32",
+    birthDate: new Date(Date.now()),
+    avatar: "http://avatarurl.com",
+    tropies: []
+};
+console.log(optionalObj);
+
+
 
 // enums : 0, 1, ,2, 3, 4
 enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
