@@ -138,6 +138,7 @@ const var1: subTypeOf<Vector2D, Vector1D> = true;
 const var2: subTypeOf<Vector1D, Vector1D> = true;
 const var3: subTypeOf<Vector1D, Vector2D> = false;
 
+
 // dynamic interfaces/ objects
 interface IDynamicObj {
     [index: string]: number;
@@ -157,7 +158,6 @@ interface IOptionalObj {
     avatar?: string;
     tropies: string[];
 };
-
 const optionalObj: IOptionalObj = {
     id: "3d2ce32",
     birthDate: new Date(Date.now()),
