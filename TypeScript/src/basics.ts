@@ -139,7 +139,6 @@ const var2: subTypeOf<Vector1D, Vector1D> = true;
 const var3: subTypeOf<Vector1D, Vector2D> = false;
 
 // dynamic interfaces/ objects
-
 interface IDynamicObj {
     [index: string]: number;
 }
