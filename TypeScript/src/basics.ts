@@ -161,7 +161,6 @@ interface IOptionalObj {
 const optionalObj: IOptionalObj = {
     id: "3d2ce32",
     birthDate: new Date(Date.now()),
-    avatar: "http://avatarurl.com",
     tropies: []
 };
 console.log(optionalObj);
