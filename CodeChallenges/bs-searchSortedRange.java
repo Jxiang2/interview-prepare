@@ -36,9 +36,7 @@ class SearchSortedRanges {
         }
         return new int[] { -1, -1 };
     }
-}
 
-class RunSearchSortedRanges {
     public static void main(String[] args) {
         SearchSortedRanges sol = new SearchSortedRanges();
         int[] res = sol.searchRange(new int[] { 5, 7, 7, 8, 8, 10 }, 8);

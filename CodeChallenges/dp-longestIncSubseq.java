@@ -30,9 +30,7 @@ class LongestIncSubseq {
         }
         return max;
     }
-}
 
-class RunLongestIncSubseq {
     public static void main(String[] args) {
         LongestIncSubseq sol = new LongestIncSubseq();
         int res = sol.lengthOfLIS(new int[] { 3, 2, 1 });

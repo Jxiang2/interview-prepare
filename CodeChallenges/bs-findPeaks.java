@@ -28,9 +28,7 @@ class FindPeaks {
 
         return l;
     }
-}
 
-class RunFindPeaks {
     public static void main(String[] args) {
         FindPeaks sol = new FindPeaks();
         int res = sol.findPeakElement(new int[] { 5, 7, 7, 8, 8, 10 });

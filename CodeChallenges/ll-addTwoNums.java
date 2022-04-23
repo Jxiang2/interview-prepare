@@ -30,6 +30,7 @@ class AddTwoNums {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         String firstNumber = "";
         String secondNumber = "";
+
         while (l1 != null) {
             firstNumber = l1.val + firstNumber;
             l1 = l1.next;
@@ -46,6 +47,7 @@ class AddTwoNums {
             cur.next = new ListNode(result.charAt(i) - '0');
             cur = cur.next;
         }
+
         return output.next;
     }
 }

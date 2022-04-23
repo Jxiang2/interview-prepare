@@ -37,16 +37,13 @@ class BoxStacking {
 
         return Collections.max(heights.values());
     }
-}
 
-class RunBoxStacking {
     public static void main(String[] args) {
         int[][] matrix = {
                 { 1, 2, 2 }, { 2, 3, 2 },
                 { 1, 5, 4 }, { 2, 4, 1 },
                 { 3, 6, 2 }, { 4, 5, 3 }
         };
-
         BoxStacking sol = new BoxStacking();
         int maxHeight = sol.boxStacking(matrix);
         System.out.println(maxHeight);
