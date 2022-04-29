@@ -9,7 +9,6 @@ function firstDuplicate (arr: number[]) {
 
     let numSet: Set<number> = new Set();
 
-
     for (let i = 0; i < arr.length; i++) {
         let num: number = arr[i];
         if (!numSet.has(num)) {
