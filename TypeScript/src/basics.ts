@@ -166,6 +166,18 @@ const optionalObj: IOptionalObj = {
 console.log(optionalObj);
 
 
+// as keyword
+interface newInterface {
+    name: string;
+    age: number;
+}
+
+let hello: newInterface;
+hello = {} as newInterface;
+hello.age = 12;
+hello.name = "hello";
+console.log(hello);
+
 
 // enums : 0, 1, ,2, 3, 4
 enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
