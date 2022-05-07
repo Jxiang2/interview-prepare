@@ -30,6 +30,7 @@ console.log(ninjaOne);
 // functions & type aliases (the first two lines)
 type StringOrNum = string | number;
 type objWithNameUID = { name: string, uid: StringOrNum; };
+type functionalType = (id: string, savings: BigInteger, checking: BigInteger) => boolean;
 
 let greet: (user: objWithNameUID) => void;
 let add: (a: number, b: number) => void;
@@ -182,5 +183,21 @@ console.log(hello);
 // enums : 0, 1, ,2, 3, 4
 enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
 console.log(ResourceType.AUTHOR);
+
+
+// react hook mockup with types
+type SetStringStateFunction = (state: string) => void;
+type StringUseStateTransaction =
+    (state: string, setState: SetStringStateFunction) => [state: string, setState: SetStringStateFunction];
+
+let stringUseState: StringUseStateTransaction;
+stringUseState = (state: string, setState: SetStringStateFunction) => {
+    return [state, setState];
+};
+
+const myState = "hello";
+const mySetState: SetStringStateFunction = (myState) => console.log(myState);
+const [state, setState] = stringUseState(myState, mySetState);
+console.log(state, setState);
 
 
