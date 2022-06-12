@@ -35,7 +35,7 @@ let Person = function (name, age) {
     }
 }
 
-let jim = Person('Jim', 42)
+let jim = new Person('Jim', 42)
 jim.sayName() // -> Jim
 jim.mother.sayName() // -> Stacey
 
@@ -153,16 +153,37 @@ console.log(getNameLoose.call(thisProfile)) // -> thisProfile
 
 // this example 2 (this of anonymous function is undefined)
 class Bear {
+    constructor () {}
+
     scratch () {
         console.log(this)
         let innerfunction = function () {
-
             console.log("inner function this: ", this)
         }
         return innerfunction
     }
 }
-polarBear = new Bear()
+let polarBear = new Bear()
 let itch = polarBear.scratch() // -> anoymous function
 itch() // -> undefined
 itch.call(Bear)
+
+// function constructor -> the default
+function User () {
+    this.name = "John Doe"
+    this.score = 20
+
+    this.sayUser = function () {
+        // when `this` is accessible
+        console.log(this.name)
+
+        function innerFunction () {
+            // when `this` refers to the global scope/object
+            console.log(this)
+        }
+
+        innerFunction()
+    }
+}
+let name = new User()
+name.sayUser()
