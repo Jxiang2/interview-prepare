@@ -1,5 +1,3 @@
-import houses from "./houses.json";
-
 // interfaces
 interface House {
   name: string;
@@ -11,17 +9,17 @@ interface HouseWithID extends House {
 }
 
 // function declarations
-function findHouses (
-  houses: string | House[],
+export function findHouses (
+  houses: string | Array<House>,
   filter?: (house: House) => boolean
 ): HouseWithID[];
 
 // function implementation
-function findHouses (
-  input: string | House[],
+export function findHouses (
+  input: string | Array<House>,
   filter?: (house: House) => boolean
 ) {
-  const houses: House[] = (typeof input === "string") ? JSON.parse(input) : input;
+  const houses: Array<House> = (typeof input === "string") ? JSON.parse(input) : input;
 
   return (filter ? houses.filter(filter) : houses)
     .map((house) => ({
@@ -30,6 +28,3 @@ function findHouses (
     }));
 }
 
-console.log(findHouses(JSON.stringify(houses), ({ name }) => name === "Atreides"));
-
-console.log(findHouses(houses, ({ name }) => name === "Harkonnen"));
