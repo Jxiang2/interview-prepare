@@ -6,7 +6,7 @@
 const myPromisify = (fn) => {
   return (...args) => { // no need to pass callback to args
     return new Promise((resolve, reject) => {
-      function customCallback (err, ...results) { // the first arg is err, then multiple results
+      const customCallback = (err, ...results) => { // the first arg is err, then multiple results
         if (err) {
           reject(err)
         } else {
