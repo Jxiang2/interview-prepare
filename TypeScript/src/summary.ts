@@ -185,19 +185,23 @@ enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
 console.log(ResourceType.AUTHOR);
 
 
-// react hook mockup with types
-type SetStringStateFunction = (state: string) => void;
-type StringUseStateTransaction =
-    (state: string, setState: SetStringStateFunction) => [state: string, setState: SetStringStateFunction];
+// & operator on 2 interfaces
+interface Base1 {
+    name: string;
+    age: number;
+}
 
-let stringUseState: StringUseStateTransaction;
-stringUseState = (state: string, setState: SetStringStateFunction) => {
-    return [state, setState];
+interface Base2 {
+    id: string,
+    isMarried: boolean;
+}
+
+const mixedBase: Base1 & Base2 = {
+    id: "3r23f0jewfewf",
+    name: "xjy",
+    age: 12,
+    isMarried: false
 };
 
-const myState = "hello";
-const mySetState: SetStringStateFunction = (myState) => console.log(myState);
-const [state, setState] = stringUseState(myState, mySetState);
-console.log(state, setState);
-
+console.log(mixedBase);
 
