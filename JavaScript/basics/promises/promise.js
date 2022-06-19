@@ -15,10 +15,12 @@ const test = (number) => {
     })
 }
 
-test(-1)
+const testPromise = test(2)
+testPromise.then(msg => console.log(msg))
+testPromise.then(msg => console.log(msg))
+testPromise
     .then(msg => console.log(msg))
     .catch(err => console.log(err))
-
 
 
 // example 2
