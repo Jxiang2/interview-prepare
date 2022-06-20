@@ -85,4 +85,3 @@ sendEvent("addToCart", {
   quantity: 12,
   productID: "e32d2d2e23"
 });
-
