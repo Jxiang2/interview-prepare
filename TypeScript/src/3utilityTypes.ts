@@ -53,7 +53,6 @@ const meMe: JustEmailAndName = {
 console.log(meMe);
 
 
-
 // Record<string, MyUser>
 const mapById = (users: MyUser[]): Record<string, MyUser> => {
   return users.reduce((acc, cur) => {
@@ -71,3 +70,16 @@ const idMap: Record<string, MyUser> = mapById([
 
 console.log(idMap);
 
+
+// ReadOnly<T>
+interface Cat {
+  name: string,
+  breed: string;
+}
+
+const rc: Readonly<Cat> = {
+  name: "dingding",
+  breed: "teddy bear"
+};
+
+// rc.name = 'cwec';
