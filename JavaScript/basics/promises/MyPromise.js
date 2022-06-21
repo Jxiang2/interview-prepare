@@ -27,6 +27,7 @@ class MyPromise {
   #onSuccessBinded = this.#onSuccess.bind(this)
   #onFailBinded = this.#onFail.bind(this)
 
+
   constructor (promiseCb) {
     try {
       promiseCb(this.#onSuccessBinded, this.#onFailBinded) // call (resolve, reject) => ... when new a Promise
@@ -34,6 +35,7 @@ class MyPromise {
       this.onFail(err)
     }
   }
+
 
   #runCallbacks () {
     if (this.#state === STATE.FULLFILLED) {
@@ -51,6 +53,7 @@ class MyPromise {
     }
   }
 
+
   #onSuccess (value) {
     if (this.#state !== STATE.PEDNING) return
 
@@ -67,6 +70,7 @@ class MyPromise {
 
     this.#runCallbacks()
   }
+
 
   #onFail (value) {
     if (this.#state !== STATE.PEDNING) return
@@ -88,6 +92,7 @@ class MyPromise {
 
     this.#runCallbacks()
   }
+
 
   /**
    * @param thenCb
@@ -125,6 +130,7 @@ class MyPromise {
     })
   }
 
+
   /**
    * @param catchCb 
    * @returns MyPromise
@@ -132,6 +138,7 @@ class MyPromise {
   catch (catchCb) {
     return this.then(undefined, catchCb)
   }
+
 
   /**
    * @param finallyCb 
@@ -148,7 +155,9 @@ class MyPromise {
   }
 }
 
+
 module.exports = MyPromise
+
 
 // tests
 let p = new Promise((resolve, reject) => {
