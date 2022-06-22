@@ -1,6 +1,6 @@
 /**
  * promisify a function that originally takes a callback to process an error or several results
- * @param fn: (arg1, arg2, cb) => any
+ * @param fn: (arg1, arg2, cb): any
  * @returns Promise<any>
  */
 const myPromisify = (fn) => {
