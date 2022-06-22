@@ -1,9 +1,10 @@
 /**
  * When a new Promise is initialized,
  * it's aleady resolved or rejected.
- * We just need to use then() or catch() to
+ * We need to use then() or catch() to
  * get the resolved or rejected result
  */
+
 
 const STATE = {
   FULLFILLED: "fullfilled",
@@ -11,13 +12,14 @@ const STATE = {
   PEDNING: "pending"
 }
 
+
 class UncaughtPromiseError extends Error {
   constructor (error) {
     super(error)
-
     this.stack = `(in promise) ${error.stack}`
   }
 }
+
 
 class MyPromise {
   #thenCbs = []
@@ -29,8 +31,8 @@ class MyPromise {
 
 
   constructor (promiseCb) {
-    try {
-      promiseCb(this.#onSuccessBinded, this.#onFailBinded) // call (resolve, reject) => ... when new a Promise
+    try { // call (resolve, reject) => {...}
+      promiseCb(this.#onSuccessBinded, this.#onFailBinded)
     } catch (err) {
       this.onFail(err)
     }
@@ -55,6 +57,7 @@ class MyPromise {
 
 
   #onSuccess (value) {
+    // check if resolve() is already called 
     if (this.#state !== STATE.PEDNING) return
 
     // value is a promise
@@ -73,6 +76,7 @@ class MyPromise {
 
 
   #onFail (value) {
+    // check if reject() is already called 
     if (this.#state !== STATE.PEDNING) return
 
     // value is a promise
@@ -151,6 +155,27 @@ class MyPromise {
     }, result => {
       finallyCb()
       throw result
+    })
+  }
+
+  /**
+   * @param value 
+   * @returns MyPromise
+   */
+  static resolve (value) {
+    return new MyPromise((resolve,) => {
+      resolve(value)
+    })
+  }
+
+
+  /**
+   * @param value 
+   * @returns MyPromise
+   */
+  static reject (value) {
+    return new MyPromise((resolve = undefined, reject) => {
+      reject(value)
     })
   }
 }
