@@ -1,4 +1,4 @@
-// 4 important utility types: Partial<T>, Required<T>, Pick<T>, Record<K, V>
+// 5 important utility types: Partial<T>, Required<T>, Pick<T>, Record<K, V>， ReadOnly<T>
 
 interface MyUser {
   name: string,
