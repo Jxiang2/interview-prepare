@@ -7,12 +7,12 @@ interface Coordinate {
 
 
 // optional type declarations **
-function parseCoordinate (str: string): Coordinate;
-function parseCoordinate (obj: Coordinate): Coordinate;
-function parseCoordinate (x: number, y: number): Coordinate;
+function parseCoordinate(str: string): Coordinate;
+function parseCoordinate(obj: Coordinate): Coordinate;
+function parseCoordinate(x: number, y: number): Coordinate;
 // optional type declarations **
 
-function parseCoordinate (arg1: unknown, arg2?: unknown): Coordinate {
+function parseCoordinate(arg1: unknown, arg2?: unknown): Coordinate {
   let coord: Coordinate = {} as Coordinate;
 
   if (typeof arg1 === "string") {

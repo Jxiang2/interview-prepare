@@ -1,4 +1,4 @@
-const delay = <T> (time: number, data: T): Promise<T> =>
+const delay = <T>(time: number, data: T): Promise<T> =>
   new Promise((resolve) =>
     setTimeout(() => {
       resolve(data);
@@ -6,18 +6,18 @@ const delay = <T> (time: number, data: T): Promise<T> =>
   );
 
 class Users {
-  async getUsers () {
+  async getUsers() {
     return await delay(1000, []);
   }
 
-  async getUser (id: number) {
+  async getUser(id: number) {
     return await delay(50, {
       id: `user:${id}`,
     });
   }
 }
 
-(async function () {
+const test = async function () {
   const users = new Users();
 
   const user = await users.getUser(22);
@@ -26,4 +26,6 @@ class Users {
   await users.getUser(42);
 
   await users.getUsers();
-})();
+};
+
+test();

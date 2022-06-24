@@ -1,5 +1,5 @@
 // knowledge checkpoint: TS tuple, generics, Closure
-function simpleState<T> (initial: T): [() => T, (v: T) => void] {
+function simpleState<T>(initial: T): [() => T, (v: T) => void] {
   let val: T = initial;
   return [
     () => val,
@@ -24,7 +24,7 @@ interface Rank<T> {
   rank: number;
 }
 
-function ranker<T> (
+function ranker<T>(
   items: Array<T>,
   rankAlgo: ((v: T) => number)
 ): Array<T> {
@@ -46,7 +46,7 @@ console.log(ranks);
 
 //  knowledge checkpoint: TS generics, keyof
 // 1
-function pluck<DataType, KeyType extends keyof DataType> (
+function pluck<DataType, KeyType extends keyof DataType>(
   items: DataType[],
   key: KeyType
 ): DataType[KeyType][] {
@@ -72,7 +72,7 @@ interface EventMap {
   checkout: BaseEvent;
 }
 
-function sendEvent<Name extends keyof EventMap> (
+function sendEvent<Name extends keyof EventMap>(
   name: Name,
   data: EventMap[Name]
 ): void {

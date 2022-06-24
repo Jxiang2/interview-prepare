@@ -9,13 +9,13 @@ interface HouseWithID extends House {
 }
 
 // function declarations
-export function findHouses (
+export function findHouses(
   houses: string | Array<House>,
   filter?: (house: House) => boolean
 ): HouseWithID[];
 
 // function implementation
-export function findHouses (
+export function findHouses(
   input: string | Array<House>,
   filter?: (house: House) => boolean
 ) {
