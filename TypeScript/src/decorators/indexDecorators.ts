@@ -6,6 +6,10 @@ export function logTimings<T extends { new(...agrs: any[]): {}; }>(constructor: 
   };
 }
 
+interface ThisWithTimings {
+  __timings: unknown[];
+}
+
 export function timing() {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const value = descriptor.value;
@@ -15,8 +19,8 @@ export function timing() {
       const out = await value.apply(this, args);
       const end = performance.now();
 
-      if ((this as { __timings: unknown[]; }).__timings) {
-        (this as { __timings: unknown[]; }).__timings.push({
+      if ((this as ThisWithTimings).__timings) {
+        (this as ThisWithTimings).__timings.push({
           method: propertyKey,
           time: end - start
         });
