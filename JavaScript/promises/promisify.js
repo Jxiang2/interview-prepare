@@ -13,9 +13,9 @@ const myPromisify = (fn) => {
           resolve(results.length === 1 ? results[0] : results)
         }
       }
-
       args.push(customCallback)
-      fn(this, ...args)
+      // this is the promise
+      fn.call(this, ...args)
     })
   }
 }
