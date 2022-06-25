@@ -35,7 +35,7 @@ export function important(
 }
 
 export function timing() {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
     // retrieve and store the original method initialized in some classes
     const value = descriptor.value;
 
