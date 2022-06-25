@@ -7,7 +7,6 @@ const delay = <T>(time: number, data: T): Promise<T> =>
     }, time)
   );
 
-
 @logTimings
 class Users {
   @timing()

@@ -21,14 +21,14 @@ export function important(
   propertyKey: string | symbol,
   parameterIndex: number
 ) {
-  let existingRequiredParameters: number[] =
+  let existingImportantParameters: number[] =
     Reflect.getOwnMetadata(importantMetadataKey, target, propertyKey) || [];
 
-  existingRequiredParameters.push(parameterIndex);
+  existingImportantParameters.push(parameterIndex);
 
   Reflect.defineMetadata(
     importantMetadataKey,
-    existingRequiredParameters,
+    existingImportantParameters,
     target,
     propertyKey
   );
