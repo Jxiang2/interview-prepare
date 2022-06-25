@@ -1,4 +1,4 @@
-import { logTimings, timing } from "./indexDecorators";
+import { logTimings, timing, important } from "./indexDecorators";
 
 const delay = <T>(time: number, data: T): Promise<T> =>
   new Promise((resolve) =>
@@ -16,7 +16,7 @@ class Users {
   }
 
   @timing()
-  async getUser(id: number) {
+  async getUser(@important id: number) {
     return await delay(50, {
       id: `user:${id}`,
     });
@@ -34,8 +34,7 @@ async function test() {
   await users.getUsers();
 
   // @ts-ignore
-  console.log(users.__timings!);
-
+  users.printTimings();
 };
 
 test();
