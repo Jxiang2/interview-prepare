@@ -39,7 +39,7 @@ class MyPromise {
   }
 
 
-  #runCallbacks () {
+  #runCallbacks() {
     if (this.#state === STATE.FULLFILLED) {
       this.#thenCbs.forEach(callback => callback(this.#value))
 
@@ -56,7 +56,7 @@ class MyPromise {
   }
 
 
-  #onSuccess (value) {
+  #onSuccess(value) {
     // check if resolve() is already called 
     if (this.#state !== STATE.PEDNING) return
 
@@ -75,7 +75,7 @@ class MyPromise {
   }
 
 
-  #onFail (value) {
+  #onFail(value) {
     // check if reject() is already called 
     if (this.#state !== STATE.PEDNING) return
 
@@ -103,7 +103,7 @@ class MyPromise {
    * @param catchCb 
    * @returns MyPromise
    */
-  then (thenCb, catchCb) {
+  then(thenCb, catchCb) {
     return new MyPromise((resolve, reject) => {
       this.#thenCbs.push(result => { // we can do multiple p.then() by pushing functions to thenCbs array
         if (thenCb === null) { // if callback is not provided in then(), skip this then()
@@ -139,7 +139,7 @@ class MyPromise {
    * @param catchCb 
    * @returns MyPromise
    */
-  catch (catchCb) {
+  catch(catchCb) {
     return this.then(undefined, catchCb)
   }
 
@@ -148,7 +148,7 @@ class MyPromise {
    * @param finallyCb 
    * @returns  MyPromise
    */
-  finally (finallyCb) { // finally passes result to next chain and finally callback does not take parameters 
+  finally(finallyCb) { // finally passes result to next chain and finally callback does not take parameters 
     return this.then(result => {
       finallyCb()
       return result
@@ -162,7 +162,7 @@ class MyPromise {
    * @param value 
    * @returns MyPromise
    */
-  static resolve (value) {
+  static resolve(value) {
     return new MyPromise((resolve,) => {
       resolve(value)
     })
@@ -173,7 +173,7 @@ class MyPromise {
    * @param value 
    * @returns MyPromise
    */
-  static reject (value) {
+  static reject(value) {
     return new MyPromise((resolve = undefined, reject) => {
       reject(value)
     })

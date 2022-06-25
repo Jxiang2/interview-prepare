@@ -92,7 +92,7 @@ console.log("#############################################")
 
 // class & obj & func unbound cases
 class NewClassC {
-    playGame () {
+    playGame() {
         console.log("class-based constructor: ", this)
     }
 }
@@ -101,7 +101,7 @@ console.log(pgc)
 let var1 = pgc.playGame
 var1() // -> undefiend
 
-function NewClassF () {
+function NewClassF() {
     this.playGame = function () {
         console.log("function-based constructor: ", this)
     }
@@ -112,7 +112,7 @@ let var2 = pgf.playGame
 var2() // -> undefiend
 
 let newClassO = {
-    playGame () {
+    playGame() {
         console.log("object constructor: ", this)
     }
 }
@@ -136,11 +136,11 @@ const thisProfile = {
     myName: "john",
     childern: [{
         myName: "peter",
-        getName () {
+        getName() {
             return this
         }
     }],
-    getName () {
+    getName() {
         return this
     }
 }
@@ -153,9 +153,9 @@ console.log(getNameLoose.call(thisProfile)) // -> thisProfile
 
 // this example 2 (this of anonymous function is undefined)
 class Bear {
-    constructor () {}
+    constructor () { }
 
-    scratch () {
+    scratch() {
         console.log(this)
         let innerfunction = function () {
             console.log("inner function this: ", this)
@@ -169,7 +169,7 @@ itch() // -> undefined
 itch.call(Bear)
 
 // function constructor -> the default
-function User () {
+function User() {
     this.name = "John Doe"
     this.score = 20
 
@@ -177,7 +177,7 @@ function User () {
         // when `this` is accessible
         console.log(this.name)
 
-        function innerFunction () {
+        function innerFunction() {
             // when `this` refers to the global scope/object
             console.log(this)
         }

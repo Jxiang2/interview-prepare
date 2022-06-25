@@ -5,13 +5,13 @@ class Square {
     }
 
     // getter
-    get area () {
+    get area() {
         this.number++
         return this.width * this.height
     }
 
     // setter
-    set area (area) {
+    set area(area) {
         this.width = Math.sqrt(area)
         this.height = this.width
     }
