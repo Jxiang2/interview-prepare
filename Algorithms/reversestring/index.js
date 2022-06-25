@@ -6,14 +6,14 @@
 //   reverse('hello') === 'olleh'
 //   reverse('Greetings!') === '!sgniteerG'
 
-function reverse ( str ) {
-    // reduce: condense 1 arr to 1 str
-    str.split( '' ).reduce();
-    return str.split( '' )
-        .reduce( ( reversed, char ) => ( char + reversed ), '' );
+function reverse(str) {
+  // reduce: condense 1 arr to 1 str
+  str.split('').reduce()
+  return str.split('')
+    .reduce((reversed, char) => (char + reversed), '')
 }
 
-module.exports = reverse;
+module.exports = reverse
 
 // function reverse(str) {
 //     return str.split('').reverse().join('')

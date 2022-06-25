@@ -12,19 +12,19 @@
 //   c.next = b;
 //   circular(l) // true
 
-function circular ( list ) {
-	let slow = list.getFirst();
-	let fast = list.getFirst();
+function circular(list) {
+  let slow = list.getFirst()
+  let fast = list.getFirst()
 
-	while ( fast.next && fast.next.next ) {
-		slow = slow.next;
-		fast = fast.next.next;
+  while (fast.next && fast.next.next) {
+    slow = slow.next
+    fast = fast.next.next
 
-		if ( slow === fast ) {
-			return true;
-		}
-	}
-	return false;
+    if (slow === fast) {
+      return true
+    }
+  }
+  return false
 }
 
-module.exports = circular;
+module.exports = circular

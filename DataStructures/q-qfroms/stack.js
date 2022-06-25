@@ -1,19 +1,19 @@
 class Stack {
-  constructor () {
-    this.data = [];
+  constructor() {
+    this.data = []
   }
 
-  push ( record ) {
-    this.data.push( record );
+  push(record) {
+    this.data.push(record)
   }
 
-  pop () {
-    return this.data.pop();
+  pop() {
+    return this.data.pop()
   }
 
-  peek () {
-    return this.data[ this.data.length - 1 ];
+  peek() {
+    return this.data[this.data.length - 1]
   }
 }
 
-module.exports = Stack;
+module.exports = Stack

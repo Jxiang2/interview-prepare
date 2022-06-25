@@ -1,10 +1,12 @@
 interface Database<T, K> {
   get(id: K): T;
+
   set(id: K, value: T): void;
 }
 
 interface Persistable {
   saveToString(): string;
+
   restoreFromString(storedState: string): void;
 }
 

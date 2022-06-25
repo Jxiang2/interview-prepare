@@ -19,11 +19,11 @@ console.log(uid);
 
 // objects, the properties can not be changed once defined
 let ninjaOne: {
-    name: string,
-    age: number,
-    belt: string;
+  name: string,
+  age: number,
+  belt: string;
 };
-ninjaOne = { name: 'xjy', age: 22, belt: 'black' };
+ninjaOne = {name: 'xjy', age: 22, belt: 'black'};
 console.log(ninjaOne);
 
 
@@ -37,20 +37,20 @@ let add: (a: number, b: number) => void;
 let minus: (a: number, b: number) => number;
 
 greet = (user: objWithNameUID): void => {
-    console.log(`${user.name} | ${user.uid}`);
+  console.log(`${user.name} | ${user.uid}`);
 };
 
-greet({ name: 'xjy', uid: 1537572 });
+greet({name: 'xjy', uid: 1537572});
 
 
 add = (a: number, b: number, c: number | string = 20): void => {
-    console.log(a + b + Number(c));
+  console.log(a + b + Number(c));
 };
 
 add(5, 10);
 
 minus = (a: number, b: number): number => {
-    return a - b;
+  return a - b;
 };
 
 let result = minus(10, 7);
@@ -59,25 +59,27 @@ console.log(result);
 
 // interface: a blueprint
 interface IsPerson {
-    name: string;
-    age: number;
-    speak (a: string): void;
-    spend (a: number): number;
+  name: string;
+  age: number;
+
+  speak(a: string): void;
+
+  spend(a: number): number;
 }
 
 const me: IsPerson = {
-    name: 'xjy',
-    age: 30,
-    speak (text: string) {
-        console.log(text);
-    },
-    spend (amount: number) {
-        console.log('I spent', amount);
-        return amount;
-    }
+  name: 'xjy',
+  age: 30,
+  speak(text: string) {
+    console.log(text);
+  },
+  spend(amount: number) {
+    console.log('I spent', amount);
+    return amount;
+  }
 };
 const greetperson = (person: IsPerson) => {
-    console.log('hello', person.name);
+  console.log('hello', person.name);
 };
 
 greetperson(me);
@@ -86,19 +88,19 @@ greetperson(me);
 // generics
 // capture whatever item we pass in the function
 // I need to pass a object with a property called name
-const addUID = <T extends { name: string; }> (obj: T) => {
-    let uid = Math.floor(Math.random() * 100);
-    return { ...obj, uid };
+const addUID = <T extends { name: string; }>(obj: T) => {
+  let uid = Math.floor(Math.random() * 100);
+  return {...obj, uid};
 };
 
-let docOne = addUID({ name: 'yoshi', age: 40 });
+let docOne = addUID({name: 'yoshi', age: 40});
 console.log(docOne.age);
 
 
 // generics
 // specify the type of input when calling a generic function
-const printAny = <T, U> (state: T, name: U) => {
-    console.log(state);
+const printAny = <T, U>(state: T, name: U) => {
+  console.log(state);
 };
 
 printAny<string, string>("hello", "me");
@@ -109,21 +111,21 @@ printAny<number, string>(1, "me");
 // make an interface field flexible
 // the data property can be any data type
 interface Resource<T> {
-    uid: number;
-    resourceName: string;
-    data: T;
+  uid: number;
+  resourceName: string;
+  data: T;
 }
 
 const docThree: Resource<String> = {
-    uid: 12345,
-    resourceName: 'person',
-    data: 'string data'
+  uid: 12345,
+  resourceName: 'person',
+  data: 'string data'
 };
 
 const docFour: Resource<string[]> = {
-    uid: 12345,
-    resourceName: 'person',
-    data: ['string data 1', 'string data 2']
+  uid: 12345,
+  resourceName: 'person',
+  data: ['string data 1', 'string data 2']
 };
 
 console.log(docThree);
@@ -131,8 +133,15 @@ console.log(docFour);
 
 
 // extends & types example
-interface Vector1D { x: number; };
-interface Vector2D { x: number, y: number; }
+interface Vector1D {
+  x: number;
+};
+
+interface Vector2D {
+  x: number,
+  y: number;
+}
+
 type subTypeOf<T, U> = T extends U ? true : false;
 
 const var1: subTypeOf<Vector2D, Vector1D> = true;
@@ -142,35 +151,35 @@ const var3: subTypeOf<Vector1D, Vector2D> = false;
 
 // dynamic interfaces/ objects
 interface IDynamicObj {
-    [index: string]: number;
+  [index: string]: number;
 }
 
 const id1: IDynamicObj = {
-    k1: 1,
-    k2: 2,
-    k3: 5,
-    helloWord: 15
+  k1: 1,
+  k2: 2,
+  k3: 5,
+  helloWord: 15
 };
 console.log(id1);
 
 interface IOptionalObj {
-    id: string,
-    birthDate: Date;
-    avatar?: string;
-    tropies: string[];
+  id: string,
+  birthDate: Date;
+  avatar?: string;
+  tropies: string[];
 };
 const optionalObj: IOptionalObj = {
-    id: "3d2ce32",
-    birthDate: new Date(Date.now()),
-    tropies: []
+  id: "3d2ce32",
+  birthDate: new Date(Date.now()),
+  tropies: []
 };
 console.log(optionalObj);
 
 
 // as keyword
 interface newInterface {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 let hello: newInterface;
@@ -182,25 +191,26 @@ console.log(hello);
 
 // enums : 0, 1, ,2, 3, 4
 enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+
 console.log(ResourceType.AUTHOR);
 
 
 // & operator on 2 interfaces
 interface Base1 {
-    name: string;
-    age: number;
+  name: string;
+  age: number;
 }
 
 interface Base2 {
-    id: string,
-    isMarried: boolean;
+  id: string,
+  isMarried: boolean;
 }
 
 const mixedBase: Base1 & Base2 = {
-    id: "3r23f0jewfewf",
-    name: "xjy",
-    age: 12,
-    isMarried: false
+  id: "3r23f0jewfewf",
+  name: "xjy",
+  age: 12,
+  isMarried: false
 };
 
 console.log(mixedBase);

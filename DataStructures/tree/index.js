@@ -11,45 +11,45 @@
 // function that gets called with each element in the tree
 
 class Node {
-	constructor ( data ) {
-		this.data = data;
-		this.children = [];
-	}
+  constructor(data) {
+    this.data = data
+    this.children = []
+  }
 
-	add ( data ) {
-		const node = new Node( data );
-		this.children.push( node );
-	}
+  add(data) {
+    const node = new Node(data)
+    this.children.push(node)
+  }
 
-	remove ( data ) {
-		this.children = this.children.filter( ( child ) => {
-			return child.data !== data;
-		} );
-	}
+  remove(data) {
+    this.children = this.children.filter((child) => {
+      return child.data !== data
+    })
+  }
 }
 
 class Tree {
-	constructor ( root ) {
-		this.root = root;
-	}
+  constructor(root) {
+    this.root = root
+  }
 
-	traverseBF ( fn ) {
-		const arr = [ this.root ];
-		while ( arr.length ) {
-			const node = arr.shift();
-			arr.push( ...node.children );
-			fn( node );
-		}
-	}
+  traverseBF(fn) {
+    const arr = [this.root]
+    while (arr.length) {
+      const node = arr.shift()
+      arr.push(...node.children)
+      fn(node)
+    }
+  }
 
-	traverseDF ( fn ) {
-		const arr = [ this.root ];
-		while ( arr.length ) {
-			const node = arr.shift();
-			arr.unshift( ...node.children );
-			fn( node );
-		}
-	}
+  traverseDF(fn) {
+    const arr = [this.root]
+    while (arr.length) {
+      const node = arr.shift()
+      arr.unshift(...node.children)
+      fn(node)
+    }
+  }
 }
 
-module.exports = { Tree, Node };
+module.exports = { Tree, Node }

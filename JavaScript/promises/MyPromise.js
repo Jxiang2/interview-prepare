@@ -7,14 +7,14 @@
 
 
 const STATE = {
-  FULLFILLED: "fullfilled",
-  REJECTED: "rejected",
-  PEDNING: "pending"
+  FULLFILLED: 'fullfilled',
+  REJECTED: 'rejected',
+  PEDNING: 'pending',
 }
 
 
 class UncaughtPromiseError extends Error {
-  constructor (error) {
+  constructor(error) {
     super(error)
     this.stack = `(in promise) ${error.stack}`
   }
@@ -30,7 +30,7 @@ class MyPromise {
   #onFailBinded = this.#onFail.bind(this)
 
 
-  constructor (promiseCb) {
+  constructor(promiseCb) {
     try { // call (resolve, reject) => {...}
       promiseCb(this.#onSuccessBinded, this.#onFailBinded)
     } catch (err) {
@@ -38,6 +38,25 @@ class MyPromise {
     }
   }
 
+  /**
+   * @param value
+   * @returns MyPromise
+   */
+  static resolve(value) {
+    return new MyPromise((resolve) => {
+      resolve(value)
+    })
+  }
+
+  /**
+   * @param value
+   * @returns MyPromise
+   */
+  static reject(value) {
+    return new MyPromise((resolve = undefined, reject) => {
+      reject(value)
+    })
+  }
 
   #runCallbacks() {
     if (this.#state === STATE.FULLFILLED) {
@@ -55,9 +74,8 @@ class MyPromise {
     }
   }
 
-
   #onSuccess(value) {
-    // check if resolve() is already called 
+    // check if resolve() is already called
     if (this.#state !== STATE.PEDNING) return
 
     // value is a promise
@@ -74,9 +92,8 @@ class MyPromise {
     this.#runCallbacks()
   }
 
-
   #onFail(value) {
-    // check if reject() is already called 
+    // check if reject() is already called
     if (this.#state !== STATE.PEDNING) return
 
     // value is a promise
@@ -97,10 +114,9 @@ class MyPromise {
     this.#runCallbacks()
   }
 
-
   /**
    * @param thenCb
-   * @param catchCb 
+   * @param catchCb
    * @returns MyPromise
    */
   then(thenCb, catchCb) {
@@ -134,48 +150,25 @@ class MyPromise {
     })
   }
 
-
   /**
-   * @param catchCb 
+   * @param catchCb
    * @returns MyPromise
    */
   catch(catchCb) {
     return this.then(undefined, catchCb)
   }
 
-
   /**
-   * @param finallyCb 
+   * @param finallyCb
    * @returns  MyPromise
    */
-  finally(finallyCb) { // finally passes result to next chain and finally callback does not take parameters 
+  finally(finallyCb) { // finally passes result to next chain and finally callback does not take parameters
     return this.then(result => {
       finallyCb()
       return result
     }, result => {
       finallyCb()
       throw result
-    })
-  }
-
-  /**
-   * @param value 
-   * @returns MyPromise
-   */
-  static resolve(value) {
-    return new MyPromise((resolve,) => {
-      resolve(value)
-    })
-  }
-
-
-  /**
-   * @param value 
-   * @returns MyPromise
-   */
-  static reject(value) {
-    return new MyPromise((resolve = undefined, reject) => {
-      reject(value)
     })
   }
 }
@@ -186,7 +179,7 @@ module.exports = MyPromise
 
 // tests
 let p = new Promise((resolve, reject) => {
-  resolve("yay!")
+  resolve('yay!')
 })
 p
   .then(data => data.toString())

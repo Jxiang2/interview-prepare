@@ -17,27 +17,27 @@
 //       '### '
 //       '####'
 
-const steps = ( n, row = 0, stair = '' ) => {
-    if ( row === n ) {
-        return;
-    }
+const steps = (n, row = 0, stair = '') => {
+  if (row === n) {
+    return
+  }
 
-    if ( stair.length === n ) {
-        console.log( stair );
-        steps( n, row + 1 );
-        return;
-    }
+  if (stair.length === n) {
+    console.log(stair)
+    steps(n, row + 1)
+    return
+  }
 
-    if ( stair.length <= row ) {
-        stair += '#';
-    } else {
-        stair += ' ';
-    }
+  if (stair.length <= row) {
+    stair += '#'
+  } else {
+    stair += ' '
+  }
 
-    steps( n, row, stair );
-};
+  steps(n, row, stair)
+}
 
-module.exports = steps;
+module.exports = steps
 
 // idea: the nth row means there should n cols of '#' in that row
 //  #__

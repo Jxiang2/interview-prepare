@@ -19,6 +19,8 @@ const lg: DogInfo = {
 };
 
 listenToObj<DogInfo>(lg, {
-  onNameChange: (val: string) => { },
-  onAgeChange: (val: number) => { }
+  onNameChange: (val: string) => {
+  },
+  onAgeChange: (val: number) => {
+  }
 });

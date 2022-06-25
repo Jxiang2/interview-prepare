@@ -21,11 +21,10 @@ const myPromisify = (fn) => {
 }
 
 
-
 // test function
 const getSumCb = (num1, num2, callback) => {
   if (!num1 || !num2) {
-    return callback(new Error("Missing arguments"), null)
+    return callback(new Error('Missing arguments'), null)
   }
   const sum = num1 + num2
   const message = `Sum is ${sum}`

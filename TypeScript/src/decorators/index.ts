@@ -1,4 +1,4 @@
-import { logTimings, timing, important } from "./indexDecorators";
+import { important, logTimings, timing } from "./indexDecorators";
 
 const delay = <T>(time: number, data: T): Promise<T> =>
   new Promise((resolve) =>
