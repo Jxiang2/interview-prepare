@@ -1,3 +1,5 @@
+import { logTimings, timing } from "./indexDecorators";
+
 const delay = <T>(time: number, data: T): Promise<T> =>
   new Promise((resolve) =>
     setTimeout(() => {
@@ -5,11 +7,15 @@ const delay = <T>(time: number, data: T): Promise<T> =>
     }, time)
   );
 
+
+@logTimings
 class Users {
+  @timing()
   async getUsers() {
     return await delay(1000, []);
   }
 
+  @timing()
   async getUser(id: number) {
     return await delay(50, {
       id: `user:${id}`,
@@ -17,7 +23,7 @@ class Users {
   }
 }
 
-const test = async function () {
+async function test() {
   const users = new Users();
 
   const user = await users.getUser(22);
@@ -26,6 +32,10 @@ const test = async function () {
   await users.getUser(42);
 
   await users.getUsers();
+
+  // @ts-ignore
+  console.log(users.__timings!);
+
 };
 
 test();
