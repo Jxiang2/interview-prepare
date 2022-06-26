@@ -15,7 +15,7 @@ class Users {
   }
 
   @timing()
-  async getUser(@important id: number) {
+  async getUser(@important id: number, @important name: string) {
     return await delay(50, {
       id: `user:${id}`,
     });
@@ -25,10 +25,10 @@ class Users {
 async function test() {
   const users = new Users();
 
-  const user = await users.getUser(22);
+  const user = await users.getUser(22, "xjy");
   console.log(`Got ${JSON.stringify(user)}`);
 
-  await users.getUser(42);
+  await users.getUser(42, "xjy");
 
   await users.getUsers();
 

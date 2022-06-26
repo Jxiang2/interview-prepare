@@ -34,6 +34,12 @@ export function important(
   );
 }
 
+/**
+ * 1. return a "decorator-modifier function" to modify the decorated method
+ * 2. the "decorator-modifier function" modify descriptor.value as that is the original method
+ * 
+ * when the decorated method is called, modified descriptor.value() is excuted
+ */
 export function timing() {
   return function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
     // retrieve and store the original method initialized in some classes
