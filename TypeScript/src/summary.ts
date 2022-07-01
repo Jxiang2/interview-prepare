@@ -23,7 +23,7 @@ let ninjaOne: {
   age: number,
   belt: string;
 };
-ninjaOne = {name: 'xjy', age: 22, belt: 'black'};
+ninjaOne = { name: 'xjy', age: 22, belt: 'black' };
 console.log(ninjaOne);
 
 
@@ -40,7 +40,7 @@ greet = (user: objWithNameUID): void => {
   console.log(`${user.name} | ${user.uid}`);
 };
 
-greet({name: 'xjy', uid: 1537572});
+greet({ name: 'xjy', uid: 1537572 });
 
 
 add = (a: number, b: number, c: number | string = 20): void => {
@@ -90,10 +90,10 @@ greetperson(me);
 // I need to pass a object with a property called name
 const addUID = <T extends { name: string; }>(obj: T) => {
   let uid = Math.floor(Math.random() * 100);
-  return {...obj, uid};
+  return { ...obj, uid };
 };
 
-let docOne = addUID({name: 'yoshi', age: 40});
+let docOne = addUID({ name: 'yoshi', age: 40 });
 console.log(docOne.age);
 
 
@@ -214,4 +214,3 @@ const mixedBase: Base1 & Base2 = {
 };
 
 console.log(mixedBase);
-
