@@ -1,4 +1,4 @@
-[
+export const houses = [
   {
     "name": "Atreides",
     "planets": "Calladan"
@@ -17,4 +17,4 @@
       "Arrakis"
     ]
   }
-]
+];

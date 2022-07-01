@@ -16,23 +16,23 @@ export function logTimings<T extends { new(...args: any[]): {}; }>(
   };
 }
 
-export function important(
-  target: Object,
-  propertyKey: string | symbol,
-  parameterIndex: number
-) {
-  let existingImportantParameters: number[] =
-    Reflect.getOwnMetadata(importantMetadataKey, target, propertyKey) || [];
+// export function important(
+//   target: Object,
+//   propertyKey: string | symbol,
+//   parameterIndex: number
+// ) {
+//   let existingImportantParameters: number[] =
+//     Reflect.getOwnMetadata(importantMetadataKey, target, propertyKey) || [];
 
-  existingImportantParameters.push(parameterIndex);
+//   existingImportantParameters.push(parameterIndex);
 
-  Reflect.defineMetadata(
-    importantMetadataKey,
-    existingImportantParameters,
-    target,
-    propertyKey
-  );
-}
+//   Reflect.defineMetadata(
+//     importantMetadataKey,
+//     existingImportantParameters,
+//     target,
+//     propertyKey
+//   );
+// }
 
 /**
  * 1. return a "decorator-modifier function" to modify the decorated method
@@ -51,23 +51,23 @@ export function timing() {
       const out = await value.apply(this, args);
       const end = performance.now();
 
-      let importantParamsBuffer: unknown[] = [];
-      let importantParameters: number[] = Reflect.getOwnMetadata(
-        importantMetadataKey,
-        target,
-        propertyKey
-      );
-      if (importantParameters) {
-        for (let parameterIndex of importantParameters) {
-          importantParamsBuffer.push(args[parameterIndex]);
-        }
-      }
+      // let importantParamsBuffer: unknown[] = [];
+      // let importantParameters: number[] = Reflect.getOwnMetadata(
+      //   importantMetadataKey,
+      //   target,
+      //   propertyKey
+      // );
+      // if (importantParameters) {
+      //   for (let parameterIndex of importantParameters) {
+      //     importantParamsBuffer.push(args[parameterIndex]);
+      //   }
+      // }
 
       if ((this as ThisWithTimings).__timings) {
         (this as ThisWithTimings).__timings.push({
           method: propertyKey,
           time: end - start,
-          importantParamsBuffer,
+          // importantParamsBuffer,
         });
       } else {
         console.log(end - start);
