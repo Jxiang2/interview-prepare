@@ -1,13 +1,11 @@
 const path = require('path')
-
-const MODE = 'production'
+const HTMLWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  mode: MODE || 'development',
 
-  devtool: MODE === 'production' ? 'source-map' : 'eval-source-map', // to better debug on browser
+  devtool: 'source-map', // to better debug on browser
 
-  entry: './src/summary.ts', //relative path of entry file; all other paths in this file will be absolute
+  entry: './src/challenge1/test.ts', //relative path of entry file; all other paths in this file will be absolute
 
   output: {
     filename: 'bundle.js',
@@ -31,11 +29,9 @@ module.exports = {
     extensions: ['.ts', '.js',],
   },
 
-  devServer: { // development hot-reload mode
-    static: {
-      directory: path.resolve(__dirname, 'dist')
-    },
-    compress: true,
-    port: 9000,
-  }
+  plugins: [
+    new HTMLWebPackPlugin({
+      template: './src/public/index.html' // inject bundle.js into index.html in src dir
+    }),
+  ],
 }
