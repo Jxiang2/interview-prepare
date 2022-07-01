@@ -1,9 +1,16 @@
 const path = require('path')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
+
+  devtool: 'source-map', // to better debug on browser
 
   entry: './src/summary.ts', //relative path of entry file; all other paths in this file will be absolute
+
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
 
   module: {
     // each obj in rules arr is a rule
@@ -21,19 +28,4 @@ module.exports = {
     // specify estensions for imports
     extensions: ['.ts', '.js',]
   },
-
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-
-  },
-
-  devServer: {
-    open: 'http://localhost:3000',
-    port: 3000,
-    static: {
-      // specify which directory to serve
-      directory: path.resolve(__dirname, 'dist')
-    }
-  }
 }
