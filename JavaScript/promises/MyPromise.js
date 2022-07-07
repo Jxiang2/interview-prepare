@@ -22,13 +22,13 @@ class UncaughtPromiseError extends Error {
 
 
 class MyPromise {
+
   #thenCbs = []
   #catchCbs = []
   #state = STATE.PEDNING
   #value = null
   #onSuccessBinded = this.#onSuccess.bind(this)
   #onFailBinded = this.#onFail.bind(this)
-
 
   constructor(promiseCb) {
     try { // call (resolve, reject) => {...}
