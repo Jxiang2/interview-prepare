@@ -64,8 +64,8 @@ const mapById = (users: MyUser[]): Record<string, MyUser> => {
 };
 
 const idMap: Record<string, MyUser> = mapById([
-  {id: "foo", name: "Mr. Foo"},
-  {id: "baz", name: "Mr. Baz"},
+  { id: "foo", name: "Mr. Foo" },
+  { id: "baz", name: "Mr. Baz" },
 ]);
 
 console.log(idMap);

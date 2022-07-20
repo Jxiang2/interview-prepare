@@ -37,5 +37,5 @@ function parseCoordinate(arg1: unknown, arg2?: unknown): Coordinate {
 }
 
 console.log(parseCoordinate(10, 20));
-console.log(parseCoordinate({x: 52, y: 35}));
+console.log(parseCoordinate({ x: 52, y: 35 }));
 console.log(parseCoordinate("x:12,y:22"));

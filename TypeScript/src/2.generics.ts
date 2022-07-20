@@ -85,3 +85,16 @@ sendEvent("addToCart", {
   quantity: 12,
   productID: "e32d2d2e23"
 });
+
+
+// generic function declares
+type FC<T> = (arg: T) => any;
+const myFunc: FC<{ name: string, age: number; }> = ({ name, age }) => {
+  console.log(name);
+  console.log(age);
+};
+
+myFunc({
+  name: "xjy",
+  age: 22
+});
