@@ -52,6 +52,11 @@ const meMe: JustEmailAndName = {
 };
 console.log(meMe);
 
+type MyPick<T, K extends keyof T> = {
+  [P in K]: T[P]
+};
+type Point2D = MyPick<{ x: number, y: number, z: number; }, "x" | "z">;
+
 
 // Record<string, MyUser>
 const mapById = (users: MyUser[]): Record<string, MyUser> => {
