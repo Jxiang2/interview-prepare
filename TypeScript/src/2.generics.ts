@@ -88,8 +88,14 @@ sendEvent("addToCart", {
 
 
 // generic function declares
-type FC<T> = (arg: T) => any;
-const myFunc: FC<{ name: string, age: number; }> = ({ name, age }) => {
+type FC<Props> = (props: Props) => any; // declare
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+const myFunc: FC<Person> = ({ name, age }) => { // implement
   console.log(name);
   console.log(age);
 };
