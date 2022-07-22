@@ -81,39 +81,50 @@ function sendEvent<Name extends keyof EventMap>(
 
 sendEvent("addToCart", {
   time: 10,
-  user: "xjy",
+  user: 'xjy',
   quantity: 12,
   productID: "e32d2d2e23"
 });
 
 
-// generic type of functions
-type FC<Props> = (props: Props) => any; // declare
-
+// 3 generic function types vs generic types of function
 interface Person {
+  id: string; // unique identifier
   name: string;
   age: number;
 }
+const isInstanceOfPerson = (obj: any): obj is Person =>
+  typeof (obj as Person).id === "string";
 
-const myFunc: FC<Person> = ({ name, age }) => { // implement
-  console.log(name);
+// 3.1 generic type of functions
+type FC<Props> = (props: Props) => any; // declare
+
+const myFunc: FC<Person> = ({ age, name }: Person) => { // implement (id, name) are destructed from passed person
   console.log(age);
+  console.log(name);
+
 };
 
 myFunc({ // use
+  id: "1wec3212",
   name: "xjy",
   age: 22
 });
 
 
-// generic function types
+// 3.2 generic function types
 type FC1 = <Props>(props: Props) => any; // declare
 
 const myFunc1: FC1 = <Props>(props: Props) => { // implement
-  console.log(props);
+  if (isInstanceOfPerson(props)) {
+    const { age, name, } = props;
+    console.log(age);
+    console.log(name);
+  }
 };
 
 myFunc1<Person>({ // use
+  id: "1wec3212",
   name: "xjy",
   age: 22
 }); 
