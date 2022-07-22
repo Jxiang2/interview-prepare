@@ -87,7 +87,7 @@ sendEvent("addToCart", {
 });
 
 
-// generic function declares
+// generic type of functions
 type FC<Props> = (props: Props) => any; // declare
 
 interface Person {
@@ -100,7 +100,20 @@ const myFunc: FC<Person> = ({ name, age }) => { // implement
   console.log(age);
 };
 
-myFunc({
+myFunc({ // use
   name: "xjy",
   age: 22
 });
+
+
+// generic function types
+type FC1 = <Props>(props: Props) => any; // declare
+
+const myFunc1: FC1 = <Props>(props: Props) => { // implement
+  console.log(props);
+};
+
+myFunc1<Person>({ // use
+  name: "xjy",
+  age: 22
+}); 
