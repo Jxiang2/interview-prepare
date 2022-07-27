@@ -1,0 +1,1 @@
+// ReturnType<Type>, ConstructorParameters<Type>
