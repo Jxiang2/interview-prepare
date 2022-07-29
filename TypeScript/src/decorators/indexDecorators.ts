@@ -7,7 +7,7 @@ interface ThisWithTimings {
   __timings: unknown[];
 }
 
-export function logTimings<T extends { new(...args: any[]): {}; }>(
+export function logTimings<T extends new (...args: any[]) => any>(
   constructor: T
 ) {
   return class extends constructor {
