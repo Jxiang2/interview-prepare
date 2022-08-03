@@ -17,7 +17,7 @@ class KthSmallestInMatrix {
     while (i >= 0 && j < len) {
       if (matrix[i][j] > target) {
         i--;
-      } else {
+      } else { // less or equal!!!
         count = count + i + 1;
         j++;
       }
