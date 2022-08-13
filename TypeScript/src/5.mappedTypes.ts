@@ -4,7 +4,7 @@ interface DogInfo {
 }
 
 type Listners<T> = {
-  [Property in keyof T as `on${Capitalize<string & Property>}Change`]?: (val: T[Property]) => void
+  [Property in keyof T as `on${Capitalize<string & Property>}Change`]: (val: T[Property]) => void
 };
 
 function listenToObj<T>(obj: T, listeners: Listners<T>): void {
