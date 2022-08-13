@@ -8,19 +8,24 @@ type Listners<T> = {
 };
 
 function listenToObj<T>(obj: T, listeners: Listners<T>): void {
-  throw "To Be Implemented";
+  console.log(obj);
+  console.log(listeners);
 }
-
-type DogInfoListeners = Listners<DogInfo>;
 
 const lg: DogInfo = {
   name: "LG",
   age: 13
 };
 
-listenToObj<DogInfo>(lg, {
+const dogListners: Listners<DogInfo> = {
   onNameChange: (val: string) => {
+    console.log(val);
+
   },
   onAgeChange: (val: number) => {
+    console.log(val);
+
   }
-});
+};
+
+listenToObj<DogInfo>(lg, dogListners);

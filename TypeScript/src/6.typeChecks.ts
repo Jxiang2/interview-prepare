@@ -27,7 +27,7 @@ interface A {
   member: string;
 }
 
-function isInstanceOfA(obj: any): boolean {
+function isInstanceOfA(obj: any): obj is A {
   return typeof (obj as A).member === 'string';
 }
 

@@ -19,7 +19,7 @@ console.log(numgetter());
 
 
 // knowledge checkpoint: generics
-interface Rank<T> {
+interface ItemWithRank<T> {
   item: T,
   rank: number;
 }
@@ -28,38 +28,43 @@ function ranker<T>(
   items: Array<T>,
   rankAlgo: ((v: T) => number)
 ): Array<T> {
-  const itemsWithrank: Array<Rank<T>> = items.map((item) => ({
+  const itemsWithRank: Array<ItemWithRank<T>> = items.map((item) => ({
     item,
     rank: rankAlgo(item),
   }));
 
-  itemsWithrank.sort((a, b) => a.rank - b.rank);
+  itemsWithRank.sort((a, b) => a.rank - b.rank);
 
-  return itemsWithrank.map(itemsWithrank => itemsWithrank.item);
+  return itemsWithRank.map(itemsWithRank => itemsWithRank.item);
 }
 
 const strsToTest = ["XxxxxxxxxX", "hello", "world!", "xjy",];
 
-const ranks = ranker(strsToTest, (str) => str.length);
-console.log(ranks);
+const rankedItemList: Array<string> = ranker<string>(strsToTest, (str) => str.length);
+console.log(rankedItemList);
 
 
 //  knowledge checkpoint: TS generics, keyof
 // 1
 function pluck<DataType, KeyType extends keyof DataType>(
-  items: DataType[],
+  items: Array<DataType>,
   key: KeyType
-): DataType[KeyType][] {
+): Array<DataType[KeyType]> {
   return items.map((item) => item[key]);
 }
 
-const dogs = [
+interface Dog {
+  name: string;
+  age: number;
+}
+
+const dogs: Array<Dog> = [
   { name: "Mimi", age: 12 },
   { name: "LG", age: 13 },
 ];
 
-console.log(pluck(dogs, "age"));
-console.log(pluck(dogs, "name"));
+console.log(pluck<Dog, "age">(dogs, "age"));
+console.log(pluck<Dog, "name">(dogs, "name"));
 
 // 2
 interface BaseEvent {
@@ -94,15 +99,16 @@ interface Person {
   age: number;
 }
 const isInstanceOfPerson = (obj: any): obj is Person =>
-  typeof (obj as Person).id === "string";
+  typeof (obj as Person).id === "string" &&
+  typeof (obj as Person).name === "string" &&
+  typeof (obj as Person).age === "number";
 
 // 3.1 generic type of functions
 type FC<Props> = (props: Props) => any; // declare
 
-const myFunc: FC<Person> = ({ age, name }: Person) => { // implement (id, name) are destructed from passed person
-  console.log(age);
-  console.log(name);
-
+const myFunc: FC<Person> = ({ age, name, }: Person) => { // implement (id, name) are destructed from passed person
+  console.log(age.toLocaleString());
+  console.log(name.toLocaleUpperCase());
 };
 
 myFunc({ // use
@@ -111,15 +117,17 @@ myFunc({ // use
   age: 22
 });
 
-
 // 3.2 generic function types
 type FC1 = <Props>(props: Props) => any; // declare
 
 const myFunc1: FC1 = <Props>(props: Props) => { // implement
   if (isInstanceOfPerson(props)) {
     const { age, name, } = props;
-    console.log(age);
-    console.log(name);
+    console.log(age.toLocaleString());
+    console.log(name.toLocaleUpperCase());
+  } else {
+    console.log("type check failed");
+
   }
 };
 
@@ -127,4 +135,10 @@ myFunc1<Person>({ // use
   id: "1wec3212",
   name: "xjy",
   age: 22
-}); 
+});
+
+myFunc1<Dog>({ // use
+  name: "dingding",
+  age: 6
+});
+
