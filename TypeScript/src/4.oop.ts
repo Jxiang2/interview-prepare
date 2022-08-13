@@ -15,7 +15,7 @@ type DBKeyType = string | number | symbol;
 class InMemoryDatabase<T extends DBKeyType, K> implements Database<T, K> {
   protected db = {} as Record<T, K>;
 
-  constructor (db?: Record<T, K>) {
+  constructor (db?: Record<T, K>) { // allow paramterized constructor
     if (db)
       this.db = db;
   }
@@ -45,7 +45,9 @@ class PersistentMemoryDB<T extends DBKeyType, K> extends InMemoryDatabase<T, K> 
 
 
 // tests
-const myDB = new PersistentMemoryDB<string, number>();
+const myDB = new PersistentMemoryDB<string, number>({
+  x: 10, y: 20
+});
 
 myDB.set("foo", 22);
 console.log(myDB.get("foo"));
