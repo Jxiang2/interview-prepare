@@ -27,11 +27,11 @@ interface A {
   member: string;
 }
 
-function isInstanceOfA(obj: any): obj is A {
+function isInstanceOfA(obj: any): boolean {
   return typeof (obj as A).member === 'string';
 }
 
-let a: A = {
+let a = {
   member: ",me"
 };
 
