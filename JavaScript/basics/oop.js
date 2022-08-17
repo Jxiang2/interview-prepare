@@ -34,12 +34,13 @@ class ColorSquare extends Square {
   }
 
   sayHi = () => {
-    console.log(`I am a ${this.color} squre, with area ${this.area}`)
+    console.log(`I am a ${this.color} squre, with area ${this.width} * ${this.height} = ${this.area}`)
   }
 }
 
 let cq1 = new ColorSquare(6, 'blue')
 let cq2 = new ColorSquare(6, 'red')
+console.log(cq1 === cq2)
 cq1.sayHi()
 cq2.sayHi()
 console.log(Square.areaEquals(cq1, cq2))
