@@ -21,7 +21,7 @@ function CreateSimpleMemoeryDataBase<T>() {
 const SimpleStringDatabase = CreateSimpleMemoeryDataBase<string>();
 
 type Constructor<T> = new (...args: any[]) => T;
-//  ****************  constructor(...)   => {}
+//  ****************  constructor(...)   => object
 
 
 function Dumpable<T extends Constructor<{
