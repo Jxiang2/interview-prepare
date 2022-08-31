@@ -155,9 +155,5 @@ const pAfter1Then = p
 pAfter1Then // should log "RESULT >= 5"
   .then((value) => console.log(value));
 
-new MyPromise(promiseCb) // // should log "RESULT >= 5"
-  .then((value) => (value as string).toUpperCase())
-  .then((value) => console.log(value));
-
 
 // 2. test then() & catch() with chain
