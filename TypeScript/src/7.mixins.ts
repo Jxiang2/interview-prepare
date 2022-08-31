@@ -1,6 +1,6 @@
 // generic mixin (generic functions that return classes)
 
-function CreateSimpleMemoeryDataBase<T>() {
+function CreateSimpleMemoeryDatabase<T>() {
   return class SimpleMemoryDatabase {
     private db: Record<string, T> = {};
 
@@ -18,13 +18,13 @@ function CreateSimpleMemoeryDataBase<T>() {
   };
 }
 
-const SimpleStringDatabase = CreateSimpleMemoeryDataBase<string>();
+const SimpleStringDatabase = CreateSimpleMemoeryDatabase<string>();
 
 type Constructor<T> = new (...args: any[]) => T;
 //  ****************  constructor(...)   => object
 
 
-function Dumpable<T extends Constructor<{
+function CreateDumpableDatabase<T extends Constructor<{
   getObject(): Record<string, any>;
 }>>(Base: T) {
   return class Dumpable extends Base {
@@ -34,7 +34,7 @@ function Dumpable<T extends Constructor<{
   };
 }
 
-const DumpableStringDatabase = Dumpable<typeof SimpleStringDatabase>(SimpleStringDatabase);
+const DumpableStringDatabase = CreateDumpableDatabase<typeof SimpleStringDatabase>(SimpleStringDatabase);
 const sdb2 = new DumpableStringDatabase();
 sdb2.set("a", "1");
 sdb2.set("b", "2");
