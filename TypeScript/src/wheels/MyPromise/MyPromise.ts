@@ -1,13 +1,11 @@
-type AnyFuncion = (...args: any[]) => any;
-
-// type of onSuccess
-type Resolve = (...args: any[]) => void;
-
-// type of onFail
-type Reject = (...args: any[]) => void;
-
-// we can do return resolve(value) in promiseCallback
-type PromiseCallback = (resolve: Resolve, reject: Reject) => void | undefined;
+import {
+  AnyFuncion,
+  FinallyFunction,
+  Reject,
+  Resolve,
+  PromiseCallback,
+  IMyPromise,
+} from "./MyPromise.types";
 
 const STATE = {
   FULLFILLED: 'fullfilled',
@@ -15,14 +13,18 @@ const STATE = {
   PEDNING: 'pending',
 };
 
-class MyPromise {
+class MyPromise implements IMyPromise {
   private state: string = STATE.PEDNING;
   private value: any = null;
+
+  // arrays of then callbacks
   private thenCallbacks: Array<AnyFuncion> = [];
+  // arrays of catch callbacks
   private catchCallbacks: Array<AnyFuncion> = [];
 
-  // bind onSuccess, onFail to MyPromise class
+  // bind onSuccess to MyPromise class
   private onSuccessBind = this.onSuccess.bind(this);
+  // bind onFail to MyPromise class
   private onFailBind = this.onFail.bind(this);
 
   constructor (cb: PromiseCallback) {
@@ -33,6 +35,10 @@ class MyPromise {
     }
   }
 
+  /**
+   * run all methods in thenCallbacks and catchCallbacks
+   * invoke when MyPromise is init, and when then() | catch() | finally() is called
+   */
   private runCallbacks() {
     if (this.state === STATE.FULLFILLED) {
       this.thenCallbacks.forEach(callback => callback(this.value));
@@ -47,6 +53,11 @@ class MyPromise {
     }
   };
 
+  /**
+   * implementation of resolve method passed to PromiseCallback
+   * @param {any} resolveValue 
+   * @returns {void}
+   */
   private onSuccess(resolveValue: any) {
     if (this.state !== STATE.PEDNING) {
       return;
@@ -63,6 +74,11 @@ class MyPromise {
     this.runCallbacks();
   }
 
+  /**
+   * implementation of reject method passed to PromiseCallback
+   * @param {any} rejectValue 
+   * @returns {void}
+   */
   private onFail(rejectValue: any) {
     if (this.state !== STATE.PEDNING) {
       return;
@@ -80,10 +96,11 @@ class MyPromise {
   }
 
   public then(thenCb: AnyFuncion | null, catchCb: AnyFuncion | null = null) {
-    return new MyPromise((resolve, reject) => {
+    const childPromiseCallback = (resolve: Resolve, reject: Reject) => {
       const thenCallBack = function (result: any) {
-        if (thenCb === null) { // it's a .catch()
-          resolve(result); // skip .catch(), invoke the next .then()
+        if (thenCb === null) {
+          // it's a .catch(); skip .catch(), invoke the next .then()
+          resolve(result);
         }
 
         try {
@@ -98,8 +115,9 @@ class MyPromise {
       this.thenCallbacks.push(thenCallBack);
 
       const catchCallback = function (result: any) {
-        if (catchCb === null) { // it's a .then()
-          reject(result); // skip .then(), invoke the next .catch()
+        if (catchCb === null) {
+          // it's a .then(); skip .then(), invoke the next .catch()
+          reject(result);
         }
 
         try {
@@ -114,30 +132,35 @@ class MyPromise {
       this.catchCallbacks.push(catchCallback);
 
       this.runCallbacks();
-    });
+    };
+
+    // enable chainning by return a new MyPromise with value to be 
+    // the resolved/ rejected value of the previous MyPromise
+    return new MyPromise(childPromiseCallback);
   }
 
   public catch(catchCb: AnyFuncion) {
+    // catch method is just then method taking 1 argument
     return this.then(null, catchCb);
   }
 
-  public finally(cb: AnyFuncion) { // finally does not take previous callback result
+  public finally(finallyCb: FinallyFunction) {
     return this.then(result => {
-      cb();
-      return result; // directly return value to the next then() or catch()
+      finallyCb();
+      // return the value of current MypPromise to the next then() | catch()
+      return result;
     }, result => {
-      cb();
-      throw result; // directly throw error value to the next then() or catch()
+      finallyCb();
+      // throw the error value of current MypPromise to the next then() | catch()
+      throw result;
     });
   }
 
 }
 
-
 /**
  * TESTS !!!
  */
-
 
 // 1. test then() with chain
 function promiseCb(resolve: Resolve, reject: Reject) {
@@ -154,6 +177,3 @@ const pAfter1Then = p
 
 pAfter1Then // should log "RESULT >= 5"
   .then((value) => console.log(value));
-
-
-// 2. test then() & catch() with chain
