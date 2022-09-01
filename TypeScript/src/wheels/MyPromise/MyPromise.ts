@@ -156,21 +156,25 @@ class MyPromise implements IMyPromise {
     });
   }
 
+  public static resolve(value: any) {
+    return new MyPromise(resolve => resolve(value));
+  }
+
+  public static reject(value: any) {
+    return new MyPromise((resolve, reject) => reject(value));
+  }
+
 }
 
-/**
- * TESTS !!!
- */
 
 // 1. test then() with chain
-function promiseCb(resolve: Resolve, reject: Reject) {
+function promiseCb1(resolve: Resolve, reject: Reject) {
   const x = 15 / 3;
-
   if (x >= 5) resolve("result >= 5");
   else reject("result < 5");
 };
 
-const p = new MyPromise(promiseCb);
+const p = new MyPromise(promiseCb1);
 
 const pAfter1Then = p
   .then((value) => (value as string).toUpperCase());
