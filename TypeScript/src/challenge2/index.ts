@@ -1,4 +1,5 @@
 // knowledge checkpoint: TS generics, TS type conversion, reduce((acc, v)=>{...do sth}, initAcc)
+// use reduce method to simulate others
 
 function myForEach<T>(items: T[], forEachFunc: (v: T) => void): void {
   items.reduce((acc, v) => {
