@@ -56,7 +56,13 @@ console.log(hello);
 
 
 // enums : 0, 1, ,2, 3, 4
-enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+enum ResourceType {
+  BOOK,
+  AUTHOR,
+  FILM,
+  DIRECTOR,
+  PERSON
+}
 
 console.log(ResourceType.AUTHOR);
 
