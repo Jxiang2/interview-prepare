@@ -96,8 +96,8 @@ class MyPromise implements IMyPromise {
   }
 
   public then(thenCb: AnyFuncion | null, catchCb: AnyFuncion | null = null) {
-    const childPromiseCallback = (resolve: Resolve, reject: Reject) => {
-      const thenCallBack = function (result: any) {
+    function childPromiseCallback(this: MyPromise, resolve: Resolve, reject: Reject) {
+      function thenCallBack(this: MyPromise, result: any) {
         if (thenCb === null) {
           // it's a .catch(); skip .catch(), invoke the next .then()
           resolve(result);
@@ -112,9 +112,9 @@ class MyPromise implements IMyPromise {
           reject(error);
         }
       };
-      this.thenCallbacks.push(thenCallBack);
+      this.thenCallbacks.push(thenCallBack.bind(this));
 
-      const catchCallback = function (result: any) {
+      function catchCallback(result: any) {
         if (catchCb === null) {
           // it's a .then(); skip .then(), invoke the next .catch()
           reject(result);
@@ -136,7 +136,7 @@ class MyPromise implements IMyPromise {
 
     // enable chainning by return a new MyPromise with value to be 
     // the resolved/ rejected value of the previous MyPromise
-    return new MyPromise(childPromiseCallback);
+    return new MyPromise(childPromiseCallback.bind(this));
   }
 
   public catch(catchCb: AnyFuncion) {
