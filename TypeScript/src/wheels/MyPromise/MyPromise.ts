@@ -13,6 +13,13 @@ const STATE = {
   PEDNING: 'pending',
 };
 
+class UncaughtPromiseError extends Error {
+  constructor (error: any) {
+    super(error);
+    this.stack = `rejected promise is not caught! ${error}`;
+  }
+}
+
 class MyPromise implements IMyPromise {
   private state: string = STATE.PEDNING;
   private value: any = null;
@@ -59,19 +66,22 @@ class MyPromise implements IMyPromise {
    * @returns {void}
    */
   private onSuccess(resolveValue: any) {
-    if (this.state !== STATE.PEDNING) {
-      return;
-    }
+    // onSuccess is asynchronous by default
+    queueMicrotask(() => {
+      if (this.state !== STATE.PEDNING) {
+        return;
+      }
 
-    if (resolveValue instanceof MyPromise) { // value is a Promise
-      resolveValue.then(this.onSuccessBind, this.onFailBind);
-      return;
-    }
+      if (resolveValue instanceof MyPromise) { // value is a Promise
+        resolveValue.then(this.onSuccessBind, this.onFailBind);
+        return;
+      }
 
-    this.value = resolveValue;
-    this.state = STATE.FULLFILLED;
+      this.value = resolveValue;
+      this.state = STATE.FULLFILLED;
 
-    this.runCallbacks();
+      this.runCallbacks();
+    });
   }
 
   /**
@@ -80,53 +90,60 @@ class MyPromise implements IMyPromise {
    * @returns {void}
    */
   private onFail(rejectValue: any) {
-    if (this.state !== STATE.PEDNING) {
-      return;
-    }
+    // onFail is asynchronous by default
+    queueMicrotask(() => {
+      if (this.state !== STATE.PEDNING) {
+        return;
+      }
 
-    if (rejectValue instanceof MyPromise) { // value is a Promise
-      rejectValue.then(this.onSuccessBind, this.onFailBind);
-      return;
-    }
+      if (rejectValue instanceof MyPromise) { // value is a Promise
+        rejectValue.then(this.onSuccessBind, this.onFailBind);
+        return;
+      }
 
-    this.value = rejectValue;
-    this.state = STATE.REJECTED;
+      if (this.catchCallbacks.length === 0) {
+        throw new UncaughtPromiseError(this.value);
+      }
 
-    this.runCallbacks();
+      this.value = rejectValue;
+      this.state = STATE.REJECTED;
+
+      this.runCallbacks();
+    });
   }
 
   public then(thenCb: AnyFuncion | null, catchCb: AnyFuncion | null = null) {
     function childPromiseCallback(this: MyPromise, resolve: Resolve, reject: Reject) {
       function thenCallBack(this: MyPromise, result: any) {
         if (thenCb === null) {
-          // it's a .catch(); skip .catch(), invoke the next .then()
+          // it's a .catch(); we don't care thenCb. Skip by directly resolving 
+          // to set up a new resolved promise with inherited value
+          // and passing value to the next .then()
           resolve(result);
-        }
-
-        try {
-          if (thenCb) {
+        } else {
+          try {
             const thenResult = thenCb(result);
             resolve(thenResult);
+          } catch (error) {
+            reject(error);
           }
-        } catch (error) {
-          reject(error);
         }
       };
       this.thenCallbacks.push(thenCallBack.bind(this));
 
       function catchCallback(result: any) {
         if (catchCb === null) {
-          // it's a .then(); skip .then(), invoke the next .catch()
+          // it's a .then(); we don't care catchCb. Skip it by directly rejecting
+          // to set up a new rejected promise with inherited value
+          // and passing value to the next .catch()
           reject(result);
-        }
-
-        try {
-          if (catchCb) {
+        } else {
+          try {
             const catchResult = catchCb(result);
             resolve(catchResult);
+          } catch (error) {
+            reject(error);
           }
-        } catch (error) {
-          reject(error);
         }
       };
       this.catchCallbacks.push(catchCallback);
@@ -175,9 +192,32 @@ function promiseCb1(resolve: Resolve, reject: Reject) {
 };
 
 const p = new MyPromise(promiseCb1);
-
 const pAfter1Then = p
   .then((value) => (value as string).toUpperCase());
-
 pAfter1Then // should log "RESULT >= 5"
   .then((value) => console.log(value));
+
+
+// 2. test then catch
+function promiseCb2(resolve: Resolve, reject: Reject) {
+  const x = 15 / 5;
+  if (x >= 5) resolve("result >= 5");
+  else reject("result < 5");
+};
+
+const p2 = new MyPromise(promiseCb2);
+const pAfterThenToBeCaught = p2
+  .then(value => (value as string).toUpperCase());
+pAfterThenToBeCaught
+  .catch(value => console.log(value));
+
+
+// 3. test uncaught promise
+function promiseCb3(resolve: Resolve, reject: Reject) {
+  const x = 15 / 5;
+  if (x >= 5) resolve("result >= 5");
+  else reject("result < 5");
+};
+
+new MyPromise(promiseCb3)
+  .then((value) => (value as string).toUpperCase());
