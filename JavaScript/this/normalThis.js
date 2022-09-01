@@ -1,13 +1,10 @@
-const thisName = 2
-
 class Bear {
   constructor() { }
 
   scratch() {
     console.log(this)
     const innerfunction = function () {
-      console.log('inner function this: ', thisName)
-      console.log('inner function this: ', this) // global does not have property named "this"
+      console.log('inner function this: ', this) // global does not have property
     }
     return innerfunction
   }
