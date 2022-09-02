@@ -2,6 +2,7 @@
 // They inherit this from it' parent scope when the arrow function is DEFINED
 // call, apply, bind does not work on arrow function
 
+
 // Pure functions
 const myFunction = () => {
   console.log(this)
@@ -61,4 +62,22 @@ myObject = { // or
     })
   },
 }
+
+
+// Complex example: arrow func vs. normal func in objects
+let obj = {
+  a: 1,
+  b: 2,
+  c: () => {
+    console.log(this)
+  },
+  d: function () {
+    console.log(this)
+  },
+}
+
+obj.c() // c does not has this, it uses this from it's parent scope, which is the module.export object
+obj.d() // d is defined in the obj, so it's excution context is the obj, thus this is obj
+const e = obj.d
+e() // e is just a pure function, with this to be global as default
 
