@@ -75,8 +75,7 @@ class Bear {
     console.log("scratch's this: ", this)
 
     const innerFunction = function () {
-      const thisObj = this
-      console.log('inner function this: ', thisObj) // global does not have property
+      console.log('inner function this: ', this) // global does not have property
     }
 
     return innerFunction
@@ -94,8 +93,7 @@ const BearFunction = function () {
     console.log("scratch's this: ", this)
 
     const innerFunction = function () {
-      const thisObj = this
-      console.log('inner function this: ', thisObj) // global does not have property
+      console.log('inner function this: ', this) // global does not have property
     }
 
     return innerFunction
@@ -112,8 +110,7 @@ const bearObj = {
     console.log("scratch's this: ", this)
 
     const innerFunction = function () {
-      const thisObj = this
-      console.log('inner function this: ', thisObj) // global does not have property
+      console.log('inner function this: ', this) // global does not have property
     }
 
     return innerFunction

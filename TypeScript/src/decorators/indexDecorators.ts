@@ -45,8 +45,13 @@ export function timing() {
     // retrieve and store the original method initialized in some classes
     const value = descriptor.value;
 
-    // modify the retrieved method
+    // modify the retrieved method 
+    // notice it's descriptor.value thus "this" keyword of the following anonymous function
     descriptor.value = async function (...args: any[]) {
+
+      console.log("this of timing decorator: ", this);
+
+
       const start = performance.now();
       const out = await value.apply(this, args);
       const end = performance.now();
