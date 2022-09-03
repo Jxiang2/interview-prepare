@@ -17,7 +17,7 @@ export function logTimings<T extends new (...args: any[]) => any>(
 }
 
 export function important(
-  target: Object,
+  target: object,
   propertyKey: string | symbol,
   parameterIndex: number
 ) {
@@ -49,7 +49,7 @@ export function timing() {
     // notice it's descriptor.value thus "this" keyword of the following anonymous function
     descriptor.value = async function (...args: any[]) {
 
-      console.log("this of timing decorator: ", this);
+      // console.log("timing decorator's 'this': ", this);
 
 
       const start = performance.now();
