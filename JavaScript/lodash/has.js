@@ -7,6 +7,7 @@ const obj = {
 }
 
 console.log(has(obj, "viewer"))
+console.log(has(obj, "viewer/LOAD_COUNTERS.REQUEST"))
 console.log(has(obj, "SUCCESS")) // has() check if the object contains the 2nd argument as a key
 
 

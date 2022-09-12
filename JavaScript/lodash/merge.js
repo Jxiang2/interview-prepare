@@ -30,7 +30,7 @@ const newSettings = {
 }
 
 // merge result
-const result = merge({}, prevState, {
+const result = merge(prevState, {
   [newCompanyId]: {
     attributes: {
       settings: newSettings,
