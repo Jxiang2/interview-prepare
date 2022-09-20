@@ -42,10 +42,6 @@ class MyPromise implements IMyPromise {
     }
   }
 
-  /**
-   * run all methods in thenCallbacks and catchCallbacks
-   * invoke when MyPromise is init, and when then() | catch() | finally() is called
-   */
   private runCallbacks() {
     if (this.state === STATE.FULLFILLED) {
       this.thenCallbacks.forEach(callback => callback(this.value));
@@ -58,13 +54,8 @@ class MyPromise implements IMyPromise {
 
       this.thenCallbacks = [];
     }
-  };
+  }
 
-  /**
-   * implementation of resolve method passed to PromiseCallback
-   * @param {any} resolveValue 
-   * @returns {void}
-   */
   private onSuccess(resolveValue: any) {
     // onSuccess is asynchronous by default
     queueMicrotask(() => {
@@ -84,11 +75,6 @@ class MyPromise implements IMyPromise {
     });
   }
 
-  /**
-   * implementation of reject method passed to PromiseCallback
-   * @param {any} rejectValue 
-   * @returns {void}
-   */
   private onFail(rejectValue: any) {
     // onFail is asynchronous by default
     queueMicrotask(() => {
