@@ -21,16 +21,20 @@ class UncaughtPromiseError extends Error {
 }
 
 class MyPromise implements IMyPromise {
+
   private state: string = STATE.PEDNING;
+
   private value: any = null;
 
   // arrays of then callbacks
   private thenCallbacks: Array<AnyFuncion> = [];
+
   // arrays of catch callbacks
   private catchCallbacks: Array<AnyFuncion> = [];
 
   // bind onSuccess to MyPromise class
   private onSuccessBind = this.onSuccess.bind(this);
+
   // bind onFail to MyPromise class
   private onFailBind = this.onFail.bind(this);
 
