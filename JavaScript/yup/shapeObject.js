@@ -2,8 +2,6 @@ const yup = require("yup")
 
 const string = yup.string()
 const number = yup.number().required()
-const bool = yup.boolean().required()
-const object = yup.object()
 const shape = value => yup.object().shape(value)
 const arrayOf = value => yup.array().of(value)
 
