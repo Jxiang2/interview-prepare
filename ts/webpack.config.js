@@ -5,7 +5,7 @@ module.exports = {
 
   devtool: 'source-map', // to better debug on browser
 
-  entry: './src/summary.ts', //relative path of entry file; all other paths in this file will be absolute
+  entry: './src/4.oop.ts', //relative path of entry file; all other paths in this file will be absolute
 
   output: {
     filename: 'bundle.js',
