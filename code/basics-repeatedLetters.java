@@ -4,7 +4,7 @@
  * of letters
  */
 
-package CodeChallenges;
+package code;
 
 import java.util.HashMap;
 

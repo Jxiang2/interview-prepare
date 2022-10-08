@@ -1,8 +1,6 @@
 {
-  "name": "typescript",
+  "name": "ts",
   "version": "1.0.0",
-  "description": "",
-  "main": "summary.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --mode development --open --hot"

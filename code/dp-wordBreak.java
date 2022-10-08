@@ -5,7 +5,7 @@
  * words in wordDict
  */
 
-package CodeChallenges;
+package code;
 
 import java.util.*;
 

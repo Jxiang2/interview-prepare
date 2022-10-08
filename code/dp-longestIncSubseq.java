@@ -8,7 +8,7 @@
  *  therefore the length is 4.
  */
 
-package CodeChallenges;
+package code;
 
 import java.util.Arrays;
 

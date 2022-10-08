@@ -15,7 +15,7 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
-package CodeChallenges;
+package code;
 
 import java.util.Arrays;
 

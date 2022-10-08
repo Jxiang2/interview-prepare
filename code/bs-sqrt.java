@@ -8,7 +8,7 @@ Note: You are not allowed to use any built-in exponent function
 or operator, such as pow(x, 0.5) or x ** 0.5.
  */
 
-package CodeChallenges;
+package code;
 
 class Sqrt {
     public int mySqrt(int x) {

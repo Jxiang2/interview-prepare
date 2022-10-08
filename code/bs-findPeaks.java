@@ -10,7 +10,7 @@ You may imagine that nums[-1] = nums[n] = -∞.
 You must write an algorithm that runs in O(log n) time.
  */
 
-package CodeChallenges;
+package code;
 
 class FindPeaks {
     public int findPeakElement(int[] nums) {

@@ -10,7 +10,7 @@
  * each house, return the maximum amount of money you can rob tonight
  */
 
-package CodeChallenges;
+package code;
 
 class HouseRobber {
     public int rob(int[] nums) {

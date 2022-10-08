@@ -7,7 +7,7 @@ If target is not found in the array, return [-1, -1].
 You must write an algorithm with O(log n) runtime complexity.
  */
 
-package CodeChallenges;
+package code;
 
 import java.util.Arrays;
 

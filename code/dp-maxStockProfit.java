@@ -10,7 +10,7 @@
  * Find and return the maximum profit you can achieve.
  */
 
-package CodeChallenges;
+package code;
 
 class MaxStockProfit {
     public int maxProfit(int[] prices) {

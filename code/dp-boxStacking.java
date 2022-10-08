@@ -8,7 +8,7 @@ Subproblem: largest height of stack with box
 (Li, Wi, Hi) at bottom
  */
 
-package CodeChallenges;
+package code;
 
 import java.util.*;
 

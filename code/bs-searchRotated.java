@@ -7,7 +7,7 @@
  * Output: 4
  */
 
-package CodeChallenges;
+package code;
 
 class SearchRotated {
     public int search(int[] nums, int target) {

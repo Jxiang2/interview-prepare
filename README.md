@@ -13,7 +13,6 @@ _This Repo aims to collect and organize potential interview questions._
 
 - JavaScript
 - TypeScript
-- Python
 - Java
 
 

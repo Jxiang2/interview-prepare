@@ -5,7 +5,7 @@
  * numbers and return the sum as a linked list.
  */
 
-package CodeChallenges;
+package code;
 
 import java.math.BigInteger;
 
