@@ -31,7 +31,7 @@ class InMemoryDatabase<T extends DBKeyType, K> implements Database<T, K> {
 
 class PersistentMemoryDB<T extends DBKeyType, K> extends InMemoryDatabase<T, K> implements Persistable {
   constructor (db?: Record<T, K>) {
-    super(db); // call parent constructor, to access parent FIELDS
+    db && super(db); // call parent constructor, to access parent FIELDS
   }
 
   saveToString(): string {

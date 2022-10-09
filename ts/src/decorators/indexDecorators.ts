@@ -48,10 +48,7 @@ export function timing() {
     // modify the retrieved method 
     // notice it's descriptor.value thus "this" keyword of the following anonymous function
     descriptor.value = async function (...args: any[]) {
-
       // console.log("timing decorator's 'this': ", this);
-
-
       const start = performance.now();
       const out = await value.apply(this, args);
       const end = performance.now();
@@ -62,6 +59,7 @@ export function timing() {
         target,
         propertyKey
       );
+
       if (importantParameters) {
         for (let parameterIndex of importantParameters) {
           importantParamsBuffer.push(args[parameterIndex]);
