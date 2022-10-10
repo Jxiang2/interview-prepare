@@ -67,7 +67,7 @@ console.log(baz)
 class Bear {
   name = "bear"
 
-  constructor() { }
+  constructor() {}
 
   scratch() {
     console.log("scratch's this: ", this)

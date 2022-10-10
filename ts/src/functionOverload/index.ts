@@ -11,20 +11,19 @@ interface HouseWithID extends House {
 // function declarations
 export function findHouses(
   houses: string | Array<House>,
-  filter?: (house: House) => boolean
+  filter?: (house: House) => boolean,
 ): HouseWithID[];
 
 // function implementation
 export function findHouses(
   input: string | Array<House>,
-  filter?: (house: House) => boolean
+  filter?: (house: House) => boolean,
 ) {
-  const houses: Array<House> = (typeof input === "string") ? JSON.parse(input) : input;
+  const houses: Array<House> =
+    typeof input === "string" ? JSON.parse(input) : input;
 
-  return (filter ? houses.filter(filter) : houses)
-    .map((house) => ({
-      id: houses.indexOf(house),
-      ...house
-    }));
+  return (filter ? houses.filter(filter) : houses).map((house) => ({
+    id: houses.indexOf(house),
+    ...house,
+  }));
 }
-

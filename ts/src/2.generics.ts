@@ -17,17 +17,13 @@ strsetter("goodbye");
 console.log(strgetter());
 console.log(numgetter());
 
-
 // knowledge checkpoint: generics
 interface ItemWithRank<T> {
-  item: T,
+  item: T;
   rank: number;
 }
 
-function ranker<T>(
-  items: Array<T>,
-  rankAlgo: ((v: T) => number)
-): Array<T> {
+function ranker<T>(items: Array<T>, rankAlgo: (v: T) => number): Array<T> {
   const itemsWithRank: Array<ItemWithRank<T>> = items.map((item) => ({
     item,
     rank: rankAlgo(item),
@@ -35,20 +31,22 @@ function ranker<T>(
 
   itemsWithRank.sort((a, b) => a.rank - b.rank);
 
-  return itemsWithRank.map(itemsWithRank => itemsWithRank.item);
+  return itemsWithRank.map((itemsWithRank) => itemsWithRank.item);
 }
 
-const strsToTest = ["XxxxxxxxxX", "hello", "world!", "xjy",];
+const strsToTest = ["XxxxxxxxxX", "hello", "world!", "xjy"];
 
-const rankedItemList: Array<string> = ranker<string>(strsToTest, (str) => str.length);
+const rankedItemList: Array<string> = ranker<string>(
+  strsToTest,
+  (str) => str.length,
+);
 console.log(rankedItemList);
-
 
 //  knowledge checkpoint: TS generics, keyof
 // 1
 function pluck<DataType, KeyType extends keyof DataType>(
   items: Array<DataType>,
-  key: KeyType
+  key: KeyType,
 ): Array<DataType[KeyType]> {
   return items.map((item) => item[key]);
 }
@@ -73,24 +71,23 @@ interface BaseEvent {
 }
 
 interface EventMap {
-  addToCart: BaseEvent & { quantity: number; productID: string; };
+  addToCart: BaseEvent & { quantity: number; productID: string };
   checkout: BaseEvent;
 }
 
 function sendEvent<Name extends keyof EventMap>(
   name: Name,
-  data: EventMap[Name]
+  data: EventMap[Name],
 ): void {
   console.log([name, data]);
 }
 
 sendEvent("addToCart", {
   time: 10,
-  user: 'xjy',
+  user: "xjy",
   quantity: 12,
-  productID: "e32d2d2e23"
+  productID: "e32d2d2e23",
 });
-
 
 // 3 generic function types vs generic types of function
 interface Person {
@@ -106,39 +103,42 @@ const isInstanceOfPerson = (obj: any): obj is Person =>
 // 3.1 generic type of functions
 type FC<Props> = (props: Props) => any; // declare
 
-const myFunc: FC<Person> = ({ age, name, }: Person) => { // implement (id, name) are destructed from passed person
+const myFunc: FC<Person> = ({ age, name }: Person) => {
+  // implement (id, name) are destructed from passed person
   console.log(age.toLocaleString());
   console.log(name.toLocaleUpperCase());
 };
 
-myFunc({ // use
+myFunc({
+  // use
   id: "1wec3212",
   name: "xjy",
-  age: 22
+  age: 22,
 });
 
 // 3.2 generic function types
 type FC1 = <Props>(props: Props) => any; // declare
 
-const myFunc1: FC1 = <Props>(props: Props) => { // implement
+const myFunc1: FC1 = <Props>(props: Props) => {
+  // implement
   if (isInstanceOfPerson(props)) {
-    const { age, name, } = props;
+    const { age, name } = props;
     console.log(age.toLocaleString());
     console.log(name.toLocaleUpperCase());
   } else {
     console.log("type check failed");
-
   }
 };
 
-myFunc1<Person>({ // use
+myFunc1<Person>({
+  // use
   id: "1wec3212",
   name: "xjy",
-  age: 22
+  age: 22,
 });
 
-myFunc1<Dog>({ // use
+myFunc1<Dog>({
+  // use
   name: "dingding",
-  age: 6
+  age: 6,
 });
-

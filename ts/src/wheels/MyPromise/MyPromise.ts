@@ -8,20 +8,19 @@ import {
 } from "./MyPromise.types";
 
 const STATE = {
-  FULLFILLED: 'fullfilled',
-  REJECTED: 'rejected',
-  PEDNING: 'pending',
+  FULLFILLED: "fullfilled",
+  REJECTED: "rejected",
+  PEDNING: "pending",
 };
 
 class UncaughtPromiseError extends Error {
-  constructor (error: any) {
+  constructor(error: any) {
     super(error);
     this.stack = `rejected promise is not caught! ${error}`;
   }
 }
 
 class MyPromise implements IMyPromise {
-
   private state: string = STATE.PEDNING;
 
   private value: any = null;
@@ -38,7 +37,7 @@ class MyPromise implements IMyPromise {
   // bind onFail to MyPromise class
   private onFailBind = this.onFail.bind(this);
 
-  constructor (cb: PromiseCallback) {
+  constructor(cb: PromiseCallback) {
     try {
       cb(this.onSuccessBind, this.onFailBind);
     } catch (error) {
@@ -48,13 +47,13 @@ class MyPromise implements IMyPromise {
 
   private runCallbacks() {
     if (this.state === STATE.FULLFILLED) {
-      this.thenCallbacks.forEach(callback => callback(this.value));
+      this.thenCallbacks.forEach((callback) => callback(this.value));
 
       this.thenCallbacks = [];
     }
 
     if (this.state === STATE.REJECTED) {
-      this.catchCallbacks.forEach(callback => callback(this.value));
+      this.catchCallbacks.forEach((callback) => callback(this.value));
 
       this.thenCallbacks = [];
     }
@@ -67,7 +66,8 @@ class MyPromise implements IMyPromise {
         return;
       }
 
-      if (resolveValue instanceof MyPromise) { // value is a Promise
+      if (resolveValue instanceof MyPromise) {
+        // value is a Promise
         resolveValue.then(this.onSuccessBind, this.onFailBind);
         return;
       }
@@ -86,7 +86,8 @@ class MyPromise implements IMyPromise {
         return;
       }
 
-      if (rejectValue instanceof MyPromise) { // value is a Promise
+      if (rejectValue instanceof MyPromise) {
+        // value is a Promise
         rejectValue.then(this.onSuccessBind, this.onFailBind);
         return;
       }
@@ -103,10 +104,14 @@ class MyPromise implements IMyPromise {
   }
 
   public then(thenCb: AnyFuncion | null, catchCb: AnyFuncion | null = null) {
-    function childPromiseCallback(this: MyPromise, resolve: Resolve, reject: Reject) {
+    function childPromiseCallback(
+      this: MyPromise,
+      resolve: Resolve,
+      reject: Reject,
+    ) {
       function thenCallBack(this: MyPromise, result: any) {
         if (thenCb === null) {
-          // it's a .catch(); we don't care thenCb. Skip by directly resolving 
+          // it's a .catch(); we don't care thenCb. Skip by directly resolving
           // to set up a new resolved promise with inherited value
           // and passing value to the next .then()
           resolve(result);
@@ -118,7 +123,7 @@ class MyPromise implements IMyPromise {
             reject(error);
           }
         }
-      };
+      }
       this.thenCallbacks.push(thenCallBack.bind(this));
 
       function catchCallback(result: any) {
@@ -135,13 +140,13 @@ class MyPromise implements IMyPromise {
             reject(error);
           }
         }
-      };
+      }
       this.catchCallbacks.push(catchCallback);
 
       this.runCallbacks();
-    };
+    }
 
-    // enable chainning by return a new MyPromise with value to be 
+    // enable chainning by return a new MyPromise with value to be
     // the resolved/ rejected value of the previous MyPromise
     return new MyPromise(childPromiseCallback.bind(this));
   }
@@ -152,62 +157,59 @@ class MyPromise implements IMyPromise {
   }
 
   public finally(finallyCb: FinallyFunction) {
-    return this.then(result => {
-      finallyCb();
-      // return the value of current MypPromise to the next then() | catch()
-      return result;
-    }, result => {
-      finallyCb();
-      // throw the error value of current MypPromise to the next then() | catch()
-      throw result;
-    });
+    return this.then(
+      (result) => {
+        finallyCb();
+        // return the value of current MypPromise to the next then() | catch()
+        return result;
+      },
+      (result) => {
+        finallyCb();
+        // throw the error value of current MypPromise to the next then() | catch()
+        throw result;
+      },
+    );
   }
 
   public static resolve(value: any) {
-    return new MyPromise(resolve => resolve(value));
+    return new MyPromise((resolve) => resolve(value));
   }
 
   public static reject(value: any) {
     return new MyPromise((resolve, reject) => reject(value));
   }
-
 }
-
 
 // 1. test then() with chain
 function promiseCb1(resolve: Resolve, reject: Reject) {
   const x = 15 / 3;
   if (x >= 5) resolve("result >= 5");
   else reject("result < 5");
-};
+}
 
 const p = new MyPromise(promiseCb1);
-const pAfter1Then = p
-  .then((value) => (value as string).toUpperCase());
+const pAfter1Then = p.then((value) => (value as string).toUpperCase());
 pAfter1Then // should log "RESULT >= 5"
   .then((value) => console.log(value));
-
 
 // 2. test then catch
 function promiseCb2(resolve: Resolve, reject: Reject) {
   const x = 15 / 5;
   if (x >= 5) resolve("result >= 5");
   else reject("result < 5");
-};
+}
 
 const p2 = new MyPromise(promiseCb2);
-const pAfterThenToBeCaught = p2
-  .then(value => (value as string).toUpperCase());
-pAfterThenToBeCaught
-  .catch(value => console.log(value));
-
+const pAfterThenToBeCaught = p2.then((value) =>
+  (value as string).toUpperCase(),
+);
+pAfterThenToBeCaught.catch((value) => console.log(value));
 
 // 3. test uncaught promise
 function promiseCb3(resolve: Resolve, reject: Reject) {
   const x = 15 / 5;
   if (x >= 5) resolve("result >= 5");
   else reject("result < 5");
-};
+}
 
-new MyPromise(promiseCb3)
-  .then((value) => (value as string).toUpperCase());
+new MyPromise(promiseCb3).then((value) => (value as string).toUpperCase());

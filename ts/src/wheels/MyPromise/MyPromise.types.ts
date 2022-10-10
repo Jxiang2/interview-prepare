@@ -10,7 +10,10 @@ export type Resolve = (...args: any[]) => void;
 export type Reject = (...args: any[]) => void;
 
 // we can do "return resolve(value)" in promiseCallback
-export type PromiseCallback = (resolve: Resolve, reject: Reject) => void | undefined;
+export type PromiseCallback = (
+  resolve: Resolve,
+  reject: Reject,
+) => void | undefined;
 
 export interface IMyPromise {
   then: (resolveFunc: Resolve, reject: Reject) => IMyPromise;

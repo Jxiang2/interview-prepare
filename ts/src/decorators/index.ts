@@ -4,7 +4,7 @@ const delay = <T>(time: number, data: T): Promise<T> =>
   new Promise((resolve) =>
     setTimeout(() => {
       resolve(data);
-    }, time)
+    }, time),
   );
 
 @logTimings
@@ -34,6 +34,6 @@ async function test() {
 
   // @ts-ignore
   users.printTimings();
-};
+}
 
 test();

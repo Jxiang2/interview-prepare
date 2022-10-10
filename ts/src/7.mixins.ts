@@ -23,10 +23,11 @@ const SimpleStringDatabase = CreateSimpleMemoeryDatabase<string>();
 type Constructor<T> = new (...args: any[]) => T;
 //  ****************  constructor(...)   => object
 
-
-function CreateDumpableDatabase<T extends Constructor<{
-  getObject(): Record<string, any>;
-}>>(Base: T) {
+function CreateDumpableDatabase<
+  T extends Constructor<{
+    getObject(): Record<string, any>;
+  }>,
+>(Base: T) {
   return class Dumpable extends Base {
     dump() {
       console.log(this.getObject());

@@ -5,7 +5,6 @@ interface Coordinate {
   y: number;
 }
 
-
 // optional type declarations **
 function parseCoordinate(str: string): Coordinate;
 function parseCoordinate(obj: Coordinate): Coordinate;
@@ -20,12 +19,10 @@ function parseCoordinate(arg1: unknown, arg2?: unknown): Coordinate {
       const [k, v] = str.split(":");
       coord[k as CoordinateKey] = parseInt(v, 10);
     });
-
   } else if (typeof arg1 === "object") {
     coord = {
       ...(arg1 as Coordinate),
     };
-
   } else {
     coord = {
       x: arg1 as number,

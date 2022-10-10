@@ -1,20 +1,14 @@
 export const houses = [
   {
-    "name": "Atreides",
-    "planets": "Calladan"
+    name: "Atreides",
+    planets: "Calladan",
   },
   {
-    "name": "Corrino",
-    "planets": [
-      "Kaitan",
-      "Salusa Secundus"
-    ]
+    name: "Corrino",
+    planets: ["Kaitan", "Salusa Secundus"],
   },
   {
-    "name": "Harkonnen",
-    "planets": [
-      "Giedi Prime",
-      "Arrakis"
-    ]
-  }
+    name: "Harkonnen",
+    planets: ["Giedi Prime", "Arrakis"],
+  },
 ];

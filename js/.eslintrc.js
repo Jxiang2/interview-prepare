@@ -17,7 +17,10 @@ module.exports = {
   plugins: ["prettier"],
 
   rules: {
-    quotes: ["error", "double"],
+    "linebreak-style": ["error", "unix"],
+
+    "quotes": ["error", "double"],
+
     "no-console": ["error", { allow: ["log", "dir"] }],
   },
 }

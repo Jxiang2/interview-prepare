@@ -1,16 +1,19 @@
 // myArr.reduce((acc, cur, index, array) => {...}, init)
 
-
 export const name = "simulate Array.reduce with Array.myReduce";
 declare global {
   interface Array<T> {
     myReduce: (
-      callback: (accumulator: any, current: T, index: number, array: Array<T>) => T,
-      initialValue?: any
+      callback: (
+        accumulator: any,
+        current: T,
+        index: number,
+        array: Array<T>,
+      ) => T,
+      initialValue?: any,
     ) => any;
   }
 }
-
 
 Array.prototype.myReduce = function (callback, initialValue) {
   if (this.length === 0 && initialValue === undefined) {
@@ -24,13 +27,13 @@ Array.prototype.myReduce = function (callback, initialValue) {
     index = 1;
   }
 
-  for (; index < this.length; index++) { // index declared above
+  for (; index < this.length; index++) {
+    // index declared above
     accumulator = callback.call(this, accumulator, this[index], index, this);
   }
 
   return accumulator;
 };
-
 
 // test
 const myArr = [1, 2, 3, 4, 5];
@@ -39,5 +42,3 @@ const reduce = myArr.myReduce((acc, cur, idx, arr) => {
   return acc + cur;
 }, "lets start: ");
 console.log(reduce);
-
-

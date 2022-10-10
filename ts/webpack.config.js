@@ -1,15 +1,14 @@
-const path = require('path')
-const HTMLWebPackPlugin = require('html-webpack-plugin')
+const path = require("path");
+const HTMLWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  devtool: "source-map", // to better debug on browser
 
-  devtool: 'source-map', // to better debug on browser
-
-  entry: './src/4.oop.ts', //relative path of entry file; all other paths in this file will be absolute
+  entry: "./src/4.oop.ts", //relative path of entry file; all other paths in this file will be absolute
 
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
   },
 
   module: {
@@ -18,20 +17,20 @@ module.exports = {
       {
         // if a file in src folder is ending with .ts, using ts-loader on it
         test: /\.ts$/,
-        use: 'ts-loader',
-        include: [path.resolve(__dirname, 'src')],
+        use: "ts-loader",
+        include: [path.resolve(__dirname, "src")],
       },
     ],
   },
 
   resolve: {
     // specify estensions for imports
-    extensions: ['.ts', '.js',],
+    extensions: [".ts", ".js"],
   },
 
   plugins: [
     new HTMLWebPackPlugin({
-      template: './src/public/index.html' // inject bundle.js into index.html in src dir
+      template: "./src/public/index.html", // inject bundle.js into index.html in src dir
     }),
   ],
-}
+};

@@ -8,7 +8,7 @@ interface ThisWithTimings {
 }
 
 export function logTimings<T extends new (...args: any[]) => any>(
-  constructor: T
+  constructor: T,
 ) {
   return class extends constructor {
     __timings = [];
@@ -19,9 +19,9 @@ export function logTimings<T extends new (...args: any[]) => any>(
 export function important(
   target: object,
   propertyKey: string | symbol,
-  parameterIndex: number
+  parameterIndex: number,
 ) {
-  let existingImportantParameters: number[] =
+  const existingImportantParameters: number[] =
     Reflect.getOwnMetadata(importantMetadataKey, target, propertyKey) || [];
 
   existingImportantParameters.push(parameterIndex);
@@ -30,22 +30,26 @@ export function important(
     importantMetadataKey,
     existingImportantParameters,
     target,
-    propertyKey
+    propertyKey,
   );
 }
 
 /**
  * 1. return a "decorator-modifier function" to modify the decorated method
  * 2. the "decorator-modifier function" modify descriptor.value as that is the original method
- * 
+ *
  * when the decorated method is called, modified descriptor.value() is excuted
  */
 export function timing() {
-  return function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (
+    target: Object,
+    propertyKey: string,
+    descriptor: PropertyDescriptor,
+  ) {
     // retrieve and store the original method initialized in some classes
     const value = descriptor.value;
 
-    // modify the retrieved method 
+    // modify the retrieved method
     // notice it's descriptor.value thus "this" keyword of the following anonymous function
     descriptor.value = async function (...args: any[]) {
       // console.log("timing decorator's 'this': ", this);
@@ -53,15 +57,15 @@ export function timing() {
       const out = await value.apply(this, args);
       const end = performance.now();
 
-      let importantParamsBuffer: unknown[] = [];
-      let importantParameters: number[] = Reflect.getOwnMetadata(
+      const importantParamsBuffer: unknown[] = [];
+      const importantParameters: number[] = Reflect.getOwnMetadata(
         importantMetadataKey,
         target,
-        propertyKey
+        propertyKey,
       );
 
       if (importantParameters) {
-        for (let parameterIndex of importantParameters) {
+        for (const parameterIndex of importantParameters) {
           importantParamsBuffer.push(args[parameterIndex]);
         }
       }
@@ -80,4 +84,3 @@ export function timing() {
     };
   };
 }
-
