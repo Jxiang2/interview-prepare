@@ -7,7 +7,7 @@ module.exports = {
 
   ignorePatterns: ["node_modules"],
 
-  extends: ["plugin:prettier/recommended", "prettier"],
+  extends: ["prettier"],
 
   overrides: [],
 
@@ -19,6 +19,8 @@ module.exports = {
   plugins: ["prettier"],
 
   rules: {
+    "prettier/prettier": "error",
+
     "linebreak-style": ["error", "unix"],
 
     quotes: ["error", "double"],

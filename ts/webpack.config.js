@@ -2,9 +2,11 @@ const path = require("path") // eslint-disable-line
 const HTMLWebPackPlugin = require("html-webpack-plugin") // eslint-disable-line
 
 module.exports = {
-  devtool: "source-map", // to better debug on browser
+  // to better debug on browser
+  devtool: "source-map",
 
-  entry: "./src/index.ts", //relative path of entry file; all other paths in this file will be absolute
+  //relative path of entry file; all other paths in this file will be absolute
+  entry: "./src/index.ts",
 
   output: {
     filename: "bundle.js",

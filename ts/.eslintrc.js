@@ -7,11 +7,7 @@ module.exports = {
 
   ignorePatterns: ["node_modules", "dist", "package-lock.json"],
 
-  extends: [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier",
-  ],
+  extends: ["plugin:@typescript-eslint/recommended", "prettier"],
 
   overrides: [],
 
@@ -25,6 +21,8 @@ module.exports = {
   plugins: ["@typescript-eslint", "prettier"],
 
   rules: {
+    "prettier/prettier": "error",
+
     indent: ["error", 2],
 
     "linebreak-style": ["error", "unix"],

@@ -37,16 +37,8 @@ const mergeRequired = (user: MyUser, overrides: Required<MyUser>): MyUser => {
 
 console.log(
   mergeRequired(
-    {
-      name: "xjy",
-      id: "foo",
-      emial: "xxx.xxx@xx.com",
-    },
-    {
-      id: "deee",
-      name: "jxiang",
-      emial: "jxiang2@mcgill.ca",
-    },
+    { name: "xjy", id: "foo", emial: "xxx.xxx@xx.com" },
+    { id: "deee", name: "jxiang", emial: "jxiang2@mcgill.ca" },
   ),
 );
 
