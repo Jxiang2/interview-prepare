@@ -42,7 +42,7 @@ export function important(
  */
 export function timing() {
   return function (
-    target: Object,
+    target: object,
     propertyKey: string,
     descriptor: PropertyDescriptor,
   ) {

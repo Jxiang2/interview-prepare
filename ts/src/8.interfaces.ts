@@ -46,8 +46,7 @@ interface newInterface {
   age: number;
 }
 
-let hello: newInterface;
-hello = {} as newInterface;
+const hello: newInterface = {} as newInterface;
 hello.age = 12;
 hello.name = "hello";
 console.log(hello);

@@ -15,7 +15,7 @@ type DBKeyType = string | number | symbol;
 class InMemoryDatabase<T extends DBKeyType, K> implements Database<T, K> {
   protected db = {} as Record<T, K>;
 
-  constructor (db?: Record<T, K>) {
+  constructor(db?: Record<T, K>) {
     // allow paramterized constructor
     if (db) this.db = db;
   }
@@ -29,8 +29,11 @@ class InMemoryDatabase<T extends DBKeyType, K> implements Database<T, K> {
   }
 }
 
-class PersistentMemoryDB<T extends DBKeyType, K> extends InMemoryDatabase<T, K> implements Persistable {
-  constructor (db?: Record<T, K>) {
+class PersistentMemoryDB<T extends DBKeyType, K>
+  extends InMemoryDatabase<T, K>
+  implements Persistable
+{
+  constructor(db?: Record<T, K>) {
     db && super(db); // call parent constructor, to access parent FIELDS
   }
 

@@ -35,7 +35,8 @@ function CreateDumpableDatabase<
   };
 }
 
-const DumpableStringDatabase = CreateDumpableDatabase<typeof SimpleStringDatabase>(SimpleStringDatabase);
+const DumpableStringDatabase =
+  CreateDumpableDatabase<typeof SimpleStringDatabase>(SimpleStringDatabase);
 const sdb2 = new DumpableStringDatabase();
 sdb2.set("a", "1");
 sdb2.set("b", "2");
