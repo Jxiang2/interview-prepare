@@ -15,7 +15,9 @@ const throttle = (fn, delay) => {
   }
 }
 
-
-document.getElementById('btn1').addEventListener('click', debounce(e => {
-  console.log('clicked')
-}, 2000))
+document.getElementById("btn1").addEventListener(
+  "click",
+  debounce((e) => {
+    console.log("clicked")
+  }, 2000),
+)

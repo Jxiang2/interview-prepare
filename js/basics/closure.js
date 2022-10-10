@@ -1,6 +1,6 @@
 const testClosure = () => {
-  let a = 1
-  let b = 3
+  const a = 1
+  const b = 3
 
   return () => {
     console.log(a * b)

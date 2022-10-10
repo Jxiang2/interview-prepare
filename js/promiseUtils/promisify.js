@@ -3,10 +3,14 @@
  * @param fn: (arg1, arg2, cb): any
  * @returns Promise<any>
  */
-const myPromisify = (fn) => {
-  return (...args) => { // no need to pass callback to args
-    return new Promise((resolve, reject) => {
-      const customCallback = (err, ...results) => { // the first arg is err, then multiple results
+const myPromisify =
+  (fn) =>
+  (
+    ...args // no need to pass callback to args
+  ) =>
+    new Promise((resolve, reject) => {
+      const customCallback = (err, ...results) => {
+        // the first arg is err, then multiple results
         if (err) {
           reject(err)
         } else {
@@ -17,14 +21,11 @@ const myPromisify = (fn) => {
       // this is the promise
       fn.call(this, ...args)
     })
-  }
-}
-
 
 // test function
 const getSumCb = (num1, num2, callback) => {
   if (!num1 || !num2) {
-    return callback(new Error('Missing arguments'), null)
+    return callback(new Error("Missing arguments"), null)
   }
   const sum = num1 + num2
   const message = `Sum is ${sum}`
@@ -41,13 +42,13 @@ getSumCb(1, 1, (err, ...res) => {
   }
 })
 
-// Promisification based solution: 
+// Promisification based solution:
 // conversion of a function accepting a callback into a function returning a promise.
 const getSumPromise = myPromisify(getSumCb)
 getSumPromise(1, 1)
-  .then(res => {
+  .then((res) => {
     console.log(res)
   })
-  .catch(err => {
-    console.log(err.message)
+  .catch((err) => {
+    console.dir(err.message)
   })

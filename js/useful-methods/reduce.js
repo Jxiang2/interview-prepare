@@ -2,14 +2,11 @@ const array1 = [1, 2, 3, 4]
 
 const initialPrevValue = 0
 
-const sumWithInitial = array1.reduce(
-  (previousValue, currentValue) => {
-    console.log("prev: ", previousValue)
-    console.log("cur: ", currentValue)
-    return previousValue + currentValue
-  },
-  initialPrevValue
-)
+const sumWithInitial = array1.reduce((previousValue, currentValue) => {
+  console.log("prev: ", previousValue)
+  console.log("cur: ", currentValue)
+  return previousValue + currentValue
+}, initialPrevValue)
 
 console.log(sumWithInitial)
 // expected output: 10

@@ -3,7 +3,7 @@ function testcb(val, cb) {
 }
 
 const test = (val) => {
-  val = val ** 2
+  val **= 2
   console.log(`the processed value is ${val}`)
 }
 

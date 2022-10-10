@@ -1,7 +1,7 @@
 const { merge } = require("lodash")
 
 const prevState = {
-  "1": {
+  1: {
     attributes: {
       identity: null,
       microServiceId: "3kd20dj23ij",
@@ -10,13 +10,13 @@ const prevState = {
         allowFutureManualTimecardApprove: true,
         disableEmployeeProfileEdit: true,
         earlyClockIn: true,
-        earlyClockInLimit: 65
-      }
+        earlyClockInLimit: 65,
+      },
     },
     id: "1",
     type: "companies",
-    links: {}
-  }
+    links: {},
+  },
 }
 
 // new state to merge
@@ -26,7 +26,7 @@ const newSettings = {
   autoGenerateShiftTitle: true,
   disableEmployeeProfileEdit: true,
   earlyClockIn: true,
-  earlyClockInLimit: 65
+  earlyClockInLimit: 65,
 }
 
 // merge result
