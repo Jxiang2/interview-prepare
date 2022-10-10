@@ -73,7 +73,7 @@ interface BaseEvent {
 }
 
 interface EventMap {
-  addToCart: BaseEvent & { quantity: number; productID: string; };
+  addToCart: BaseEvent & { quantity: number; productID: string };
   checkout: BaseEvent;
 }
 
@@ -145,10 +145,4 @@ myFunc1<Dog>({
   age: 6,
 });
 
-export {
-  myFunc,
-  myFunc1,
-  isInstanceOfPerson,
-  rankedItemList,
-  simpleState,
-};
+export { myFunc, myFunc1, isInstanceOfPerson, rankedItemList, simpleState };

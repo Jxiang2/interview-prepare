@@ -37,6 +37,4 @@ console.log(parseCoordinate(10, 20));
 console.log(parseCoordinate({ x: 52, y: 35 }));
 console.log(parseCoordinate("x:12,y:22"));
 
-export {
-  parseCoordinate,
-};
+export { parseCoordinate };

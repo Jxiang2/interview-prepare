@@ -3,10 +3,9 @@ interface DogInfo {
   age: number;
 }
 
-type Listners<T> = {
-  [Property in keyof T as `on${Capitalize<string & Property>}Change`]: (
-    val: T[Property],
-  ) => void;
+type Listners<T> = { [Property in keyof T as `on${Capitalize<string & Property>}Change`]: (
+  val: T[Property],
+) => void;
 };
 
 function listenToObj<T>(obj: T, listeners: Listners<T>): void {
@@ -30,6 +29,4 @@ const dogListners: Listners<DogInfo> = {
 
 listenToObj<DogInfo>(lg, dogListners);
 
-export {
-  listenToObj
-};
+export { listenToObj };

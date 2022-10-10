@@ -5,7 +5,9 @@ module.exports = {
     es2021: true,
   },
 
-  extends: ["plugin:prettier/recommended"],
+  ignorePatterns: ["node_modules"],
+
+  extends: ["plugin:prettier/recommended", "prettier"],
 
   overrides: [],
 

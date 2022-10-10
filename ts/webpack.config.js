@@ -1,5 +1,5 @@
-const path = require("path")
-const HTMLWebPackPlugin = require("html-webpack-plugin")
+const path = require("path");
+const HTMLWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   devtool: "source-map", // to better debug on browser
@@ -33,4 +33,4 @@ module.exports = {
       template: "./src/public/index.html", // inject bundle.js into index.html in src dir
     }),
   ],
-}
+};

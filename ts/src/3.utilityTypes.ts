@@ -61,7 +61,7 @@ console.log(meMe);
 type MyPick<T, K extends keyof T> = {
   [P in K]: T[P];
 };
-type Point2D = MyPick<{ x: number; y: number; z: number; }, "x" | "z">;
+type Point2D = MyPick<{ x: number; y: number; z: number }, "x" | "z">;
 
 // Record<string, MyUser>
 const mapById = (users: MyUser[]): Record<string, MyUser> => {
@@ -99,7 +99,7 @@ type Name = {
 };
 
 // Parameters<Type> & ReturnType<Type>
-function addFullName(name: Name): Name & { fullName: string; } {
+function addFullName(name: Name): Name & { fullName: string } {
   return {
     ...name,
     fullName: `${name.first} ${name.last}`,
@@ -123,7 +123,7 @@ console.log(
 
 // ConstructorParameters<Type> & InstanceType<T>
 class PersonWithFullName {
-  constructor (public name: Name) { }
+  constructor(public name: Name) {}
 
   get fullName() {
     return `${this.name.first} ${this.name.last}`;
@@ -145,7 +145,4 @@ console.log(
   ]).map((obj) => obj.fullName),
 );
 
-export {
-  createObjects,
-  PersonWithFullName
-};
+export { createObjects, PersonWithFullName };
