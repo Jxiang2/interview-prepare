@@ -19,7 +19,7 @@ module.exports = {
   rules: {
     "linebreak-style": ["error", "unix"],
 
-    "quotes": ["error", "double"],
+    quotes: ["error", "double"],
 
     "no-console": ["error", { allow: ["log", "dir"] }],
   },
