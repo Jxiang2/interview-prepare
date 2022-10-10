@@ -8,7 +8,7 @@ if (typeof myVar === "string") {
 }
 
 // ✅ Use instanceof for classes
-class Person {}
+class Person { }
 
 const person = new Person();
 console.log(person instanceof Person); // 👉️ true
@@ -33,3 +33,5 @@ const a = {
 };
 
 console.log(isInstanceOfA(a));
+
+export { isInstanceOfA };

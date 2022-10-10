@@ -144,3 +144,8 @@ console.log(
     { first: "3", last: "3" },
   ]).map((obj) => obj.fullName),
 );
+
+export {
+  createObjects,
+  PersonWithFullName
+};

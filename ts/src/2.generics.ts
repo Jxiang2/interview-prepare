@@ -1,3 +1,5 @@
+import { type } from "os";
+
 // knowledge checkpoint: TS tuple, generics, Closure
 function simpleState<T>(initial: T): [() => T, (v: T) => void] {
   let val: T = initial;
@@ -71,7 +73,7 @@ interface BaseEvent {
 }
 
 interface EventMap {
-  addToCart: BaseEvent & { quantity: number; productID: string };
+  addToCart: BaseEvent & { quantity: number; productID: string; };
   checkout: BaseEvent;
 }
 
@@ -142,3 +144,11 @@ myFunc1<Dog>({
   name: "dingding",
   age: 6,
 });
+
+export {
+  myFunc,
+  myFunc1,
+  isInstanceOfPerson,
+  rankedItemList,
+  simpleState,
+};

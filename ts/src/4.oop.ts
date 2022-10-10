@@ -64,3 +64,7 @@ myDB2.restoreFromString(saved);
 console.log(myDB2);
 
 console.log(myDB2.get("foo"));
+
+export {
+  PersistentMemoryDB
+};

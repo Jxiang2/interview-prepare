@@ -29,3 +29,7 @@ const dogListners: Listners<DogInfo> = {
 };
 
 listenToObj<DogInfo>(lg, dogListners);
+
+export {
+  listenToObj
+};
