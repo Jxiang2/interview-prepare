@@ -16,14 +16,7 @@ const schema = {
 }
 
 schema.properties = schema.properties.concat(
-  shape({
-    ownerships: arrayOf(
-      shape({
-        name: string,
-        age: number,
-      }),
-    ),
-  }),
+  shape({ ownerships: arrayOf(shape({ name: string, age: number })) }),
 )
 
 console.log(schema)
