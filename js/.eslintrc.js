@@ -27,4 +27,4 @@ module.exports = {
 
     "no-console": ["error", { allow: ["log", "dir"] }],
   },
-}
+};

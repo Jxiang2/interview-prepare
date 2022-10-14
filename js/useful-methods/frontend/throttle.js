@@ -4,20 +4,20 @@
  * within the throttle delay, the event won't fire again
  */
 const throttle = (fn, delay) => {
-  let last = 0
+  let last = 0;
   return (...args) => {
-    const now = new Date().getTime()
+    const now = new Date().getTime();
     if (now - last < delay) {
-      return
+      return;
     }
-    last = now
-    return fn(...args)
-  }
-}
+    last = now;
+    return fn(...args);
+  };
+};
 
 document.getElementById("btn1").addEventListener(
   "click",
   debounce((e) => {
-    console.log("clicked")
+    console.log("clicked");
   }, 2000),
-)
+);

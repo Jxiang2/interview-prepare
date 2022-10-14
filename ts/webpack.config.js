@@ -1,5 +1,5 @@
-const path = require("path") // eslint-disable-line
-const HTMLWebPackPlugin = require("html-webpack-plugin") // eslint-disable-line
+const path = require("path"); // eslint-disable-line
+const HTMLWebPackPlugin = require("html-webpack-plugin"); // eslint-disable-line
 
 module.exports = {
   // to better debug on browser

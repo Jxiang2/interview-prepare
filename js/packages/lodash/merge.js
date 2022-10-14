@@ -1,4 +1,4 @@
-const { merge } = require("lodash")
+const { merge } = require("lodash");
 
 const prevState = {
   1: {
@@ -17,17 +17,17 @@ const prevState = {
     type: "companies",
     links: {},
   },
-}
+};
 
 // new state to merge
-const newCompanyId = "1"
+const newCompanyId = "1";
 const newSettings = {
   allowFutureManualTimecardApprove: true,
   autoGenerateShiftTitle: true,
   disableEmployeeProfileEdit: true,
   earlyClockIn: true,
   earlyClockInLimit: 65,
-}
+};
 
 // merge result
 const result = merge(prevState, {
@@ -36,6 +36,6 @@ const result = merge(prevState, {
       settings: newSettings,
     },
   },
-})
+});
 
-console.log(result["1"].attributes.settings)
+console.log(result["1"].attributes.settings);

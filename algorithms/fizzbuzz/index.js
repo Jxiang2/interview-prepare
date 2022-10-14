@@ -14,17 +14,16 @@
 
 function fizzBuzz(n) {
   for (let i = 1; i <= n; i++) {
-    let fb = ''
-    if (i % 3 === 0) fb += 'fizz'
-    if (i % 5 === 0) fb += 'buzz'
-    console.log(fb.length > 0 ? fb : i)
-
+    let fb = "";
+    if (i % 3 === 0) fb += "fizz";
+    if (i % 5 === 0) fb += "buzz";
+    console.log(fb.length > 0 ? fb : i);
   }
 }
 
-fizzBuzz(15)
+fizzBuzz(15);
 
-module.exports = fizzBuzz
+module.exports = fizzBuzz;
 
 // function fizzBuzz(n) {
 //     for (let i=1; i<=n; i++) {

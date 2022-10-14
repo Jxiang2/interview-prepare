@@ -11,22 +11,21 @@
 // recursive approach, with cache O(n)
 function fib(n, cache = {}) {
   if (cache[n]) {
-    return cache[n]
+    return cache[n];
   }
 
   if (n === 0 || n === 1) {
-    return n
+    return n;
   }
 
-
-  const fibNum = fib(n - 1, cache) + fib(n - 2, cache)
-  cache[n] = fibNum
-  return fibNum
+  const fibNum = fib(n - 1, cache) + fib(n - 2, cache);
+  cache[n] = fibNum;
+  return fibNum;
 }
 
-console.log(fib(10))
+console.log(fib(10));
 
-module.exports = fib
+module.exports = fib;
 
 // recursive approach O(2^n)
 // function fib(n) {

@@ -1,10 +1,10 @@
 function testcb(val, cb) {
-  cb(val)
+  cb(val);
 }
 
 const test = (val) => {
-  val **= 2
-  console.log(`the processed value is ${val}`)
-}
+  val **= 2;
+  console.log(`the processed value is ${val}`);
+};
 
-testcb(3, test)
+testcb(3, test);

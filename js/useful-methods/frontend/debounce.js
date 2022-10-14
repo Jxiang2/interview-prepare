@@ -4,16 +4,16 @@
  * the button while constantly clicking it
  */
 const debounce = (fn, delay) => {
-  let timeOutId
+  let timeOutId;
   return (...args) => {
-    timeOutId && clearTimeout(timeOutId)
-    timeOutId = setTimeout(() => fn(...args), delay)
-  }
-}
+    timeOutId && clearTimeout(timeOutId);
+    timeOutId = setTimeout(() => fn(...args), delay);
+  };
+};
 
 document.getElementById("btn1").addEventListener(
   "click",
   debounce((e) => {
-    console.log("clicked")
+    console.log("clicked");
   }, 2000),
-)
+);
