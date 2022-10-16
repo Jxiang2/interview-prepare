@@ -90,6 +90,7 @@ console.log(genObj.next().value); // "2 + 2 = ?"
 console.log(genObj.next(4).value); // "3 * 3 = ?"
 console.log(genObj.next(9).done); // true
 
+// Conclusion of "two-way street yield":
 // It’s like a ping-pong game. Each "next(value)"" (excluding the first one) passes
 // a value into the generator, that becomes the result of the current "yield",
 // and then gets back the result of the next "yield".
