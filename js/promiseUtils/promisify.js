@@ -5,10 +5,8 @@
  */
 const myPromisify =
   (fn) =>
-  (
-    ...args // no need to pass callback to args
-  ) =>
-    new Promise((resolve, reject) => {
+  (...args) => {
+    const func = (resolve, reject) => {
       const customCallback = (err, ...results) => {
         // the first arg is err, then multiple results
         if (err) {
@@ -17,10 +15,15 @@ const myPromisify =
           resolve(results.length === 1 ? results[0] : results);
         }
       };
+
+      console.log(this);
+
       args.push(customCallback);
-      // this is the promise
       fn.call(this, ...args);
-    });
+    };
+
+    return new Promise(func);
+  };
 
 // test function
 const getSumCb = (num1, num2, callback) => {
