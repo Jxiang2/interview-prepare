@@ -1,7 +1,5 @@
-import { type } from "os";
-
 // knowledge checkpoint: TS tuple, generics, Closure
-function simpleState<T>(initial: T): [() => T, (v: T) => void] {
+const simpleState = <T>(initial: T): [() => T, (v: T) => void] => {
   let val: T = initial;
   return [
     () => val,
@@ -9,7 +7,7 @@ function simpleState<T>(initial: T): [() => T, (v: T) => void] {
       val = v;
     },
   ];
-}
+};
 
 const [strgetter, strsetter] = simpleState<string | null>(null);
 const [numgetter, numsetter] = simpleState(1);
@@ -25,7 +23,7 @@ interface ItemWithRank<T> {
   rank: number;
 }
 
-function ranker<T>(items: Array<T>, rankAlgo: (v: T) => number): Array<T> {
+const ranker = <T>(items: T[], rankAlgo: (v: T) => number): T[] => {
   const itemsWithRank: Array<ItemWithRank<T>> = items.map((item) => ({
     item,
     rank: rankAlgo(item),
@@ -34,7 +32,7 @@ function ranker<T>(items: Array<T>, rankAlgo: (v: T) => number): Array<T> {
   itemsWithRank.sort((a, b) => a.rank - b.rank);
 
   return itemsWithRank.map((itemsWithRank) => itemsWithRank.item);
-}
+};
 
 const strsToTest = ["XxxxxxxxxX", "hello", "world!", "xjy"];
 
@@ -46,12 +44,12 @@ console.log(rankedItemList);
 
 //  knowledge checkpoint: TS generics, keyof
 // 1
-function pluck<DataType, KeyType extends keyof DataType>(
+const pluck = <DataType, KeyType extends keyof DataType>(
   items: Array<DataType>,
   key: KeyType,
-): Array<DataType[KeyType]> {
+): Array<DataType[KeyType]> => {
   return items.map((item) => item[key]);
-}
+};
 
 interface Dog {
   name: string;
@@ -77,12 +75,12 @@ interface EventMap {
   checkout: BaseEvent;
 }
 
-function sendEvent<Name extends keyof EventMap>(
+const sendEvent = <Name extends keyof EventMap>(
   name: Name,
   data: EventMap[Name],
-): void {
+): void => {
   console.log([name, data]);
-}
+};
 
 sendEvent("addToCart", {
   time: 10,
@@ -91,13 +89,19 @@ sendEvent("addToCart", {
   productID: "e32d2d2e23",
 });
 
+sendEvent("checkout", {
+  time: 10,
+  user: "xjy1",
+});
+
 // 3 generic function types vs generic types of function
 interface Person {
   id: string; // unique identifier
   name: string;
   age: number;
 }
-const isInstanceOfPerson = (obj: any): obj is Person =>
+
+const isInstanceOfPerson = (obj: unknown): obj is Person =>
   typeof (obj as Person).id === "string" &&
   typeof (obj as Person).name === "string" &&
   typeof (obj as Person).age === "number";
@@ -132,7 +136,7 @@ const myFunc1: FC1 = <Props>(props: Props) => {
   }
 };
 
-myFunc1<Person>({
+myFunc1({
   // use
   id: "1wec3212",
   name: "xjy",
