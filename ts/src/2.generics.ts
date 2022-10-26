@@ -9,13 +9,13 @@ const simpleState = <T>(initial: T): [() => T, (v: T) => void] => {
   ];
 };
 
-const [strgetter, strsetter] = simpleState<string | null>(null);
-const [numgetter, numsetter] = simpleState(1);
-console.log(strgetter());
-console.log(numgetter());
-strsetter("goodbye");
-console.log(strgetter());
-console.log(numgetter());
+const [strGetter, strSetter] = simpleState<string | null>(null);
+const [numGetter, numSetter] = simpleState(1);
+console.log(strGetter());
+console.log(numGetter());
+strSetter("goodbye");
+console.log(strGetter());
+console.log(numGetter());
 
 // knowledge checkpoint: generics
 interface ItemWithRank<T> {
@@ -34,10 +34,10 @@ const ranker = <T>(items: T[], rankAlgo: (v: T) => number): T[] => {
   return itemsWithRank.map((itemsWithRank) => itemsWithRank.item);
 };
 
-const strsToTest = ["XxxxxxxxxX", "hello", "world!", "xjy"];
+const strListToTest = ["XxxxxxxxxX", "hello", "world!", "xjy"];
 
 const rankedItemList: Array<string> = ranker<string>(
-  strsToTest,
+  strListToTest,
   (str) => str.length,
 );
 console.log(rankedItemList);
@@ -100,11 +100,17 @@ interface Person {
   name: string;
   age: number;
 }
-
 const isInstanceOfPerson = (obj: unknown): obj is Person =>
   typeof (obj as Person).id === "string" &&
   typeof (obj as Person).name === "string" &&
   typeof (obj as Person).age === "number";
+
+// 3.0 (prerequisite) functions with generic arguments
+const addUID = <T extends object>(obj: T) => {
+  const uid = Math.floor(Math.random() * 100);
+  return { ...obj, uid };
+};
+console.log(addUID({ name: "xjy" }));
 
 // 3.1 generic type of functions
 type FC<Props> = (props: Props) => any; // declare
@@ -145,7 +151,7 @@ myFunc1({
 
 myFunc1<Dog>({
   // use
-  name: "dingding",
+  name: "dingDing",
   age: 6,
 });
 
