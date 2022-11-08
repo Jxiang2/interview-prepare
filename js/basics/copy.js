@@ -13,6 +13,7 @@ console.log(b.ids === a.ids); // b.ids and a.ids still point to the same array
 b.ids = [
   { type: "1", code: 1 },
   { type: "2", code: 2 },
+  { type: "3", code: 3 },
 ];
 console.log(b.ids === a.ids);
 
