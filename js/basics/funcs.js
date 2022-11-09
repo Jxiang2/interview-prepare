@@ -1,14 +1,14 @@
 // // callback
-// function testcb(val, cb) {
-//   cb(val);
-// }
+function testcb(val, cb) {
+  cb(val);
+}
 
-// const test = (val) => {
-//   val **= 2;
-//   console.log(`the processed value is ${val}`);
-// };
+const test = (val) => {
+  val **= 2;
+  console.log(`the processed value is ${val}`);
+};
 
-// testcb(3, test);
+testcb(3, test);
 
 // cury funcs
 const curry = (fn) => {
