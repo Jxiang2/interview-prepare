@@ -1,20 +1,4 @@
 // myArr.reduce((acc, cur, index, array) => {...}, init)
-
-export const name = "simulate Array.reduce with Array.myReduce";
-declare global {
-  interface Array<T> {
-    myReduce: (
-      callback: (
-        accumulator: any,
-        current: T,
-        index: number,
-        array: Array<T>,
-      ) => T,
-      initialValue?: any,
-    ) => any;
-  }
-}
-
 Array.prototype.myReduce = function (callback, initialValue) {
   if (this.length === 0 && initialValue === undefined) {
     throw new TypeError("Reduce of empty array without initial value");
