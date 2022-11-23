@@ -1,9 +1,9 @@
-type CoordinateKey = "x" | "y";
-
 interface Coordinate {
   x: number;
   y: number;
 }
+
+type CoordinateKey = keyof Coordinate;
 
 // optional type declarations **
 function parseCoordinate(str: string): Coordinate;
