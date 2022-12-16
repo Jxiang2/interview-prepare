@@ -15,19 +15,29 @@ function CreateSimpleMemoeryDatabase<T>() {
     getObject(): Record<string, T> {
       return this.db;
     }
+
+    hello() {
+      console.log("hello");
+    }
   };
 }
 
-const SimpleStringDatabase = CreateSimpleMemoeryDatabase<string>();
+const SimpleNumberDatabase = CreateSimpleMemoeryDatabase<number>();
 
-type Constructor<T> = new (...args: any[]) => T;
+type DBType<Item> = {
+  set: (id: string, val: Item) => void;
+  get: (id: string) => Item;
+  getObject: () => Record<string, Item>;
+};
+
+type NumberDBConstructor<DB extends DBType<number>> = new (
+  ...args: any[]
+) => DB;
 //  ****************  constructor(...)   => object
 
-function CreateDumpableDatabase<
-  T extends Constructor<{
-    getObject(): Record<string, any>;
-  }>,
->(Base: T) {
+function CreateDumpableDatabase<T extends NumberDBConstructor<DBType<number>>>(
+  Base: T,
+) {
   return class Dumpable extends Base {
     dump() {
       console.log(this.getObject());
@@ -35,12 +45,11 @@ function CreateDumpableDatabase<
   };
 }
 
-const DumpableStringDatabase =
-  CreateDumpableDatabase<typeof SimpleStringDatabase>(SimpleStringDatabase);
-const sdb2 = new DumpableStringDatabase();
-sdb2.set("a", "1");
-sdb2.set("b", "2");
-sdb2.set("c", "3");
+const DumpableNumberDatabase = CreateDumpableDatabase(SimpleNumberDatabase);
+const sdb2 = new DumpableNumberDatabase();
+sdb2.set("a", 1);
+sdb2.set("b", 2);
+sdb2.set("c", 3);
 sdb2.dump();
 
 export { CreateDumpableDatabase, CreateSimpleMemoeryDatabase };

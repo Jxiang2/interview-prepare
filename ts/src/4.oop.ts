@@ -47,7 +47,10 @@ class PersistentMemoryDB<T extends DBKeyType, K>
 }
 
 // tests
-const myDB = new PersistentMemoryDB<string, number>({
+const myDB: PersistentMemoryDB<string, number> = new PersistentMemoryDB<
+  string,
+  number
+>({
   x: 10,
   y: 20,
 });
