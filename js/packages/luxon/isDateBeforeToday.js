@@ -1,11 +1,11 @@
 const { DateTime } = require("luxon");
 
 /**
- * cehck if a date is before now in a specified timezone
- * @param {string} date
+ * check if a date is before now in a specified timezone
+ * @param {string} date in format yyyy-MM-dd
  * @param {string} timezone
  * @param {string} format
- * @returns boolean
+ * @returns {boolean}
  */
 function isDateBeforeNow(date, timezone, format = "yyyy-MM-dd") {
   const dateToCompare = date
@@ -20,3 +20,5 @@ function isDateBeforeNow(date, timezone, format = "yyyy-MM-dd") {
 
   return diff.hours ? diff.hours < 0 : false;
 }
+
+module.exports = isDateBeforeNow;
