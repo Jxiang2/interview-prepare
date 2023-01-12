@@ -73,7 +73,7 @@ interface Base2 {
   isMarried: boolean;
 }
 
-const mixedBase: Base1 & Base2 = {
+export const mixedBase: Base1 & Base2 = {
   id: "3r23f0jewfewf",
   name: "xjy",
   age: 12,

@@ -14,6 +14,7 @@ import {
   CreateDumpableDatabase,
   CreateSimpleMemoeryDatabase,
 } from "./7.mixins";
+import { mixedBase } from "./8.interfaces";
 
 console.log("start");
 console.log(parseCoordinate);
@@ -23,4 +24,5 @@ console.log(PersistentMemoryDB);
 console.log(listenToObj);
 console.log(isInstanceOfA);
 console.log(CreateDumpableDatabase, CreateSimpleMemoeryDatabase);
+console.log(mixedBase);
 console.log("end");
