@@ -7,6 +7,7 @@ const { DateTime } = require("luxon");
 // give a Datetime object in local timezone
 const dateTime1 = DateTime.fromISO("2022-12-17T03:50:00+0000");
 console.log(dateTime1);
+console.log(dateTime1.toISODate());
 
 // give a Datetime object in specified timezone
 const dateTime2 = DateTime.fromISO("2022-12-17T03:50:00+0000", { zone: "utc" });
@@ -25,3 +26,24 @@ const current = DateTime.fromISO("2022-12-25T00:00:00", {
 console.log(current);
 console.log(current.toString());
 console.log(current.toISODate());
+
+// convert a Datetime to another timezone, but keeping the values the same (Full example)
+const dateTimeFromServer = "2023-01-23T00:00:00.000+02:00";
+
+const viewerLocalDate = DateTime.fromISO(dateTimeFromServer).setZone(
+  "Europe/Kiev",
+  { keepLocalTime: false },
+);
+
+console.log(viewerLocalDate);
+
+const startHoursObject = DateTime.fromFormat("00:15", "HH:mm").toObject();
+
+console.log(startHoursObject);
+
+const final = viewerLocalDate.set({
+  hour: startHoursObject.hour,
+  minute: startHoursObject.minute,
+});
+
+console.log(final.toISO());
