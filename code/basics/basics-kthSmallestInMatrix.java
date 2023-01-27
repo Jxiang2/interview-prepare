@@ -5,7 +5,7 @@
  * [1,5,9,10,11,12,13,13,15], and the 8th smallest number is 13
  */
 
-package code;
+package code.basics;
 
 class KthSmallestInMatrix {
   public int lessEqual(int[][] matrix, int target) {

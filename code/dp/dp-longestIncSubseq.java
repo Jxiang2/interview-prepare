@@ -8,7 +8,7 @@
  *  therefore the length is 4.
  */
 
-package code;
+package code.dp;
 
 import java.util.Arrays;
 

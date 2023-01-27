@@ -8,7 +8,7 @@ Integers in each row are sorted in ascending from left to right.
 Integers in each column are sorted in ascending from top to bottom.
  */
 
-package code;
+package code.bs;
 
 class SearchMatrix {
     public boolean hasValue(int[] row, int target) {

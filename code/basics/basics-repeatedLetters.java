@@ -4,7 +4,7 @@
  * of letters
  */
 
-package code;
+package code.basics;
 
 import java.util.HashMap;
 

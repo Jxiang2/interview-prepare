@@ -5,7 +5,7 @@
 // If there are no such elements, return -1.
 // a = [2, 1, 3, 5, 3, 2], solution(a) = 3
 
-package code;
+package code.basics;
 
 import java.util.*;
 

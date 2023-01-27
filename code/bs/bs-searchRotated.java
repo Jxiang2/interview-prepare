@@ -7,7 +7,7 @@
  * Output: 4
  */
 
-package code;
+package code.bs;
 
 class SearchRotated {
     public int search(int[] nums, int target) {

@@ -3,7 +3,7 @@
  * find number of ways to climb n stairs
  */
 
-package code;
+package code.dp;
 
 class ClimbStair {
 

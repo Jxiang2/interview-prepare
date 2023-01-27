@@ -3,7 +3,7 @@
 // scooters can travel 10 distance
 // find the total distance traveled with scooters
 
-package code;
+package code.dp;
 
 import java.util.Arrays;
 

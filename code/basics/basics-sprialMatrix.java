@@ -15,7 +15,7 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
-package code;
+package code.basics;
 
 import java.util.Arrays;
 
