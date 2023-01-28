@@ -29,9 +29,9 @@ class GridTravel {
   }
 
   public static void main(String[] args) {
-    GridTravel gridTravel = new GridTravel();
+    GridTravel solution = new GridTravel();
     System.out.println(
-      gridTravel.gridTravelWays(18,18, new HashMap<String, Long>())
+      solution.gridTravelWays(18,18, new HashMap<String, Long>())
     );
   }
    
