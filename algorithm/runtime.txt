@@ -1,0 +1,6 @@
+const time : 1 => input size * 2 -> runtime does not change
+log time: log(n) => input size * 2 -> runtime * (<2)
+linear time: n => input size * 2 -> runtime * 2
+quaslinear time: nlogn => input size * 2 -> runtime * (<4)
+quadradic time: n^2 => input size * 2 -> runtime * 4
+expo time: 2^n => input size * 3 -> runtime * 9
