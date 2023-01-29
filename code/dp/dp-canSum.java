@@ -13,7 +13,6 @@ class CanSum {
     List<Integer> numbers, 
     Map<Integer, Boolean> memo
   ) {
-
     if (memo.containsKey(targetSum)) {
       return memo.get(targetSum);
     }
@@ -30,7 +29,7 @@ class CanSum {
     }
 
     // any non-negative reminders
-     memo.put(targetSum, false);
+    memo.put(targetSum, false);
     return false;
   } 
   
