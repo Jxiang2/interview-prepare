@@ -22,7 +22,7 @@ myObject.myMethod(); // this === myObject
 myMethod(); // this === window
 
 // API calls
-myObject = {
+const myAPI1 = {
   onSomethingCoolDone() {
     console.log(this);
     /// Only god knows what is "this" here BAD
@@ -33,7 +33,7 @@ myObject = {
   },
 };
 
-myObject = {
+const myAPI2 = {
   onSomethingCoolDone() {
     console.log(this);
     /// Now everybody know that "this" === myObject GOOD

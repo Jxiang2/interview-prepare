@@ -35,17 +35,14 @@ const reusabledCallback = function () {
 
 myObject = {
   myMethod() {
-    helperObject.doSomethingAsync(
-      "superCool",
-      reusabledCallback.bind(myObject),
-    );
+    doSomethingAsync("superCool", reusabledCallback.bind(myObject));
   },
 };
 
 myObject = {
   // or
   myMethod() {
-    helperObject.doSomethingAsync("superCool", () => {
+    doSomethingAsync("superCool", () => {
       console.log(this); // this === myObject
     });
   },
@@ -65,5 +62,8 @@ const obj = {
 
 obj.c(); // c uses this from it's parent(const obj)'s scope, which is the module.export={} object
 obj.d(); // d is defined in the obj, so it's excution context is the obj, thus this is obj
-const e = obj.d;
-e(); // e is a function, with this to be global as default
+
+const e = obj.c;
+e(); // "this" of e is defined in c, fixed to be c's parent's scope, which is the module.export={} object
+const f = obj.d;
+f(); // e is a function, with this to be global as default
