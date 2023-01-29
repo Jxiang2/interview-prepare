@@ -3,13 +3,14 @@ package code.dp;
 import java.util.HashMap;
 import java.util.Map;
 
+// memo (top-down)
 // how many ways travel from mxn top left to bottom right
 // if move only left and botton?
-// runtime: O(c+r)
 //    c
 // *  *  * 
 // *  *  *   r
 // *  *  *
+// runtime: O(c+r)
 class GridTravel {
 
   public long gridTravelWays(int r, int c, Map<String, Long> memo) {
