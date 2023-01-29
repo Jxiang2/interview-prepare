@@ -30,6 +30,8 @@ class CanSum {
 
     // any non-negative reminders
     memo.put(targetSum, false);
+
+    // return if targetSum can't be substracted without reminders
     return false;
   } 
   

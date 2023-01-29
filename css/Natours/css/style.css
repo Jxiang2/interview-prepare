@@ -18,10 +18,13 @@ body {
   height: 95vh;
   background-image: linear-gradient(to right bottom, #7ed56fb0, #28b485bd),
     url("../img/hero.jpg");
+
   /* top of bg stay the same, bottom changes */
   background-position: top;
+
   /* stretch img */
   background-size: cover;
+
   /* reshape the container using coordinates */
   clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
 }

@@ -25,6 +25,7 @@ class GridTravel {
     
     long value = gridTravelWays(r-1, c, memo) + gridTravelWays(r, c-1, memo); // D + L
     memo.put(key, value); 
+    
     return memo.get(key);
   }
 
