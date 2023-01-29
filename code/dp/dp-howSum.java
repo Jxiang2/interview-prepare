@@ -13,15 +13,17 @@ import java.util.Map;
 class HowSum {
 
   public List<Integer> howSum(
-      int targetSum, 
-      int[] numbers, 
-      Map<Integer, List<Integer>> memo
-  ) {
-    if (memo.containsKey(targetSum)) return memo.get(targetSum);
+      int targetSum,
+      int[] numbers,
+      Map<Integer, List<Integer>> memo) {
+    if (memo.containsKey(targetSum))
+      return memo.get(targetSum);
 
-    if (targetSum == 0) return new ArrayList<>();
-    if (targetSum < 0) return null;
-    
+    if (targetSum == 0)
+      return new ArrayList<>();
+    if (targetSum < 0)
+      return null;
+
     for (int candidate : numbers) {
       int reminder = targetSum - candidate;
       List<Integer> temp = howSum(reminder, numbers, memo);
@@ -39,12 +41,10 @@ class HowSum {
   public static void main(String[] args) {
     HowSum solution = new HowSum();
     System.out.println(
-      solution.howSum(
-        300, 
-        new int[] {7, 14}, 
-        new HashMap<>()
-      )
-    );
+        solution.howSum(
+            300,
+            new int[] { 7, 14 },
+            new HashMap<>()));
   }
-  
+
 }
