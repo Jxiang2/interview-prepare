@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 // bestSum(7, [5, 3, 4, 7]) => [7]
 // canSum(7, [1, 2]) => null
 // canSum(0, [...]) => []
-// runtime: O(tartgetSum*len(numbers))s
+// runtime: O(tartgetSum*len(numbers)*len(numbers))
 class BestSum {
   public List<Integer> bestSum(
       int targetSum,
