@@ -7,14 +7,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-// memo (top-down)
-// canSum(7, [5,4,3,7]) => [4, 3]
+// bestSum(7, [5, 3, 4, 7]) => [7]
 // canSum(7, [1, 2]) => null
 // canSum(0, [...]) => []
-// runtime: O(tartgetSum*len(numbers))
-class HowSum {
-
-  public List<Integer> howSum(
+// runtime: O(tartgetSum*len(numbers))s
+class BestSum {
+  public List<Integer> bestSum(
       int targetSum,
       int[] numbers,
       Map<Integer, List<Integer>> memo) {
@@ -26,30 +24,33 @@ class HowSum {
     if (targetSum < 0)
       return null;
 
+    // every call that does not result into the base cases have children,
+    // thus need shortestTemp
+    List<Integer> shortestTemp = null;
+
     for (int candidate : numbers) {
       int reminder = targetSum - candidate;
-      List<Integer> temp = howSum(reminder, numbers, memo);
+      List<Integer> temp = bestSum(reminder, numbers, memo);
       if (temp != null) {
         List<Integer> newTemp = Stream
             .concat(temp.stream(), List.of(candidate).stream())
             .collect(Collectors.toList());
 
-        memo.put(targetSum, newTemp);
-        return memo.get(targetSum);
+        if (shortestTemp == null || newTemp.size() < shortestTemp.size())
+          shortestTemp = newTemp;
       }
     }
 
-    memo.put(targetSum, null);
-    return null;
+    memo.put(targetSum, shortestTemp);
+    return memo.get(targetSum);
   }
 
   public static void main(String[] args) {
-    HowSum solution = new HowSum();
+    BestSum solution = new BestSum();
     System.out.println(
-        solution.howSum(
-            7,
-            new int[] { 4, 3 },
+        solution.bestSum(
+            100,
+            new int[] { 1, 2, 5, 25 },
             new HashMap<>()));
   }
-
 }
