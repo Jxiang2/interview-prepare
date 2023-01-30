@@ -42,8 +42,8 @@ class HowSum {
     HowSum solution = new HowSum();
     System.out.println(
         solution.howSum(
-            300,
-            new int[] { 7, 14 },
+            7,
+            new int[] { 4, 3 },
             new HashMap<>()));
   }
 

@@ -17,4 +17,7 @@
 2. the time complexity is always b ^ l.
 3. time complexiy can be reduced from exponential to linear or linear x linear by memoization.
 
-## Tabulation
+### Examples
+
+- howSum(tartgetSum, numbers, memo):
+  ![image](../assets/howSum.jpg)
