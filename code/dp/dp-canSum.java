@@ -1,3 +1,7 @@
+// memo (top-down)
+// canSum(7, [5,4,3,7]) => true
+// runtime: O(tartgetSum*len(numbers))
+
 package code.dp;
 
 import java.util.ArrayList;
@@ -5,9 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// memo (top-down)
-// canSum(7, [5,4,3,7]) => true
-// runtime: O(tartgetSum*len(numbers))
 class CanSum {
   public boolean canSum(
       int targetSum,

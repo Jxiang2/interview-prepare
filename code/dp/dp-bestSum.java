@@ -1,3 +1,8 @@
+// bestSum(7, [5, 3, 4, 7]) => [7]
+// canSum(7, [1, 2]) => null
+// canSum(0, [...]) => []
+// runtime: O(tartgetSum*len(numbers)*len(numbers))
+
 package code.dp;
 
 import java.util.ArrayList;
@@ -7,10 +12,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-// bestSum(7, [5, 3, 4, 7]) => [7]
-// canSum(7, [1, 2]) => null
-// canSum(0, [...]) => []
-// runtime: O(tartgetSum*len(numbers)*len(numbers))
 class BestSum {
   public List<Integer> bestSum(
       int targetSum,
