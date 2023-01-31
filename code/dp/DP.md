@@ -20,4 +20,4 @@
 ### Examples
 
 - howSum(tartgetSum, numbers, memo):
-  ![image](../assets/howSum.jpg)
+  ![image](../../assets/howSum.jpg)
