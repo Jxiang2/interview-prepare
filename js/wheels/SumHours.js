@@ -1,11 +1,11 @@
 /**
- * Add hourses
+ * Sum hourses
  * @param {string} hoursA - hh:mm:ss
  * @param {string} hoursB - hh:mm:ss
  * @param {string[]} hoursList - remaining hourses
  * @returns string - hh:mm:ss
  */
-function sumHourses(hoursA, hoursB, hoursList = []) {
+function sumHours(hoursA, hoursB, hoursList = []) {
   const unitSeconds = [3600, 60, 1];
 
   let sumInSeconds = [hoursA, hoursB, ...hoursList]
