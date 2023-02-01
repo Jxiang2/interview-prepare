@@ -26,5 +26,5 @@ function sumHours(hoursA, hoursB, hoursList = []) {
     .join(":");
 }
 
-const x = sumHourses("24:30:30", "00:30:30");
+const x = sumHours("24:30:30", "00:30:30");
 console.log(x);

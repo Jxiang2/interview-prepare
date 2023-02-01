@@ -13,7 +13,8 @@ Array.prototype.myReduce = function (callback, initialValue) {
 
   for (; index < this.length; index++) {
     // index declared above
-    accumulator = callback.call(this, accumulator, this[index], index, this);
+    const callbackArgs = [accumulator, this[index], index, this];
+    accumulator = callback.call(this, ...callbackArgs);
   }
 
   return accumulator;

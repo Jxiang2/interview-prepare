@@ -1,7 +1,6 @@
 // memo (top-down)
 // canSum(7, [5,4,3,7]) => true
-// runtime: O(tartgetSum*len(numbers))
-
+// runtime: O(tartgetSum^2*len(numbers))
 package code.dp;
 
 import java.util.ArrayList;

@@ -2,7 +2,7 @@
 // canSum(7, [5,4,3,7]) => [4, 3]
 // canSum(7, [1, 2]) => null
 // canSum(0, [...]) => []
-// runtime: O(tartgetSum*len(numbers)*len(numbers))
+// runtime: O(tartgetSum^2*len(numbers))
 
 package code.dp;
 

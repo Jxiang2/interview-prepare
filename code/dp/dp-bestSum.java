@@ -1,7 +1,7 @@
 // bestSum(7, [5, 3, 4, 7]) => [7]
 // canSum(7, [1, 2]) => null
 // canSum(0, [...]) => []
-// runtime: O(tartgetSum*len(numbers)*len(numbers))
+// runtime: O(tartgetSum^2*len(numbers))
 
 package code.dp;
 
@@ -25,7 +25,7 @@ class BestSum {
     if (targetSum < 0)
       return null;
 
-    // every call that does not result into the base cases have children,
+    // each call that does not result into the base cases has children,
     // thus need shortestTemp
     List<Integer> shortestTemp = null;
 
