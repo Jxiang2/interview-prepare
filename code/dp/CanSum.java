@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 class CanSum {
-  public boolean canSum(
+  public boolean canSumMemo(
       int targetSum,
       List<Integer> numbers,
       Map<Integer, Boolean> memo) {
@@ -24,7 +24,7 @@ class CanSum {
 
     for (int candidate : numbers) {
       int reminder = targetSum - candidate;
-      if (canSum(reminder, numbers, memo) == true) {
+      if (canSumMemo(reminder, numbers, memo) == true) {
         memo.put(targetSum, true);
         return memo.get(targetSum);
       }
@@ -40,7 +40,7 @@ class CanSum {
   public static void main(String[] args) {
     CanSum solution = new CanSum();
     System.out.println(
-        solution.canSum(
+        solution.canSumMemo(
             300,
             new ArrayList<>(List.of(7, 14)),
             new HashMap<>()));

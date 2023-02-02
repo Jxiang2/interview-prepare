@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class BestSum {
-  public List<Integer> bestSum(
+  public List<Integer> bestSumMemo(
       int targetSum,
       int[] numbers,
       Map<Integer, List<Integer>> memo) {
@@ -31,7 +31,7 @@ class BestSum {
 
     for (int candidate : numbers) {
       int reminder = targetSum - candidate;
-      List<Integer> temp = bestSum(reminder, numbers, memo);
+      List<Integer> temp = bestSumMemo(reminder, numbers, memo);
       if (temp != null) {
         List<Integer> newTemp = Stream
             .concat(temp.stream(), List.of(candidate).stream())
@@ -49,7 +49,7 @@ class BestSum {
   public static void main(String[] args) {
     BestSum solution = new BestSum();
     System.out.println(
-        solution.bestSum(
+        solution.bestSumMemo(
             100,
             new int[] { 1, 2, 5, 25 },
             new HashMap<>()));

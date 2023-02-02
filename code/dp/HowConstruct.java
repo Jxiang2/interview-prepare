@@ -11,13 +11,14 @@
 package code.dp;
 
 import java.util.HashMap;
+import java.util.Map;
 
 class HowConstruct {
 
   public int howConstructMemo(
       String s,
       String[] wordDict,
-      HashMap<String, Integer> memo) {
+      Map<String, Integer> memo) {
     if (memo.containsKey(s))
       return memo.get(s);
 

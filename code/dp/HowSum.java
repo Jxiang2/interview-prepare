@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 
 class HowSum {
 
-  public List<Integer> howSum(
+  public List<Integer> howSumMemo(
       int targetSum,
       int[] numbers,
       Map<Integer, List<Integer>> memo) {
@@ -29,7 +29,7 @@ class HowSum {
 
     for (int candidate : numbers) {
       int reminder = targetSum - candidate;
-      List<Integer> temp = howSum(reminder, numbers, memo);
+      List<Integer> temp = howSumMemo(reminder, numbers, memo);
       if (temp != null) {
         List<Integer> newTemp = Stream
             .concat(temp.stream(), List.of(candidate).stream())
@@ -47,7 +47,7 @@ class HowSum {
   public static void main(String[] args) {
     HowSum solution = new HowSum();
     System.out.println(
-        solution.howSum(
+        solution.howSumMemo(
             7,
             new int[] { 4, 3 },
             new HashMap<>()));
