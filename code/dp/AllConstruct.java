@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class AllConstruct {
 
@@ -41,9 +39,9 @@ class AllConstruct {
 
         List<List<String>> newSubPaths = new ArrayList<>();
         for (List<String> subPath : subPaths) {
-          List<String> newSubPath = Stream
-              .concat(List.of(word).stream(), subPath.stream())
-              .collect(Collectors.toList());
+          List<String> newSubPath = new ArrayList<>();
+          newSubPath.add(word);
+          newSubPath.addAll(subPath);
           newSubPaths.add(newSubPath);
         }
         result.addAll(newSubPaths);

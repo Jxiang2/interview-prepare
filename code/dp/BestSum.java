@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class BestSum {
   public List<Integer> bestSumMemo(
@@ -33,9 +31,9 @@ class BestSum {
       int reminder = targetSum - candidate;
       List<Integer> temp = bestSumMemo(reminder, numbers, memo);
       if (temp != null) {
-        List<Integer> newTemp = Stream
-            .concat(temp.stream(), List.of(candidate).stream())
-            .collect(Collectors.toList());
+        List<Integer> newTemp = new ArrayList<>();
+        newTemp.addAll(temp);
+        newTemp.add(candidate);
 
         if (shortestTemp == null || newTemp.size() < shortestTemp.size())
           shortestTemp = newTemp;
