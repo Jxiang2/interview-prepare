@@ -37,7 +37,7 @@ _This Repo aims to collect and organize potential interview questions._
 #### Examples
 
 - howSum(tartgetSum, numbers, memo):
-  ![image](../../assets/howSum.jpg)
+  ![image](./assets/howSum.jpg)
 
 ## Miscs
 

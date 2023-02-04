@@ -13,7 +13,7 @@
 package code.dp;
 
 class MaxStockProfit {
-    public int maxProfit(int[] prices) {
+    public int maxProfit(final int[] prices) {
 
         int i = 0;
         int maxProfit = 0;

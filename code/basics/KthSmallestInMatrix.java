@@ -8,9 +8,9 @@
 package code.basics;
 
 class KthSmallestInMatrix {
-  public int lessEqual(int[][] matrix, int target) {
+  public int lessEqual(final int[][] matrix, final int target) {
     int count = 0;
-    int len = matrix.length;
+    final int len = matrix.length;
     int i = len - 1;
     int j = 0;
 
@@ -25,14 +25,14 @@ class KthSmallestInMatrix {
     return count;
   }
 
-  public int kthSmallest(int[][] matrix, Integer k) {
-    int n = matrix.length;
+  public int kthSmallest(final int[][] matrix, final Integer k) {
+    final int n = matrix.length;
     int low = matrix[0][0];
     int high = matrix[n - 1][n - 1];
 
     while (low < high) {
-      int mid = low + (high - low) / 2;
-      int count = lessEqual(matrix, mid);
+      final int mid = low + (high - low) / 2;
+      final int count = lessEqual(matrix, mid);
 
       if (count < k) {
         low = mid + 1;
@@ -45,9 +45,9 @@ class KthSmallestInMatrix {
     return low;
   }
 
-  public static void main(String[] args) {
-    KthSmallestInMatrix sol = new KthSmallestInMatrix();
-    int res = sol.kthSmallest(new int[][] { { 1, 5, 20 }, { 10, 11, 15 }, { 12, 13, 14 } }, 6);
+  public static void main(final String[] args) {
+    final KthSmallestInMatrix sol = new KthSmallestInMatrix();
+    final int res = sol.kthSmallest(new int[][] { { 1, 5, 20 }, { 10, 11, 15 }, { 12, 13, 14 } }, 6);
     System.out.println(res);
   }
 }

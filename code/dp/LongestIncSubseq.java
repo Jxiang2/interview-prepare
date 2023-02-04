@@ -13,8 +13,8 @@ package code.dp;
 import java.util.Arrays;
 
 class LongestIncSubseq {
-    public int lengthOfLIS(int[] nums) {
-        int[] dp = new int[nums.length];
+    public int lengthOfLIS(final int[] nums) {
+        final int[] dp = new int[nums.length];
         Arrays.fill(dp, 1);
         for (int i = 0; i < nums.length; i++) {
             for (int j = 0; j < i; j++) {
@@ -31,9 +31,9 @@ class LongestIncSubseq {
         return max;
     }
 
-    public static void main(String[] args) {
-        LongestIncSubseq sol = new LongestIncSubseq();
-        int res = sol.lengthOfLIS(new int[] { 3, 2, 1 });
+    public static void main(final String[] args) {
+        final LongestIncSubseq sol = new LongestIncSubseq();
+        final int res = sol.lengthOfLIS(new int[] { 3, 2, 1 });
         System.out.println(res);
     }
 }

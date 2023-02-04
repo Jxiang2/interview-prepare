@@ -18,28 +18,28 @@ import java.util.Map;
 class AllConstruct {
 
   public List<List<String>> allConstructMemo(
-      String s,
-      String[] wordDict,
-      Map<String, List<List<String>>> memo) {
+      final String s,
+      final String[] wordDict,
+      final Map<String, List<List<String>>> memo) {
     if (memo.containsKey(s))
       return memo.get(s);
 
     if (s.isEmpty()) {
-      List<List<String>> leaf = new ArrayList<>();
+      final List<List<String>> leaf = new ArrayList<>();
       leaf.add(new ArrayList<>());
       return leaf;
     }
 
-    List<List<String>> result = new ArrayList<>();
+    final List<List<String>> result = new ArrayList<>();
 
-    for (String word : wordDict) {
+    for (final String word : wordDict) {
       if (s.indexOf(word) == 0) {
-        String suffix = s.substring(word.length());
-        List<List<String>> subPaths = allConstructMemo(suffix, wordDict, memo);
+        final String suffix = s.substring(word.length());
+        final List<List<String>> subPaths = allConstructMemo(suffix, wordDict, memo);
 
-        List<List<String>> newSubPaths = new ArrayList<>();
-        for (List<String> subPath : subPaths) {
-          List<String> newSubPath = new ArrayList<>();
+        final List<List<String>> newSubPaths = new ArrayList<>();
+        for (final List<String> subPath : subPaths) {
+          final List<String> newSubPath = new ArrayList<>();
           newSubPath.add(word);
           newSubPath.addAll(subPath);
           newSubPaths.add(newSubPath);
@@ -52,8 +52,8 @@ class AllConstruct {
     return memo.get(s);
   }
 
-  public static void main(String[] args) {
-    AllConstruct solution = new AllConstruct();
+  public static void main(final String[] args) {
+    final AllConstruct solution = new AllConstruct();
     System.out.println(
         solution.allConstructMemo(
             "purple",

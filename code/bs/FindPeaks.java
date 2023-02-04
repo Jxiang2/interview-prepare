@@ -13,7 +13,7 @@ You must write an algorithm that runs in O(log n) time.
 package code.bs;
 
 class FindPeaks {
-    public int findPeakElement(int[] nums) {
+    public int findPeakElement(final int[] nums) {
         int l = 0, r = nums.length - 1;
         int mid;
 
@@ -29,9 +29,9 @@ class FindPeaks {
         return l;
     }
 
-    public static void main(String[] args) {
-        FindPeaks sol = new FindPeaks();
-        int res = sol.findPeakElement(new int[] { 5, 7, 7, 8, 8, 10 });
+    public static void main(final String[] args) {
+        final FindPeaks sol = new FindPeaks();
+        final int res = sol.findPeakElement(new int[] { 5, 7, 7, 8, 8, 10 });
         System.out.println(res);
     }
 }

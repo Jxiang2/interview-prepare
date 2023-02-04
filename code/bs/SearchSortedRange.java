@@ -12,12 +12,12 @@ package code.bs;
 import java.util.Arrays;
 
 class SearchSortedRanges {
-    public int[] searchRange(int[] nums, int target) {
+    public int[] searchRange(final int[] nums, final int target) {
         int l = 0;
         int r = nums.length - 1;
 
         while (l <= r) {
-            int mid = (l + r) / 2;
+            final int mid = (l + r) / 2;
             if (nums[mid] < target) {
                 l = mid + 1;
             } else if (nums[mid] > target) {
@@ -37,9 +37,9 @@ class SearchSortedRanges {
         return new int[] { -1, -1 };
     }
 
-    public static void main(String[] args) {
-        SearchSortedRanges sol = new SearchSortedRanges();
-        int[] res = sol.searchRange(new int[] { 5, 7, 7, 8, 8, 10 }, 8);
+    public static void main(final String[] args) {
+        final SearchSortedRanges sol = new SearchSortedRanges();
+        final int[] res = sol.searchRange(new int[] { 5, 7, 7, 8, 8, 10 }, 8);
         System.out.println(Arrays.toString(res));
     }
 }

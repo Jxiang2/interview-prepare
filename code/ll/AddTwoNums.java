@@ -16,11 +16,11 @@ class ListNode {
     ListNode() {
     }
 
-    ListNode(int val) {
+    ListNode(final int val) {
         this.val = val;
     }
 
-    ListNode(int val, ListNode next) {
+    ListNode(final int val, final ListNode next) {
         this.val = val;
         this.next = next;
     }
@@ -40,8 +40,8 @@ class AddTwoNums {
             l2 = l2.next;
         }
 
-        String result = "" + (new BigInteger(firstNumber).add(new BigInteger(secondNumber)));
-        ListNode output = new ListNode(0);
+        final String result = "" + (new BigInteger(firstNumber).add(new BigInteger(secondNumber)));
+        final ListNode output = new ListNode(0);
         ListNode cur = output;
         for (int i = result.length() - 1; i >= 0; i--) {
             cur.next = new ListNode(result.charAt(i) - '0');

@@ -11,12 +11,12 @@ or operator, such as pow(x, 0.5) or x ** 0.5.
 package code.bs;
 
 class Sqrt {
-    public int mySqrt(int x) {
+    public int mySqrt(final int x) {
         long l = 0;
         long r = x;
         while (l <= r) {
-            long mid = (l + r) / 2;
-            long guess = mid * mid;
+            final long mid = (l + r) / 2;
+            final long guess = mid * mid;
             if (guess > x) {
                 r = mid - 1;
             } else if (guess < x) {

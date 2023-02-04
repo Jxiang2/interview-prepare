@@ -12,9 +12,9 @@ import java.util.Map;
 
 class BestSum {
   public List<Integer> bestSumMemo(
-      int targetSum,
-      int[] numbers,
-      Map<Integer, List<Integer>> memo) {
+      final int targetSum,
+      final int[] numbers,
+      final Map<Integer, List<Integer>> memo) {
     if (memo.containsKey(targetSum))
       return memo.get(targetSum);
 
@@ -27,11 +27,11 @@ class BestSum {
     // thus need shortestTemp
     List<Integer> shortestTemp = null;
 
-    for (int candidate : numbers) {
-      int reminder = targetSum - candidate;
-      List<Integer> temp = bestSumMemo(reminder, numbers, memo);
+    for (final int candidate : numbers) {
+      final int reminder = targetSum - candidate;
+      final List<Integer> temp = bestSumMemo(reminder, numbers, memo);
       if (temp != null) {
-        List<Integer> newTemp = new ArrayList<>();
+        final List<Integer> newTemp = new ArrayList<>();
         newTemp.addAll(temp);
         newTemp.add(candidate);
 
@@ -44,8 +44,8 @@ class BestSum {
     return memo.get(targetSum);
   }
 
-  public static void main(String[] args) {
-    BestSum solution = new BestSum();
+  public static void main(final String[] args) {
+    final BestSum solution = new BestSum();
     System.out.println(
         solution.bestSumMemo(
             100,

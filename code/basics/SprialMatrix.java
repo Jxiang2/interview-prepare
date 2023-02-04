@@ -20,8 +20,8 @@ package code.basics;
 import java.util.Arrays;
 
 class SprialMatrix {
-  public int[][] spirlaMatrix(int n) {
-    int[][] result = new int[n][n];
+  public int[][] spirlaMatrix(final int n) {
+    final int[][] result = new int[n][n];
 
     int counter = 0;
     int topRow = 0;
@@ -62,8 +62,8 @@ class SprialMatrix {
     return result;
   }
 
-  public static void main(String[] args) {
-    SprialMatrix sm = new SprialMatrix();
+  public static void main(final String[] args) {
+    final SprialMatrix sm = new SprialMatrix();
     System.out.println(Arrays.deepToString(sm.spirlaMatrix(3)));
   }
 }

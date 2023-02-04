@@ -9,8 +9,8 @@ package code.basics;
 import java.util.HashMap;
 
 class RepeatedLetters {
-  public String solution(String phrase) {
-    String[] clearedPhrase = phrase.replaceAll("[^a-zA-Z0-9\\s.-]", "").split(" ");
+  public String solution(final String phrase) {
+    final String[] clearedPhrase = phrase.replaceAll("[^a-zA-Z0-9\\s.-]", "").split(" ");
     String wordWithMostRepeatedLetter = clearedPhrase[0];
 
     for (int i = 1; i < clearedPhrase.length; i++) {
@@ -22,12 +22,12 @@ class RepeatedLetters {
     return wordWithMostRepeatedLetter;
   }
 
-  public int getRepeatNumber(String word) {
-    HashMap<Character, Integer> map = new HashMap<>();
+  public int getRepeatNumber(final String word) {
+    final HashMap<Character, Integer> map = new HashMap<>();
     int maxRepeat = 1;
 
     for (int i = 0; i < word.length(); i++) {
-      char currentChar = word.charAt(i);
+      final char currentChar = word.charAt(i);
       if (map.containsKey(currentChar)) {
         map.put(currentChar, map.get(currentChar) + 1);
         if ((map.get(currentChar)) > maxRepeat)

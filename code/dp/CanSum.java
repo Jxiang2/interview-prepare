@@ -10,9 +10,9 @@ import java.util.Map;
 
 class CanSum {
   public boolean canSumMemo(
-      int targetSum,
-      List<Integer> numbers,
-      Map<Integer, Boolean> memo) {
+      final int targetSum,
+      final List<Integer> numbers,
+      final Map<Integer, Boolean> memo) {
     if (memo.containsKey(targetSum)) {
       return memo.get(targetSum);
     }
@@ -22,8 +22,8 @@ class CanSum {
     if (targetSum < 0)
       return false;
 
-    for (int candidate : numbers) {
-      int reminder = targetSum - candidate;
+    for (final int candidate : numbers) {
+      final int reminder = targetSum - candidate;
       if (canSumMemo(reminder, numbers, memo) == true) {
         memo.put(targetSum, true);
         return memo.get(targetSum);
@@ -37,8 +37,8 @@ class CanSum {
     return false;
   }
 
-  public static void main(String[] args) {
-    CanSum solution = new CanSum();
+  public static void main(final String[] args) {
+    final CanSum solution = new CanSum();
     System.out.println(
         solution.canSumMemo(
             300,

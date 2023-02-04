@@ -3,10 +3,10 @@ package code.dp;
 import java.util.*;
 
 class PascalTriangles {
-    public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> ans = new ArrayList<>();
+    public List<List<Integer>> generate(final int numRows) {
+        final List<List<Integer>> ans = new ArrayList<>();
         for (int i = 0; i < numRows; i++) {
-            List<Integer> list1 = new ArrayList<>();
+            final List<Integer> list1 = new ArrayList<>();
 
             list1.add(0, 1);
 
@@ -23,8 +23,8 @@ class PascalTriangles {
         return ans;
     }
 
-    public int[] getRow(int numRows) {
-        int[] ans = new int[numRows + 1];
+    public int[] getRow(final int numRows) {
+        final int[] ans = new int[numRows + 1];
         ans[0] = ans[numRows] = 1;
         for (int i = 1, up = numRows; i <= numRows; i++, up--) {
             ans[i] = ans[i - 1] * up / i;

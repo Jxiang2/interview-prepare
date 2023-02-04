@@ -10,11 +10,11 @@ package code.basics;
 import java.util.*;
 
 class FirstDuplicate {
-  public int solution(int[] arr) {
-    Set<Integer> set = new HashSet<>();
+  public int solution(final int[] arr) {
+    final Set<Integer> set = new HashSet<>();
 
     for (int i = 0; i < arr.length; i++) {
-      int number = arr[i];
+      final int number = arr[i];
       if (!set.contains(number)) {
         set.add(number);
       } else {

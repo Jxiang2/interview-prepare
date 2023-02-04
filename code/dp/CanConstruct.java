@@ -14,18 +14,18 @@ import java.util.HashMap;
 
 class CanConstruct {
     public boolean canConstructMemo(
-            String s,
-            String[] wordDict,
-            HashMap<String, Boolean> memo) {
+            final String s,
+            final String[] wordDict,
+            final HashMap<String, Boolean> memo) {
         if (memo.containsKey(s))
             return memo.get(s);
 
         if (s.isEmpty())
             return true;
 
-        for (String word : wordDict) {
+        for (final String word : wordDict) {
             if (s.indexOf(word) == 0) {
-                String suffix = s.substring(word.length()); // js slice()
+                final String suffix = s.substring(word.length()); // js slice()
                 if (canConstructMemo(suffix, wordDict, memo)) {
                     memo.put(s, true);
                     return memo.get(s);
@@ -37,8 +37,8 @@ class CanConstruct {
         return memo.get(s);
     }
 
-    public static void main(String[] args) {
-        CanConstruct solution = new CanConstruct();
+    public static void main(final String[] args) {
+        final CanConstruct solution = new CanConstruct();
         System.out.println(
                 solution.canConstructMemo(
                         "abcdef",

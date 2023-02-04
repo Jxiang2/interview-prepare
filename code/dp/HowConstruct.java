@@ -16,9 +16,9 @@ import java.util.Map;
 class HowConstruct {
 
   public int howConstructMemo(
-      String s,
-      String[] wordDict,
-      Map<String, Integer> memo) {
+      final String s,
+      final String[] wordDict,
+      final Map<String, Integer> memo) {
     if (memo.containsKey(s))
       return memo.get(s);
 
@@ -27,10 +27,10 @@ class HowConstruct {
 
     int totalWays = 0;
 
-    for (String word : wordDict) {
+    for (final String word : wordDict) {
       if (s.indexOf(word) == 0) {
-        String suffix = s.substring(word.length()); // js slice()
-        int numWays = howConstructMemo(suffix, wordDict, memo);
+        final String suffix = s.substring(word.length()); // js slice()
+        final int numWays = howConstructMemo(suffix, wordDict, memo);
         totalWays += numWays;
       }
     }
@@ -39,8 +39,8 @@ class HowConstruct {
     return memo.get(s);
   }
 
-  public static void main(String[] args) {
-    HowConstruct solution = new HowConstruct();
+  public static void main(final String[] args) {
+    final HowConstruct solution = new HowConstruct();
     System.out.println(
         solution.howConstructMemo(
             "abcdef",

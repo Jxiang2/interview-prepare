@@ -8,7 +8,7 @@ import java.util.Map;
 // f(n): 0, 1, 1, 2, 3, 5, 8, 13 ...
 // runtime: O(n)
 class Fib {
-  public long fibN(int n, Map<Integer, Long> memo) {
+  public long fibN(final int n, final Map<Integer, Long> memo) {
     if (memo.containsKey(n))
       return memo.get(n);
 
@@ -22,8 +22,8 @@ class Fib {
     return memo.get(n);
   }
 
-  public static void main(String[] args) {
-    Fib solution = new Fib();
+  public static void main(final String[] args) {
+    final Fib solution = new Fib();
     System.out.println(
         solution.fibN(50, new HashMap<Integer, Long>()));
   }

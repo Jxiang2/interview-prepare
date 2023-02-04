@@ -13,9 +13,9 @@ import java.util.Map;
 // runtime: O(c+r)
 class GridTravel {
 
-  public long gridTravelWays(int r, int c, Map<String, Long> memo) {
-    String key = r + "," + c;
-    String reversedKey = c + "," + r;
+  public long gridTravelWays(final int r, final int c, final Map<String, Long> memo) {
+    final String key = r + "," + c;
+    final String reversedKey = c + "," + r;
 
     if (memo.containsKey(key) || memo.containsKey(reversedKey)) {
       return memo.getOrDefault(key, memo.get(reversedKey));
@@ -26,14 +26,14 @@ class GridTravel {
     if (r == 1 || c == 1)
       return 1; // nopn-trivial
 
-    long value = gridTravelWays(r - 1, c, memo) + gridTravelWays(r, c - 1, memo); // D + L
+    final long value = gridTravelWays(r - 1, c, memo) + gridTravelWays(r, c - 1, memo); // D + L
     memo.put(key, value);
 
     return memo.get(key);
   }
 
-  public static void main(String[] args) {
-    GridTravel solution = new GridTravel();
+  public static void main(final String[] args) {
+    final GridTravel solution = new GridTravel();
     System.out.println(
         solution.gridTravelWays(18, 18, new HashMap<String, Long>()));
   }

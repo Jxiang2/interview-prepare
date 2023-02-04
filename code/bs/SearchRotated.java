@@ -10,7 +10,7 @@
 package code.bs;
 
 class SearchRotated {
-    public int search(int[] nums, int target) {
+    public int search(final int[] nums, final int target) {
         int start = 0, end = nums.length - 1;
         int mid;
 

@@ -14,9 +14,9 @@ import java.util.Map;
 class HowSum {
 
   public List<Integer> howSumMemo(
-      int targetSum,
-      int[] numbers,
-      Map<Integer, List<Integer>> memo) {
+      final int targetSum,
+      final int[] numbers,
+      final Map<Integer, List<Integer>> memo) {
     if (memo.containsKey(targetSum))
       return memo.get(targetSum);
 
@@ -25,11 +25,11 @@ class HowSum {
     if (targetSum < 0)
       return null;
 
-    for (int candidate : numbers) {
-      int reminder = targetSum - candidate;
-      List<Integer> temp = howSumMemo(reminder, numbers, memo);
+    for (final int candidate : numbers) {
+      final int reminder = targetSum - candidate;
+      final List<Integer> temp = howSumMemo(reminder, numbers, memo);
       if (temp != null) {
-        List<Integer> newTemp = new ArrayList<>();
+        final List<Integer> newTemp = new ArrayList<>();
         newTemp.addAll(temp);
         newTemp.add(candidate);
 
@@ -42,8 +42,8 @@ class HowSum {
     return null;
   }
 
-  public static void main(String[] args) {
-    HowSum solution = new HowSum();
+  public static void main(final String[] args) {
+    final HowSum solution = new HowSum();
     System.out.println(
         solution.howSumMemo(
             7,
