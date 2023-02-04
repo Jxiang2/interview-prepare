@@ -22,11 +22,14 @@ class GridTravel {
     }
 
     if (r == 0 || c == 0)
-      return 0; // trivial
+      // trivial
+      return 0;
     if (r == 1 || c == 1)
-      return 1; // nopn-trivial
+      // nopn-trivial
+      return 1;
 
-    final long value = gridTravelWays(r - 1, c, memo) + gridTravelWays(r, c - 1, memo); // D + L
+    // D + L
+    final long value = gridTravelWays(r - 1, c, memo) + gridTravelWays(r, c - 1, memo);
     memo.put(key, value);
 
     return memo.get(key);
