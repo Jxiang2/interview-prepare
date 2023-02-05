@@ -39,6 +39,9 @@ _This Repo aims to collect and organize potential interview questions._
 - howSum(tartgetSum, numbers, memo):
   ![image](./assets/howSum.jpg)
 
+- countConstruct(target, wordDict, memo):
+  ![image](./assets/countConstruct.jpg)
+
 ## Miscs
 
 - **Copy**
