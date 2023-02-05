@@ -39,7 +39,7 @@ class Fib {
 
   public static void main(final String[] args) {
     final Fib solution = new Fib();
-    System.out.println(solution.fibMemo(50, new HashMap<Integer, Long>()));
-    System.out.println(solution.fibTab(50));
+    System.out.println(solution.fibMemo(7, new HashMap<Integer, Long>()));
+    System.out.println(solution.fibTab(7));
   }
 }
