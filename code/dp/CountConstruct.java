@@ -3,7 +3,7 @@
  * return the number of ways to segment if s can be COMPLETELY 
  * segmented into space-seperated sequence of one or more 
  * words in wordDict
- * runtime: O(len(wordDict)*len(s)^2)
+ * runtime: O(len(wordDict)*len(s)*len(s))
  * 
  * NOTE: don't take out elements in the middle of the string
  */
@@ -13,9 +13,9 @@ package code.dp;
 import java.util.HashMap;
 import java.util.Map;
 
-class HowConstruct {
+class CountConstruct {
 
-  public int howConstructMemo(
+  public int countConstructMemo(
       final String s,
       final String[] wordDict,
       final Map<String, Integer> memo) {
@@ -30,7 +30,7 @@ class HowConstruct {
     for (final String word : wordDict) {
       if (s.indexOf(word) == 0) {
         final String suffix = s.substring(word.length()); // js slice()
-        final int numWays = howConstructMemo(suffix, wordDict, memo);
+        final int numWays = countConstructMemo(suffix, wordDict, memo);
         totalWays += numWays;
       }
     }
@@ -40,19 +40,19 @@ class HowConstruct {
   }
 
   public static void main(final String[] args) {
-    final HowConstruct solution = new HowConstruct();
+    final CountConstruct solution = new CountConstruct();
     System.out.println(
-        solution.howConstructMemo(
+        solution.countConstructMemo(
             "abcdef",
             new String[] { "ab", "abc", "cd", "def", "abcd", "ef" },
             new HashMap<>()));
     System.out.println(
-        solution.howConstructMemo(
+        solution.countConstructMemo(
             "skateboard",
             new String[] { "bo", "rd", "ate", "t", "ska", "sk", "boar" },
             new HashMap<>()));
     System.out.println(
-        solution.howConstructMemo(
+        solution.countConstructMemo(
             "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
             new String[] { "e", "ee", "eee", "eeee", "eeeee", "eeeeee" },
             new HashMap<>()));

@@ -35,15 +35,16 @@ class AllConstruct {
     for (final String word : wordDict) {
       if (s.indexOf(word) == 0) {
         final String suffix = s.substring(word.length());
-        final List<List<String>> subPaths = allConstructMemo(suffix, wordDict, memo);
+        final List<List<String>> subPaths = allConstructMemo(
+            suffix, wordDict, memo);
 
         final List<List<String>> newSubPaths = new ArrayList<>();
-        for (final List<String> subPath : subPaths) {
+        subPaths.forEach(subPath -> {
           final List<String> newSubPath = new ArrayList<>();
           newSubPath.add(word);
           newSubPath.addAll(subPath);
           newSubPaths.add(newSubPath);
-        }
+        });
         result.addAll(newSubPaths);
       }
     }
@@ -52,7 +53,7 @@ class AllConstruct {
     return memo.get(s);
   }
 
-  public static void main(final String[] args) {
+  public static void main(final String args) {
     final AllConstruct solution = new AllConstruct();
     System.out.println(
         solution.allConstructMemo(

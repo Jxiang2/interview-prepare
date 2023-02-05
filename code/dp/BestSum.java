@@ -1,7 +1,7 @@
 // bestSum(7, [5, 3, 4, 7]) => [7]
 // canSum(7, [1, 2]) => null
 // canSum(0, [...]) => []
-// runtime: O(tartgetSum^2*len(numbers))
+// runtime: O(tartgetSum * tartgetSum * len(numbers))
 
 package code.dp;
 
@@ -46,6 +46,24 @@ class BestSum {
 
   public static void main(final String[] args) {
     final BestSum solution = new BestSum();
+    System.out.println(
+        solution.bestSumMemo(
+            7,
+            new int[] { 4, 3 },
+            new HashMap<>()));
+
+    System.out.println(
+        solution.bestSumMemo(
+            8,
+            new int[] { 2, 3, 5 },
+            new HashMap<>()));
+
+    System.out.println(
+        solution.bestSumMemo(
+            300,
+            new int[] { 7, 14 },
+            new HashMap<>()));
+
     System.out.println(
         solution.bestSumMemo(
             100,

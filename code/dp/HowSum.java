@@ -1,8 +1,7 @@
-// memo (top-down)
-// canSum(7, [5,4,3,7]) => [4, 3]
-// canSum(7, [1, 2]) => null
-// canSum(0, [...]) => []
-// runtime: O(tartgetSum^2*len(numbers))
+// howSum(7, [5,4,3,7]) => [4, 3]
+// howSum(7, [1, 2]) => null
+// howSum(0, [...]) => []
+// runtime: O(tartgetSum * tartgetSum * len(numbers))
 
 package code.dp;
 
@@ -48,6 +47,18 @@ class HowSum {
         solution.howSumMemo(
             7,
             new int[] { 4, 3 },
+            new HashMap<>()));
+
+    System.out.println(
+        solution.howSumMemo(
+            8,
+            new int[] { 2, 3, 5 },
+            new HashMap<>()));
+
+    System.out.println(
+        solution.howSumMemo(
+            300,
+            new int[] { 7, 14 },
             new HashMap<>()));
   }
 
