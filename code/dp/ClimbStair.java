@@ -1,6 +1,8 @@
 /**
  * classic stair climbing, climb either 1 or 2 steps each time
  * find number of ways to climb n stairs
+ * Time complexity: O(n)
+ * Space complexity: O(n)
  */
 
 package code.dp;
