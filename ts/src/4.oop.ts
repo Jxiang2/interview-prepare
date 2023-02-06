@@ -34,7 +34,7 @@ class PersistentMemoryDB<T extends DBKeyType, K>
   implements Persistable
 {
   constructor(db?: Record<T, K>) {
-    db && super(db); // call parent constructor, to access parent FIELDS
+    db && super(db); // call parent constructor, to access parent attributes
   }
 
   saveToString(): string {

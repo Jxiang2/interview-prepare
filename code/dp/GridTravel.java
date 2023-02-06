@@ -3,7 +3,6 @@ package code.dp;
 import java.util.HashMap;
 import java.util.Map;
 
-// memo (top-down)
 // how many ways travel from mxn top left to bottom right
 // if move only left and botton?
 //    c
@@ -13,7 +12,10 @@ import java.util.Map;
 // runtime: O(c+r)
 class GridTravel {
 
-  public long gridTravelWays(final int r, final int c, final Map<String, Long> memo) {
+  public long gridTravelMemo(
+      final int r,
+      final int c,
+      final Map<String, Long> memo) {
     final String key = r + "," + c;
     final String reversedKey = c + "," + r;
 
@@ -28,17 +30,35 @@ class GridTravel {
       // nopn-trivial
       return 1;
 
-    // D + L
-    final long value = gridTravelWays(r - 1, c, memo) + gridTravelWays(r, c - 1, memo);
+    // D + R
+    final long value = gridTravelMemo(r - 1, c, memo) + gridTravelMemo(r, c - 1, memo);
     memo.put(key, value);
 
     return memo.get(key);
   }
 
+  public long gridTravelTab(final int r, final int c) {
+    final long[][] table = new long[r + 1][c + 1];
+    for (int i = 1; i <= r; i++) {
+      for (int j = 1; j <= c; j++) {
+        if (i == 1 && j == 1)
+          table[i][j] = 1;
+        else
+          // T + L
+          table[i][j] = table[i - 1][j] + table[i][j - 1];
+      }
+    }
+    return table[r][c];
+  }
+
   public static void main(final String[] args) {
     final GridTravel solution = new GridTravel();
     System.out.println(
-        solution.gridTravelWays(18, 18, new HashMap<String, Long>()));
+        solution.gridTravelMemo(7, 7, new HashMap<String, Long>()));
+
+    System.out.println(
+        solution.gridTravelTab(7, 7));
+
   }
 
 }
