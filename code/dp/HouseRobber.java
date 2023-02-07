@@ -12,22 +12,31 @@
 
 package code.dp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class HouseRobber {
-    public int rob(final int[] nums) {
-        final int n = nums.length;
-        final int[] dp = new int[n];
-        dp[0] = nums[0];
+    public int robMemo(final int[] nums) {
+        final int current = nums.length - 1;
+        final Map<Integer, Integer> memo = new HashMap<>();
+        return solveRobMemo(nums, current, memo);
+    }
 
-        if (n == 1)
-            return nums[0];
+    private int solveRobMemo(
+            final int[] nums,
+            final int current,
+            final Map<Integer, Integer> memo) {
+        if (memo.containsKey(current))
+            return memo.get(current);
 
-        dp[1] = Math.max(nums[0], nums[1]);
+        if (current < 0)
+            return 0;
 
-        for (int i = 2; i < n; i++) {
-            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
-        }
-
-        return dp[n - 1];
+        final int subAmount = Math.max(
+                solveRobMemo(nums, current - 2, memo) + nums[current],
+                solveRobMemo(nums, current - 1, memo));
+        memo.put(current, subAmount);
+        return memo.get(current);
     }
 
     public int circularRob(final int[] nums) {

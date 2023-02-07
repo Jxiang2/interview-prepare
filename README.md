@@ -42,6 +42,9 @@ _This Repo aims to collect and organize potential interview questions._
 - countConstruct(target, wordDict, memo):
   ![image](./assets/countConstruct.jpg)
 
+- houseRob(nums):
+  ![image](./assets/houseRob.jpg)
+
 ## Miscs
 
 - **Copy**
