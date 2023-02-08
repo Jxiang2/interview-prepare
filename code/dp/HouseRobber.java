@@ -17,12 +17,34 @@ import java.util.Map;
 
 class HouseRobber {
     public int robMemo(final int[] nums) {
-        final int current = nums.length - 1;
-        final Map<Integer, Integer> memo = new HashMap<>();
-        return solveRobMemo(nums, current, memo);
+        return solveRob(nums, nums.length - 1, new HashMap<>());
     }
 
-    private int solveRobMemo(
+    /*
+     * nums = [7, 4, 1, 9, 3, 8, 6, 5]
+     * Street1 = [7, 4, 1, 9, 3, 8, 6]
+     * Street2 = [4, 1, 9, 3, 8, 6, 5]
+     */
+    public int circularRobMemo(final int[] nums) {
+        if (nums.length == 1) // to avoid path1 or path2 to be empty
+            return nums[0];
+
+        final int[] path1 = new int[nums.length - 1];
+        final int[] path2 = new int[nums.length - 1];
+
+        for (int i = 0; i < nums.length - 1; i++)
+            path1[i] = nums[i];
+
+        for (int i = 1; i < nums.length; i++)
+            path2[i - 1] = nums[i];
+
+        final int current = path1.length - 1;
+        final int path1Result = solveRob(path1, current, new HashMap<>());
+        final int path2Result = solveRob(path2, current, new HashMap<>());
+        return Math.max(path1Result, path2Result);
+    }
+
+    private int solveRob(
             final int[] nums,
             final int current,
             final Map<Integer, Integer> memo) {
@@ -33,39 +55,14 @@ class HouseRobber {
             return 0;
 
         final int subAmount = Math.max(
-                solveRobMemo(nums, current - 2, memo) + nums[current],
-                solveRobMemo(nums, current - 1, memo));
+                solveRob(nums, current - 2, memo) + nums[current],
+                solveRob(nums, current - 1, memo));
         memo.put(current, subAmount);
         return memo.get(current);
     }
 
-    public int circularRob(final int[] nums) {
-        final int n = nums.length;
-        if (n == 0)
-            return 0;
-        if (n == 1)
-            return nums[0];
-
-        // set two dp arrays
-        // dp--> the 0th element is used
-        // dp2 --> the 0th element is not used
-        final int[] dp = new int[n];
-        final int[] dp2 = new int[n];
-
-        dp[0] = nums[0];
-        dp[1] = Math.max(nums[0], nums[1]);
-
-        // pretend first element is not used by initilize it as -1
-        dp2[0] = 0;
-        dp2[1] = nums[1];
-
-        for (int i = 2; i < n; i++) {
-            dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
-            dp2[i] = Math.max(dp2[i - 2] + nums[i], dp2[i - 1]);
-        }
-        // for dp[] if we use the first element, the last element cnanot be used,
-        // so the largest profit is max(dp[n-2],dp2[n-1])
-
-        return Math.max(dp[n - 2], dp2[n - 1]);
+    public static void main(final String[] args) {
+        final HouseRobber solution = new HouseRobber();
+        System.out.println(solution.circularRobMemo(new int[] { 1, 2, 3, 1 }));
     }
 }
