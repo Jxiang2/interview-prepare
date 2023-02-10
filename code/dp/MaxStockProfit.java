@@ -14,16 +14,16 @@ package code.dp;
 
 class MaxStockProfit {
     public int maxProfit(final int[] prices) {
+        int minprice = Integer.MAX_VALUE;
+        int maxprofit = 0;
 
-        int i = 0;
-        int maxProfit = 0;
-
-        while (i < prices.length - 1) {
-            if (prices[i] < prices[i + 1])
-                maxProfit += (prices[i + 1] - prices[i]);
-            i++;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minprice)
+                minprice = prices[i];
+            else if (prices[i] - minprice > maxprofit)
+                maxprofit = prices[i] - minprice;
         }
 
-        return maxProfit;
+        return maxprofit;
     }
 }
