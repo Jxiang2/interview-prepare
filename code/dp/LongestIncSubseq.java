@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 class LongestIncSubseq {
     /*
-     * Recurence: dp[i] = max{dp[i-1] + 1, dp[i]} if nums[j] < nums[i]
+     * Recurence: dp[i] = max{dp[j] + 1, dp[i]} if nums[j] < nums[i]
      */
     public int lengthOfLIS(final int[] nums) {
         final int[] dp = new int[nums.length];
