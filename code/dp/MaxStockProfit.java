@@ -1,4 +1,4 @@
-package code.basics;
+package code.dp;
 
 class MaxStockProfit {
 
