@@ -45,9 +45,12 @@ public class Sort {
   // of the single-element array pair
   public int[] mergeSort(final int[] arr) {
     final int size = arr.length;
+
+    // base case
     if (size < 2)
       return arr;
-    final int mid = (int) Math.floor(size / 2);
+
+    final int mid = (int) Math.ceil(size / 2);
     final int[] lArr = new int[mid];
     final int[] rArr = new int[size - mid];
 
@@ -69,11 +72,11 @@ public class Sort {
       final int[] arr,
       final int[] lArr,
       final int[] rArr,
-      final int left,
-      final int right) {
+      final int leftSize,
+      final int rightSize) {
     int i = 0, j = 0, k = 0;
 
-    while (i < left && j < right) {
+    while (i < leftSize && j < rightSize) {
       if (lArr[i] <= rArr[j])
         arr[k++] = lArr[i++];
       else
@@ -81,12 +84,12 @@ public class Sort {
     }
 
     // make sure the remaining elements in either lArr or rArr are counted
-    if (i < left) {
-      while (i < left) {
+    if (i < leftSize) {
+      while (i < leftSize) {
         arr[k++] = lArr[i++];
       }
     } else {
-      while (j < right) {
+      while (j < rightSize) {
         arr[k++] = rArr[j++];
       }
     }
