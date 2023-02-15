@@ -45,6 +45,9 @@ _This Repo aims to collect and organize potential interview questions._
 - houseRob(nums):
   ![image](./assets/houseRob.jpg)
 
+- mergeSort(arr):
+  ![image](./assets/mergesort1.png)
+
 ## Miscs
 
 - **Copy**
