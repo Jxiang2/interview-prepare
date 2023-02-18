@@ -23,6 +23,7 @@ console.log(b);
 console.log("###############");
 
 b = a; // b and a point to the same
+console.log(b === a);
 b.ids = [
   { type: "1", code: 1 },
   { type: "2", code: 2 },

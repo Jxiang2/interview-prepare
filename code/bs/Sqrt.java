@@ -15,7 +15,7 @@ class Sqrt {
         long l = 0;
         long r = x;
         while (l <= r) {
-            final long mid = (l + r) / 2;
+            final long mid = l + (r - l) / 2;
             final long guess = mid * mid;
             if (guess > x) {
                 r = mid - 1;
