@@ -9,7 +9,7 @@
 //   reverseInt(-90) === -9
 
 // 1234 -> 0 + 1234%10=4 -> 40 + 123%10=3 -> 43 + 12%10=2 -> 432 + 1%10=1 -> 4321
-function reverseInt(n) {
+function reverseInt1(n) {
   let reversedInt = 0;
   while (n != 0) {
     reversedInt = reversedInt * 10 + (n % 10);
@@ -18,11 +18,9 @@ function reverseInt(n) {
   return reversedInt;
 }
 
-reverseInt(-128);
+function reverseInt2(n) {
+  const reversedInt = parseInt(n.toString().split("").reverse().join(""));
+  return reversedInt * Math.sign(n);
+}
 
-module.exports = reverseInt;
-
-// function reverseInt(n) {
-//     const reversedInt = parseInt(n.toString().split('').reverse().join(''))
-//     return reversedInt * Math.sign(n)
-// }
+module.exports = { reverseInt1, reverseInt2 };

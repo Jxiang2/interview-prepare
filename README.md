@@ -27,6 +27,15 @@ _This Repo aims to collect and organize potential interview questions._
 
 #### big O analysis
 
+1. const time : 1 => input size 2 -> runtime does not change
+2. log time: log(n) => input size 2 -> runtime <2
+3. linear time: n => input size 2 -> runtime 2
+4. quaslinear time: nlogn => input size 2 -> runtime <4
+5. quadradic time: n^2 => input size 2 -> runtime 4
+6. expo time: 2^n => input size 2 -> runtime 8
+
+#### recusrsion big O analysis
+
 - level of tree = l
 - breadth of tree b
 
