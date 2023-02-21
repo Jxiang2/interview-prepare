@@ -16,7 +16,7 @@ class SearchMatrix {
         int r = row.length - 1;
 
         while (l <= r) {
-            final int mid = (l + r) / 2;
+            final int mid = l + (r - l) / 2;
             if (row[mid] > target) {
                 r = mid - 1;
             } else if (row[mid] < target) {

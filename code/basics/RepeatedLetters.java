@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 class RepeatedLetters {
   public String solution(final String phrase) {
-    final String[] clearedPhrase = phrase.replaceAll("[^a-zA-Z0-9\\s.-]", "").split(" ");
+    final String[] clearedPhrase = phrase.trim().replaceAll("\\p{Punct}", "").split(" ");
     String wordWithMostRepeatedLetter = clearedPhrase[0];
 
     for (int i = 1; i < clearedPhrase.length; i++) {

@@ -3,6 +3,7 @@
 // The function should console log a step shape
 // with N levels using the # character.  Make sure the
 // step has spaces on the right hand side!
+// --- Idea: the nth row means there should n cols of '#' in that row
 // --- Examples
 //   steps(2)
 //       '# '
@@ -38,17 +39,3 @@ const steps = (n, row = 0, stair = "") => {
 };
 
 module.exports = steps;
-
-// idea: the nth row means there should n cols of '#' in that row
-//  #__
-//  ##_
-//  ###
-
-// function steps(n) {
-//     for (let row=0; row<n; row++) {
-//         let stair = ''
-//         for (let col=0; col<n; col++)
-//             col <= row ? stair += '#' : stair += ' '
-//         console.log(stair)
-//     }
-// }

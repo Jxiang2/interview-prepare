@@ -40,12 +40,3 @@ const pyramid = (n, row = 0, stair = "") => {
 pyramid(10);
 
 module.exports = pyramid;
-
-// const pyramid = (n) => {
-//     for (let row=0; row<n; row++) {
-//         let stair = ''
-//         for (let col=0; col<2*n-1; col++)
-//             (col >= (n-1) - row  && col <= (n-1) + row) ? stair += '#' : stair += ' '
-//         console.log(stair)
-//     }
-// }

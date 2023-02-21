@@ -17,7 +17,7 @@ class SearchSortedRanges {
         int r = nums.length - 1;
 
         while (l <= r) {
-            final int mid = (l + r) / 2;
+            final int mid = l + (r - l) / 2;
             if (nums[mid] < target) {
                 l = mid + 1;
             } else if (nums[mid] > target) {

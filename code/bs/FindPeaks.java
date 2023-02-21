@@ -18,7 +18,7 @@ class FindPeaks {
         int mid;
 
         while (l < r) {
-            mid = (l + r) / 2;
+            mid = l + (r - l) / 2;
             if (nums[mid] < nums[mid + 1]) {
                 l = mid + 1;
             } else if (nums[mid] > nums[mid + 1]) {
