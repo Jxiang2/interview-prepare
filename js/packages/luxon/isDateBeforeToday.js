@@ -7,12 +7,10 @@ const { DateTime } = require("luxon");
  * @param {string} format
  * @returns {boolean}
  */
-function isDateBeforeNow(date, timezone, format = "yyyy-MM-dd") {
+function isBeforeNow(date, timezone, format = "yyyy-MM-dd") {
   const dateToCompare = date
     ? DateTime.fromFormat(date, format, { zone: timezone })
     : DateTime.now().plus(ONE_HUNDRED_YEAR_DURATION);
-
-  console.log(dateToCompare);
 
   const diff = dateToCompare
     .diff(DateTime.now().setZone(timezone), "hours")
@@ -21,4 +19,4 @@ function isDateBeforeNow(date, timezone, format = "yyyy-MM-dd") {
   return diff.hours ? diff.hours < 0 : false;
 }
 
-module.exports = isDateBeforeNow;
+module.exports = isBeforeNow;

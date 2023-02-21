@@ -40,7 +40,7 @@ public class Sort {
     return arr;
   }
 
-  // O(nlogn), divide and conqure
+  // O(n<merge> * logn<recursive 2ry tree>), divide and conqure
   // divde the array to arrays with single elememnt, and then use merge() on each
   // of the single-element array pair
   public int[] mergeSort(final int[] arr) {
@@ -63,18 +63,14 @@ public class Sort {
 
     mergeSort(lArr);
     mergeSort(rArr);
-    merge(arr, lArr, rArr, mid, size - mid);
+    merge(arr, lArr, rArr);
 
     return arr;
   }
 
-  private void merge(
-      final int[] arr,
-      final int[] lArr,
-      final int[] rArr,
-      final int leftSize,
-      final int rightSize) {
+  private void merge(final int[] arr, final int[] lArr, final int[] rArr) {
     int i = 0, j = 0, k = 0;
+    int leftSize = lArr.length, rightSize = rArr.length;
 
     while (i < leftSize && j < rightSize) {
       if (lArr[i] <= rArr[j])
