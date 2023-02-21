@@ -8,9 +8,9 @@ const throttle = (fn, delay) => {
   return (...args) => {
     const now = new Date().getTime();
     if (now - last < delay) {
+      last = now;
       return;
     }
-    last = now;
     return fn(...args);
   };
 };
