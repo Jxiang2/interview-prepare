@@ -11,9 +11,9 @@
  * new Promise((resolve, reject) => {
  *  ...
  * }).then((value) => {
- *  //value is turend to the value of a new Promise instance
+ *  // value is turend to the value of a new Promise instance
  *  return value
- *  //new Promise(...) is resolved first,
+ *  // new Promise(...) is resolved first,
  *  // then it's value turned to the value of a new Promise instance
  *  return new Promise((resolve, reject) => {...})
  * })
