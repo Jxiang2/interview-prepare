@@ -37,21 +37,21 @@ class MyPromise {
   value = null;
   thenCallbacks = []; // arrays of then callbacks
   catchCallbacks = []; // arrays of catch callbacks
-  onSuccessBind = this.onSuccess.bind(this); // bind onSuccess to MyPromise instance
-  onFailBind = this.onFail.bind(this); // bind onFail to MyPromise instance
+  #onSuccessBind = this.#onSuccess.bind(this); // bind #onSuccess to MyPromise instance
+  #onFailBind = this.#onFail.bind(this); // bind #onFail to MyPromise instance
 
   constructor(cb) {
     try {
-      cb(this.onSuccessBind, this.onFailBind);
+      cb(this.#onSuccessBind, this.#onFailBind);
     } catch (error) {
-      this.onFail(error);
+      this.#onFail(error);
     }
   }
 
   /**
    * excute all callbacks, depending on the state of the MyPromise instance
    */
-  runCallbacks() {
+  #runCallbacks() {
     if (this.state === STATE.FULLFILLED) {
       this.thenCallbacks.forEach((callback) => callback(this.value));
       this.thenCallbacks = [];
@@ -64,41 +64,41 @@ class MyPromise {
   }
 
   /**
-   * called when "resolve" function passed as argument of promise excutor asyncronousely
+   * called when "resolve" function passed as argument of promise excutor is called
    * it 1. set value 2. set state to resolved 3. initiate iteration through thenCallbacks
    * @param {any} resolveValue
    */
-  onSuccess(resolveValue) {
+  #onSuccess(resolveValue) {
     queueMicrotask(() => {
       if (this.state !== STATE.PEDNING) return;
 
       if (resolveValue instanceof MyPromise) {
         // in case resolveValue is a MyPromise instance, need to resolve it first
-        // and retry onSuccess or onFail to set it to the value of the current MyPromise instance
-        resolveValue.then(this.onSuccessBind, this.onFailBind);
+        // and retry #onSuccess or #onFail to set it to the value of the current MyPromise instance
+        resolveValue.then(this.#onSuccessBind, this.#onFailBind);
         return;
       }
 
       this.value = resolveValue;
       this.state = STATE.FULLFILLED;
 
-      this.runCallbacks();
+      this.#runCallbacks();
     });
   }
 
   /**
-   * called when "reject" function passed as argument of promise excutor asyncronousely
+   * called when "reject" function passed as argument of promise excutor is called
    * it 1. set value 2. set state to rejected 3. initiate iteration through rejectCallbacks
    * @param {any} resolveValue
    */
-  onFail(rejectValue) {
+  #onFail(rejectValue) {
     queueMicrotask(() => {
       if (this.state !== STATE.PEDNING) return;
 
       if (rejectValue instanceof MyPromise) {
         // in case resolveValue is a MyPromise instance, need to resolve it first
-        // and retry onSuccess or onFail to set it to the value of the current MyPromise instance
-        rejectValue.then(this.onSuccessBind, this.onFailBind);
+        // and retry #onSuccess or #onFail to set it to the value of the current MyPromise instance
+        rejectValue.then(this.#onSuccessBind, this.#onFailBind);
         return;
       }
 
@@ -109,7 +109,7 @@ class MyPromise {
       this.value = rejectValue;
       this.state = STATE.REJECTED;
 
-      this.runCallbacks();
+      this.#runCallbacks();
     });
   }
 
@@ -122,11 +122,11 @@ class MyPromise {
    * @returns MyPromise
    */
   then(thenCb, catchCb = null) {
-    function childPromiseCallback(resolve, reject) {
+    const childExcutor = (resolve, reject) => {
       this.thenCallbacks.push((result) => {
         if (thenCb === null) {
           // means a .catch() got chained; we don't care thenCb
-          // Skip by directly calling resolve, which triggers onSuccess of new MyPromise
+          // Skip by directly calling resolve, which triggers #onSuccess of new MyPromise
           resolve(result);
         } else {
           try {
@@ -141,7 +141,7 @@ class MyPromise {
       this.catchCallbacks.push((result) => {
         if (catchCb === null) {
           // means a .then() got chained; we don't care thenCb
-          // Skip by directly calling reject, which triggers onFail of new MyPromise
+          // Skip by directly calling reject, which triggers #onFail of new MyPromise
           reject(result);
         } else {
           try {
@@ -153,12 +153,12 @@ class MyPromise {
         }
       });
 
-      this.runCallbacks();
-    }
+      this.#runCallbacks();
+    };
 
     // enable chainning by return a new MyPromise and keeping
     // the previously resolved/ rejected value in the new MyPromise
-    return new MyPromise(childPromiseCallback.bind(this));
+    return new MyPromise(childExcutor);
   }
 
   /**
