@@ -4,7 +4,10 @@
  * we don't have to provide implementation of resolve and reject
  * instead, they are implemented in Promise class
  *
- * 2. the return type of then callback
+ * 2.0: thenCallback: access Promise instance's value, do sth with the value, if it's status if fulfilled
+ * 2.5: catchCallback: access Promise instance's value, do sth with the value, if it's status if rejected
+ *
+ * 3. the return type of then callback
  * new Promise((resolve, reject) => {
  *  ...
  * }).then((value) => {
