@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-// 1. return in then
+// 1. then & finally
 function getDataA(id) {
   const promise = axios.get(`https://swapi.dev/api/people/${id}`);
   promise
@@ -8,14 +8,18 @@ function getDataA(id) {
       const additionalPromise = new Promise((resolve, reject) =>
         res.data.name ? resolve(res.data.name) : reject(-1),
       );
-      // additionalPromise has to be resolved first, then additionalPromise's value is promisified to be chained
+      // additionalPromise has to be resolved first,
+      // then additionalPromise's value is promisified to be chained
       return additionalPromise;
     })
     .then((res) => {
       // res isn't a promise, it's directly promisified to be chained
       return res.toUpperCase();
     })
-    .then((res) => console.log(res));
+    .then((res) => console.log(res))
+    // finally callback should be in shape of () => void
+    // result returned from previous then is primisified to be chained
+    .finally((res) => console.log(res));
 }
 getDataA(1);
 
