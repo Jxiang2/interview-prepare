@@ -83,6 +83,8 @@ body {
   animation: moveFromRightToLeft 1.5s ease-out;
   animation-iteration-count: 1;
   animation-delay: 0s;
+
+  margin-bottom: 20px;
 }
 
 @keyframes moveFromLeftToRight {
@@ -126,12 +128,27 @@ body {
   padding: 15px 40px;
 
   /* simpler animation */
-  transition: all 0.2s;
+  transition: all 0.5s;
+
+  position: relative;
 }
 
-.btn-white {
-  background: #fff;
-  color: #777;
+/* pesudo-element - child of the real element */
+.btn::after {
+  content: "";
+
+  display: inline-block;
+
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  transition: all 0.5s;
 }
 
 .btn:hover {
@@ -139,8 +156,24 @@ body {
   /* x-offset y-offset blur-amplitude shadow-color */
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
 .btn:active {
   transform: translateY(-1px);
   /* x-offset y-offset blur-amplitude shadow-color */
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background: #fff;
+  color: #777;
+}
+
+/* pesudo-element - child of the real element */
+.btn-white::after {
+  background: #fff;
 }
