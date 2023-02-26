@@ -11,16 +11,18 @@
 //   fizz
 //   4
 //   buzz
+package code.basics;
 
-function fizzBuzz(n) {
-  for (let i = 1; i <= n; i++) {
-    let fb = "";
-    if (i % 3 === 0) fb += "fizz";
-    if (i % 5 === 0) fb += "buzz";
-    console.log(fb.length > 0 ? fb : i);
+class FizzBuzz {
+  public void fizzBuzz(final int n) {
+    for (int i = 1; i <= n; i++) {
+      String fb = "";
+      if (i % 3 == 0)
+        fb += "fizz";
+      if (i % 5 == 0)
+        fb += "buzz";
+      System.out.println(fb.length() > 0 ? fb : i);
+    }
   }
+
 }
-
-fizzBuzz(15);
-
-module.exports = fizzBuzz;
