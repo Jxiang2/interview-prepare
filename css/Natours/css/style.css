@@ -1,17 +1,29 @@
 /* universal selector */
-* {
+*,
+*::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+html {
+  /* root font size */
+  font-size: 10px;
 }
 
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.7;
   color: #777;
-  padding: 30px;
+  padding: 3rem;
+
+  /* border-box tells the browser to account for any border and padding in the values you specify 
+  for an element's width and height. If you set an element's width to 100 pixels, 
+  that 100 pixels will include any border or padding you added, 
+  and the content box will shrink to absorb that extra width. */
+  box-sizing: border-box;
 }
 
 .header {
@@ -29,18 +41,18 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
 }
 
-.logobox {
+.header__logobox {
   /* need to make the parent "relative" as a reference point */
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 4rem;
+  left: 4rem;
 }
 
-.logo {
-  height: 35px;
+.header__logo {
+  height: 3.5rem;
 }
 
-.text-box {
+.header__text-box {
   /* to make some item at the exact center of it's relative parent */
   position: absolute;
   top: 40%;
@@ -55,15 +67,17 @@ body {
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+
+  margin-bottom: 2rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
   /* blocks occupy the whole width of parent and create line break before & after*/
   display: block;
 
-  font-size: 60px;
+  font-size: 6rem;
   font-weight: 400;
-  letter-spacing: 35px;
+  letter-spacing: 3.5rem;
 
   animation-name: moveFromLeftToRight;
   /* ease-out: timming faster at begin and slower at end */
@@ -73,27 +87,25 @@ body {
   animation-delay: 0s;
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
   display: block;
 
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: 17px;
+  letter-spacing: 1.75rem;
 
   animation: moveFromRightToLeft 1.5s ease-out;
   animation-iteration-count: 1;
   animation-delay: 0s;
-
-  margin-bottom: 20px;
 }
 
 @keyframes moveFromLeftToRight {
   0% {
     opacity: 0;
-    transform: translateX(-100px);
+    transform: translateX(-10rem);
   }
   80% {
-    transform: translateX(10px);
+    transform: translateX(1rem);
   }
   100% {
     opacity: 1;
@@ -104,10 +116,10 @@ body {
 @keyframes moveFromRightToLeft {
   0% {
     opacity: 0;
-    transform: translateX(100px);
+    transform: translateX(10rem);
   }
   80% {
-    transform: translateX(-10px);
+    transform: translateX(-1rem);
   }
   100% {
     opacity: 1;
@@ -120,12 +132,12 @@ body {
   /* makes width, height, padding and margin possible */
   display: inline-block;
 
-  border-radius: 100px;
+  border-radius: 10rem;
 
   text-transform: uppercase;
   text-decoration: none;
 
-  padding: 15px 40px;
+  padding: 1.5rem 4rem;
 
   /* simpler animation */
   transition: all 0.5s;
@@ -154,7 +166,7 @@ body {
 .btn:hover {
   transform: translateY(-2.5px);
   /* x-offset y-offset blur-amplitude shadow-color */
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover::after {
@@ -165,15 +177,15 @@ body {
 .btn:active {
   transform: translateY(-1px);
   /* x-offset y-offset blur-amplitude shadow-color */
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5rem 10rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
+.btn--white {
   background: #fff;
   color: #777;
 }
 
 /* pesudo-element - child of the real element */
-.btn-white::after {
+.btn--white::after {
   background: #fff;
 }

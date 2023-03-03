@@ -138,3 +138,20 @@ console.log(
 );
 
 export { createObjects, PersonWithFullName };
+
+// infer: compliments conditional types and cannot be used outside an extends clause.
+// e.g. 1
+export type MyReturnType<Func> = Func extends (...args: any[]) => infer R
+  ? R
+  : any;
+
+// e.g. 2
+export type GetFirstArgumentOfAnyFunction<Func> = Func extends (
+  first: infer FirstArgument,
+  ...args: any[]
+) => any
+  ? FirstArgument
+  : never;
+
+// e.g. 3
+type PromiseReturnType<T> = T extends Promise<infer Return> ? Return : T;

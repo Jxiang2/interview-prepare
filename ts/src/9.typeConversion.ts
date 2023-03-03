@@ -1,8 +1,8 @@
 // 1. in TS, more specific datatype is the child of less specific datatype
 type Check<Child, Parent> = Child extends Parent ? true : false;
 
-type MoreSpecificUnion = 1 | 2; // child
-type LessSpecificUnion = 1 | 2 | 3; // parent
+type MoreSpecificUnion = 1 | 2; // child, mroe specific
+type LessSpecificUnion = 1 | 2 | 3; // parent, less specific
 const flag1: Check<MoreSpecificUnion, LessSpecificUnion> = true;
 
 type MoreSpecificObj = { a: number; b: number; c: number }; // child
