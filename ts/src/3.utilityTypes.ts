@@ -154,4 +154,4 @@ export type GetFirstArgumentOfAnyFunction<Func> = Func extends (
   : never;
 
 // e.g. 3
-type PromiseReturnType<T> = T extends Promise<infer Return> ? Return : T;
+export type PromiseReturnType<T> = T extends Promise<infer Return> ? Return : T;
