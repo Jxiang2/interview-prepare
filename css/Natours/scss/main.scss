@@ -111,8 +111,7 @@ body {
 }
 
 .btn {
-  &:link,
-  &:visited {
+  &:link {
     /* makes width, height, padding and margin possible */
     display: inline-block;
 
@@ -129,14 +128,8 @@ body {
     position: relative;
   }
 
-  &:active {
-    transform: translateY(-1px);
-    /* x-offset y-offset blur-amplitude shadow-color */
-    box-shadow: 0 5rem 10rem rgba($color-black, 0.2);
-  }
-
   &:hover {
-    transform: translateY(-2.5px);
+    transform: translateY(-3px);
     /* x-offset y-offset blur-amplitude shadow-color */
     box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
 
@@ -146,10 +139,15 @@ body {
     }
   }
 
+  &:active {
+    transform: translateY(-1px);
+    /* x-offset y-offset blur-amplitude shadow-color */
+    box-shadow: 0 5rem 10rem rgba($color-black, 0.2);
+  }
+
   /* pesudo-element - child of the real element */
   &::after {
-    content: "";
-
+    content: "Hi, I am ::after!";
     display: inline-block;
 
     height: 100%;
