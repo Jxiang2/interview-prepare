@@ -1,6 +1,34 @@
-# CSS Workflow
+# CSS
 
-### Casecade (Importance >> Specificity >> Source Order)
+## Syntax
+
+selector `.class` => 1 element can have multiple classes
+
+selector `#id` => 1 element can have only 1 id
+
+selector `*` => all elements
+
+`element`
+
+`element, element` => want both elements to have the same property
+
+`element1 element2` => all element2 inside element1 gain the property
+
+`element1 > element2` => all element2 with the parent to be element1
+
+`element1 + element2` => the element2 parallelly after element1
+
+pseudo class `:hover`
+
+pseudo class`:last-child`
+
+pseudo class`:first-child`
+
+## Box Model
+
+![image](../assets//box.png)
+
+## Casecade (Importance >> Specificity >> Source Order)
 
 Author: css programmers write
 
