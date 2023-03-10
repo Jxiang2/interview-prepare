@@ -18,7 +18,6 @@ body {
   line-height: 1.7;
   color: #777;
   padding: 3rem;
-
   /* border-box tells the browser to account for any border and padding in the values you specify 
   for an element's width and height. If you set an element's width to 100 pixels, 
   that 100 pixels will include any border or padding you added, 
@@ -29,56 +28,44 @@ body {
 .header {
   height: 95vh;
   position: relative;
-
-  background-image: linear-gradient(to right bottom, #7ed56fb0, #28b485bd),
-    url("../img/hero.jpg");
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
   /* top of bg stay the same, bottom changes */
   background-position: top;
   /* stretch img */
   background-size: cover;
-
   /* reshape the container using coordinates */
   clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
 }
-
-.header__logobox {
+.header__logo-box {
   /* need to make the parent "relative" as a reference point */
   position: absolute;
   top: 4rem;
   left: 4rem;
 }
-
 .header__logo {
   height: 3.5rem;
 }
-
 .header__text-box {
   /* to make some item at the exact center of it's relative parent */
   position: absolute;
   top: 40%;
   left: 50%;
-
   /* (-50%, ..): shift half of the "text-box"'s width left */
   transform: translate(-50%, -50%);
-
   text-align: center;
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
-
   margin-bottom: 2rem;
 }
-
 .heading-primary--main {
   /* blocks occupy the whole width of parent and create line break before & after*/
   display: block;
-
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 3.5rem;
-
   animation-name: moveFromLeftToRight;
   /* ease-out: timming faster at begin and slower at end */
   animation-timing-function: ease-out;
@@ -86,17 +73,63 @@ body {
   animation-iteration-count: 1;
   animation-delay: 0s;
 }
-
 .heading-primary--sub {
   display: block;
-
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 1.75rem;
-
   animation: moveFromRightToLeft 1.5s ease-out;
   animation-iteration-count: 1;
   animation-delay: 0s;
+}
+
+.btn {
+  /* pesudo-element - child of the real element */
+}
+.btn:link, .btn:visited {
+  /* makes width, height, padding and margin possible */
+  display: inline-block;
+  border-radius: 10rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  /* simpler animation */
+  transition: all 0.5s;
+  position: relative;
+}
+.btn:active {
+  transform: translateY(-1px);
+  /* x-offset y-offset blur-amplitude shadow-color */
+  box-shadow: 0 5rem 10rem rgba(0, 0, 0, 0.2);
+}
+.btn:hover {
+  transform: translateY(-2.5px);
+  /* x-offset y-offset blur-amplitude shadow-color */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.5s;
+}
+.btn--white {
+  background: #fff;
+  color: #777;
+  /* pesudo-element - child of the real element */
+}
+.btn--white::after {
+  background: #fff;
 }
 
 @keyframes moveFromLeftToRight {
@@ -112,7 +145,6 @@ body {
     transform: translate(0);
   }
 }
-
 @keyframes moveFromRightToLeft {
   0% {
     opacity: 0;
@@ -127,65 +159,4 @@ body {
   }
 }
 
-.btn:link,
-.btn:visited {
-  /* makes width, height, padding and margin possible */
-  display: inline-block;
-
-  border-radius: 10rem;
-
-  text-transform: uppercase;
-  text-decoration: none;
-
-  padding: 1.5rem 4rem;
-
-  /* simpler animation */
-  transition: all 0.5s;
-
-  position: relative;
-}
-
-/* pesudo-element - child of the real element */
-.btn::after {
-  content: "";
-
-  display: inline-block;
-
-  height: 100%;
-  width: 100%;
-  border-radius: 100px;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
-  transition: all 0.5s;
-}
-
-.btn:hover {
-  transform: translateY(-2.5px);
-  /* x-offset y-offset blur-amplitude shadow-color */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-}
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn:active {
-  transform: translateY(-1px);
-  /* x-offset y-offset blur-amplitude shadow-color */
-  box-shadow: 0 5rem 10rem rgba(0, 0, 0, 0.2);
-}
-
-.btn--white {
-  background: #fff;
-  color: #777;
-}
-
-/* pesudo-element - child of the real element */
-.btn--white::after {
-  background: #fff;
-}
+/*# sourceMappingURL=main.css.map */
