@@ -1,0 +1,62 @@
+.btn {
+  &:link {
+    /* makes width, height, padding and margin possible */
+    display: inline-block;
+
+    border-radius: 10rem;
+
+    text-transform: uppercase;
+    text-decoration: none;
+
+    padding: 1.5rem 4rem;
+
+    /* simpler animation */
+    transition: all 0.5s;
+
+    position: relative;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    /* x-offset y-offset blur-amplitude shadow-color */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    /* x-offset y-offset blur-amplitude shadow-color */
+    box-shadow: 0 5rem 10rem rgba($color-black, 0.2);
+  }
+
+  /* pesudo-element - child of the real element */
+  &::after {
+    content: "Hi, I am ::after!";
+    display: inline-block;
+
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    transition: all 0.5s;
+  }
+
+  &--white {
+    background: $color-white;
+    color: $color-grey-dark;
+
+    /* pesudo-element - child of the real element */
+    &::after {
+      background: $color-white;
+    }
+  }
+}

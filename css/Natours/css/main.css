@@ -7,10 +7,39 @@
 }
 
 html {
-  /* root font size */
   font-size: 10px;
 }
 
+body {
+  box-sizing: border-box;
+}
+
+@keyframes moveFromLeftToRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes moveFromRightToLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -18,41 +47,6 @@ body {
   line-height: 1.7;
   color: #777;
   padding: 3rem;
-  /* border-box tells the browser to account for any border and padding in the values you specify 
-  for an element's width and height. If you set an element's width to 100 pixels, 
-  that 100 pixels will include any border or padding you added, 
-  and the content box will shrink to absorb that extra width. */
-  box-sizing: border-box;
-}
-
-.header {
-  height: 95vh;
-  position: relative;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
-  /* top of bg stay the same, bottom changes */
-  background-position: top;
-  /* stretch img */
-  background-size: cover;
-  /* reshape the container using coordinates */
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
-}
-.header__logo-box {
-  /* need to make the parent "relative" as a reference point */
-  position: absolute;
-  top: 4rem;
-  left: 4rem;
-}
-.header__logo {
-  height: 3.5rem;
-}
-.header__text-box {
-  /* to make some item at the exact center of it's relative parent */
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  /* (-50%, ..): shift half of the "text-box"'s width left */
-  transform: translate(-50%, -50%);
-  text-align: center;
 }
 
 .heading-primary {
@@ -132,31 +126,34 @@ body {
   background: #fff;
 }
 
-@keyframes moveFromLeftToRight {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem);
-  }
-  80% {
-    transform: translateX(1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+.header {
+  height: 95vh;
+  position: relative;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
+  /* top of bg stay the same, bottom changes */
+  background-position: top;
+  /* stretch img */
+  background-size: cover;
+  /* reshape the container using coordinates */
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
 }
-@keyframes moveFromRightToLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem);
-  }
-  80% {
-    transform: translateX(-1rem);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
+.header__logo-box {
+  /* need to make the parent "relative" as a reference point */
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+}
+.header__logo {
+  height: 3.5rem;
+}
+.header__text-box {
+  /* to make some item at the exact center of it's relative parent */
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  /* (-50%, ..): shift half of the "text-box"'s width left */
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 /*# sourceMappingURL=main.css.map */
