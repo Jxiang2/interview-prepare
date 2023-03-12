@@ -48,7 +48,7 @@ Summary:
 - Rely on specificity rather than order of selectors
 - Pseudo classes should have higher specificity than original classes to make the effect occur e.g. `xxx:hover{} >> xxx{}` then we see the effect of hover
 
-### Inheritance
+## Inheritance
 
 Workflow:
 ![image](../assets/inherit.jpg)
@@ -57,3 +57,50 @@ Summary:
 
 - Inheritance passes the values for some specific properties from parent to child
 - Properties related to text ofent inherited: font-family font-size, color ...
+
+## Grid Properties
+
+### container
+
+1. grid-template:
+
+   - grid-template-rows
+   - grid-template-columns
+   - grid-template-areas
+
+2. grid-gap
+
+   - grid-row-gap
+   - grid-column-gap
+
+3. item positions
+
+   - justify-items
+   - align-items
+   - justify-content
+   - align-content
+
+4. auto
+   - grid-auto-row
+   - grid-auto-columns
+   - grid-auto-flow
+
+### item
+
+1. item positions
+
+   - justify-self
+   - align-self
+
+2. order
+
+3. grid-area
+
+   - grid-row
+
+     - grid-row-start
+     - grid-row-end
+
+   - grid-column
+     - grid-column-start
+     - grid-column-end
