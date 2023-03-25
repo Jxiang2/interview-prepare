@@ -23,16 +23,25 @@ const roles = Yup.array().of(
     .required(),
 );
 
-const pausesResult = pauses.validate([]);
-
+// pauses
+const pausesResult = pauses.validate([
+  {
+    id: 1,
+    data: {
+      duration: 3,
+      another: "hi",
+    },
+  },
+]);
 pausesResult
   .then((val) => console.log(val))
   .catch((error) => {
     if (error.name === "ValidationError") {
-      console.log(error.name);
+      console.log(error.errors);
     }
   });
 
+// roles
 const rolesResult = roles.validate([
   {
     id: 1,
