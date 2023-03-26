@@ -6,7 +6,7 @@ const pauses = Yup.array()
     Yup.object().shape({
       data: Yup.object()
         .shape({
-          duration: Yup.number().required(),
+          duration: Yup.number().nullable().required("duration is missing"),
         })
         .required(),
     }),
@@ -23,47 +23,46 @@ const roles = Yup.array().of(
     .required(),
 );
 
-// pauses
-const pausesResult = pauses.validate([
-  {
-    id: 1,
-    data: {
-      duration: 3,
-      another: "hi",
-    },
-  },
-]);
-pausesResult
-  .then((val) => console.log(val))
-  .catch((error) => {
-    if (error.name === "ValidationError") {
-      console.log(error.errors);
-    }
-  });
+async function checkPauses() {
+  try {
+    const pausesResult = await pauses.validate([
+      {
+        id: 1,
+        data: {
+          duration: null,
+          another: "hi",
+        },
+      },
+    ]);
+    console.log("checking pauses -- ", pausesResult);
+  } catch (error) {
+    console.log("checking pauses -- ", error.errors);
+  }
+}
 
-// roles
-const rolesResult = roles.validate([
-  {
-    id: 1,
-    data: {
-      amount: 1,
-      id: 1,
-      name: "hi",
-    },
-  },
-  {
-    id: 1,
-    data: {
-      amount: 1,
-      id: null,
-      name: null,
-    },
-  },
-]);
-rolesResult
-  .then((val) => console.log(val))
-  .catch((error) => {
-    if (error.name === "ValidationError") {
-      console.log(error.errors);
-    }
-  });
+async function checkRoles() {
+  try {
+    const rolesResult = await roles.validate([
+      {
+        id: 1,
+        data: {
+          amount: 1,
+          id: 1,
+        },
+      },
+      {
+        id: 1,
+        data: {
+          amount: 1,
+          id: null,
+        },
+      },
+    ]);
+    console.log("checking roles -- ", rolesResult);
+  } catch (error) {
+    console.log("checking roles -- ", error.errors);
+  }
+}
+
+checkPauses();
+checkRoles();
