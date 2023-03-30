@@ -1,4 +1,4 @@
-package code;
+package code.sort;
 
 import java.util.Arrays;
 
@@ -70,7 +70,7 @@ public class Sort {
 
   private void merge(final int[] arr, final int[] lArr, final int[] rArr) {
     int i = 0, j = 0, k = 0;
-    int leftSize = lArr.length, rightSize = rArr.length;
+    final int leftSize = lArr.length, rightSize = rArr.length;
 
     while (i < leftSize && j < rightSize) {
       if (lArr[i] <= rArr[j])
