@@ -9,7 +9,7 @@ type MoreSpecificObj = { a: number; b: number; c: number }; // child
 type LessSpecificObj = { a: number; c: number }; // parent
 const flag2: Check<MoreSpecificObj, LessSpecificObj> = true;
 
-// 2. 协变
+// 2. 协变 ------------------------------------------------------------------------------------
 interface Person1 {
   name: string;
 }
@@ -25,7 +25,7 @@ person = student; // child student can be assigned to parent person (协变)
 
 console.log(person);
 
-// 3. 逆变
+// 3. 逆变 ------------------------------------------------------------------------------------
 // 3.1
 interface Parent {
   a: 1;
@@ -37,11 +37,11 @@ interface Child extends Parent {
 type FunP = (arg: Parent) => any;
 type FunC = (arg: Child) => any;
 
-const funp: FunP = function (arg) {
-  return arg.a;
+const funp: FunP = function ({ a }) {
+  return a + 0;
 };
-let func: FunC = function (arg) {
-  return arg.a + arg.b;
+let func: FunC = function ({ a, b }) {
+  return a + b;
 };
 
 func = funp; // func takes {a: 1, b: 2}, funp takes {a: 1}, funp (parent) can be assigned to func (child)
@@ -71,7 +71,7 @@ const subtract: MyFunc = function (a) {
 
 console.log(func({ a: 1, b: 2 }));
 
-// 逆变 in practice
+// 3.3 逆变 practice
 type UnionToIntersection<U> = (U extends U ? (a: U) => any : never) extends (
   a: infer R,
 ) => any
