@@ -26,6 +26,7 @@ person = student; // child student can be assigned to parent person (协变)
 console.log(person);
 
 // 3. 逆变
+// 3.1
 interface Parent {
   a: 1;
 }
@@ -45,6 +46,26 @@ let func: FunC = function (arg) {
 
 func = funp; // func tkaes {a: 1, b: 2}, funp takes {a: 1}, funp (parent) can be assigned to func (child)
 // funp = func; // not working, funp has no way to deal with arg.b comming from func's argument
+
+// 3.2
+interface MyFunc {
+  (a: number, b: number): number;
+}
+
+// x can be assigned to MyFunc.a, y can be assigned to MyFunc.b ✅
+const add: MyFunc = function (x, y) {
+  return x + y;
+};
+
+// a can be assigned to MyFunc.a ✅
+const subtract: MyFunc = function (a) {
+  return a - 0;
+};
+
+// a can be assigned to MyFunc.a, b can be assigned to MyFunc.b, c is not assignable in MyFunc ❌
+// let chatGptSubtract: MyFunc = function (a, b, c) {
+//   return a - b;
+// };
 
 console.log(func({ a: 1, b: 2 }));
 
