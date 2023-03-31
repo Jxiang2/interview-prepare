@@ -40,10 +40,12 @@ const funp: FunP = function (arg) {
   return arg.a;
 };
 let func: FunC = function (arg) {
-  return arg.a || arg.b;
+  return arg.a + arg.b;
 };
 
-func = funp; // func tkaes {a: 1, b: 2}, funp takes {a: 1}, funp (parent) can be assigned to func (child)
+func = funp; // func takes {a: 1, b: 2}, funp takes {a: 1}, funp (parent) can be assigned to func (child)
+// ,because every arg of funp has a corresponding arg in func
+
 // funp = func; // not working, funp has no way to deal with arg.b comming from func's argument
 
 console.log(func({ a: 1, b: 2 }));
