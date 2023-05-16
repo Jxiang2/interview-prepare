@@ -26,12 +26,14 @@ body {
 .controlbar {
   background-color: #aaa;
   grid-column: sidebar-start/full-end;
+  grid-row: 1/1;
+  text-align: center;
 }
 
 .sidebar {
   background-color: #c69963;
   grid-column: sidebar-start/sidebar-end;
-  grid-row: 2/-1;
+  grid-row: 1/-1;
 }
 
 .header {
