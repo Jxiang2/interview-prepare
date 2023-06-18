@@ -4,7 +4,7 @@ interface DogInfo {
 }
 
 type Listners<T> = {
-  [Property in keyof T as `on${Capitalize<string & Property>}Change`]: (
+  [Property in keyof T as `on${Capitalize<string>}Change`]: (
     val: T[Property],
   ) => void;
 };

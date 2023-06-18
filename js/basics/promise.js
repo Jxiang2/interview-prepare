@@ -26,11 +26,13 @@ getDataA(1);
 // 2. uncaught error
 function getDataB(id) {
   const promise = axios.get(`https://swapi.dev/api/pp/${id}`);
-  promise.then((res) => {
-    console.log(res.data.name);
-    return res.data.name;
-  });
-  // catch is not found, an error is thrown
+  promise
+    .then((res) => {
+      console.log(res.data.name);
+      return res.data.name;
+    })
+    .catch((error) => console.log(error.message));
+  // if catch is not found, an error is thrown
 }
 getDataB(1);
 
