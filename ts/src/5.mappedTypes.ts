@@ -3,13 +3,13 @@ interface DogInfo {
   age: number;
 }
 
-type Listners<T> = {
+type Listners<T extends object> = {
   [Property in keyof T as `on${Capitalize<string>}Change`]: (
     val: T[Property],
   ) => void;
 };
 
-function listenToObj<T>(obj: T, listeners: Listners<T>): void {
+function listenToObj<T extends object>(obj: T, listeners: Listners<T>): void {
   console.log(obj);
   console.log(listeners);
 }
