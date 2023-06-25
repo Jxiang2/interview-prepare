@@ -1,23 +1,23 @@
 const { DateTime } = require("luxon");
 /**
- *  Montreal timezone: UTC-5 ===> Montreal time + 5h = UTC time
+ *  Montreal timezone: UTC-5 (winter) ===> Montreal time + 5h = UTC time
  * 2022-12-17    T     03:50:00          +0000
  *   date                time        offset(timezonex)
  */
 
-// return a Datetime object in local timezone (c changed)
-const dateTime1 = DateTime.fromISO("2022-12-17T03:50:00+0000");
+// return a Datetime object in local timezone
+const dateTime1 = DateTime.fromISO("2022-12-17T03:50:00+0000"); // +0000 means UTC
 console.log(dateTime1);
 console.log(dateTime1.toISO());
 // ------------------------------------------------------
 
 // return a Datetime object in specified timezone (c changed)
 const dateTime2 = DateTime.fromISO("2022-12-17T03:50:00+0000", {
-  zone: "Europe/Paris",
+  zone: "Europe/Paris", // UTC+1
 });
 console.log(dateTime2);
 const dateTime3 = DateTime.fromISO("2022-12-17T03:50:00+0000", {
-  zone: "Europe/Kiev",
+  zone: "Europe/Kiev", // UTC+2
 });
 console.log(dateTime3);
 // ------------------------------------------------------
@@ -33,6 +33,7 @@ console.log(current.toISO());
 // ------------------------------------------------------
 
 // convert a Datetime to another timezone, but keeping the values the same (Full example)
+console.log("------------------------------------------------------");
 const dateTimeFromServer = "2023-01-23T00:00:00.000+00:00";
 
 const viewerLocalDate = DateTime.fromISO(dateTimeFromServer, {
@@ -41,7 +42,10 @@ const viewerLocalDate = DateTime.fromISO(dateTimeFromServer, {
 
 console.log(viewerLocalDate.toISO());
 
-const startHoursObject = DateTime.fromFormat("05:15", "HH:mm").toObject();
+const startHoursObject = DateTime.fromObject({
+  hour: 5,
+  minute: 15,
+}).toObject();
 
 console.log(startHoursObject);
 
@@ -52,3 +56,31 @@ const final = viewerLocalDate.set({
 
 console.log(final.toISO());
 // ------------------------------------------------------
+
+// Create datetimes based on year, month, day, hour, minute, second, and timezone, or defailt system timezone
+const ldt1 = DateTime.fromObject(
+  {
+    year: 2017,
+    month: 5,
+    day: 15,
+    hour: 17,
+    minute: 36,
+  },
+  { zone: "America/Montreal" },
+);
+console.log(ldt1);
+
+const ldt2 = DateTime.fromObject(
+  {
+    year: 2017,
+    month: 5,
+    day: 15,
+    hour: 20,
+    minute: 0,
+  },
+  { zone: "America/Montreal" },
+);
+console.log(ldt2);
+
+// Compare
+console.log(ldt1 < ldt2);
