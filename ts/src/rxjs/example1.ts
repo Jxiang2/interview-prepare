@@ -1,12 +1,10 @@
 import { Observable, Observer } from "rxjs";
-import { map, filter, pluck } from "rxjs/operators";
-import { data10users, data9users } from "./data";
+import { map, filter } from "rxjs/operators";
+import { data10users, data9users, UserData } from "./data";
 
-type UsersData = typeof data10users;
-
-const observable = new Observable<UsersData>((subscriber) => {
-  subscriber.next(data9users);
-  subscriber.next(data10users);
+const observable = new Observable<UserData>((subscriber) => {
+  data10users.then((data) => subscriber.next(data));
+  data9users.then((data) => subscriber.next(data));
 }).pipe(
   map((value) => value.data),
   filter((value) => value.length >= 10), // filter out data with length less than 10
