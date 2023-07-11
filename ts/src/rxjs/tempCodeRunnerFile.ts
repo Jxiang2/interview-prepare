@@ -1,0 +1,2 @@
+
+type UsersData = typeof users;
