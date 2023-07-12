@@ -2,8 +2,9 @@ export type UserData = {
   data: { id: number; status: string; age: number }[];
 };
 
-export const data10users = new Promise<UserData>((resolve) =>
-  resolve({
+export async function delayAndGetdata10users(): Promise<UserData> {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  return {
     data: [
       {
         id: 1,
@@ -56,11 +57,12 @@ export const data10users = new Promise<UserData>((resolve) =>
         age: 17,
       },
     ],
-  }),
-);
+  };
+}
 
-export const data9users = new Promise<UserData>((resolve) =>
-  resolve({
+export async function delayAndGetdata9users(): Promise<UserData> {
+  await new Promise((resolve) => setTimeout(resolve, 900));
+  return {
     data: [
       {
         id: 1,
@@ -108,5 +110,14 @@ export const data9users = new Promise<UserData>((resolve) =>
         age: 7,
       },
     ],
-  }),
-);
+  };
+}
+
+// Test
+function test() {
+  new Promise<string>((resolve) => resolve("promised return")).then(
+    console.log,
+  );
+  console.log("normal return");
+}
+test();
