@@ -12,7 +12,7 @@ console.log(dateTime1.toISO());
 // ------------------------------------------------------
 console.log("--------------------------------------------");
 
-// return a Datetime object in specified timezone (c changed)
+// return a Datetime object in specified timezone (local time change, ts unchange)
 const dateTime2 = DateTime.fromISO("2022-12-17T03:50:00+0000", {
   zone: "Europe/Paris", // UTC+1
 });
@@ -23,8 +23,8 @@ console.log(dateTime3);
 // ------------------------------------------------------
 console.log("--------------------------------------------");
 
-// give a Datetime object, do not change datetime values, but set a timezone to it
-const current = DateTime.fromISO("2022-12-25T00:00:00", {
+// give a Datetime object, set time zone to it, so it's a ts now
+const current = DateTime.fromISO("2022-12-25T02:10:00", {
   zone: "Europe/Paris",
 });
 // The date and time specified in the current.toString() was interpreted as a Parisian local time
