@@ -9,6 +9,21 @@ type MoreSpecificObj = { a: number; b: number; c: number }; // child
 type LessSpecificObj = { a: number; c: number }; // parent
 const flag2: Check<MoreSpecificObj, LessSpecificObj> = true;
 
+// 1.5 easy example
+type A = number | null; // parent
+type B = number; // child
+
+function f(b: B) {
+  const a: A = b;
+  return a;
+}
+
+function g(a: A) {
+  // @ts-ignore  👇 not working
+  const b: B = a;
+  return b;
+}
+
 // 2. 协变 ------------------------------------------------------------------------------------
 interface Person1 {
   name: string;
