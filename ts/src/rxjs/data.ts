@@ -112,12 +112,3 @@ export async function delayAndGetdata9users(): Promise<UserData> {
     ],
   };
 }
-
-// Test
-function test() {
-  new Promise<string>((resolve) => resolve("promised return")).then(
-    console.log,
-  );
-  console.log("normal return");
-}
-test();

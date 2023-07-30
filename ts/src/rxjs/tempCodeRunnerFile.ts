@@ -1,2 +1,0 @@
-
-type UsersData = typeof users;
