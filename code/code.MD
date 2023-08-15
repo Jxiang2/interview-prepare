@@ -47,3 +47,22 @@
 
   **Reference Copy**: create another variable that point to the same object: var1 --> obj1 0x86 <-- var2
   ![image](../assets/copy.jpg)
+
+- **Heaps**
+
+  - Min Heap: parent node is always smaller than child nodes
+  - Max Heap: parent node is always larger than child nodes
+  - Array representation:
+    - node: `i`
+    - parent: `floor((i-1)/2)`
+    - left child: `2i+1`
+    - right child: `2i+2`
+
+- **Dijkstra**
+  - Theory: If A->B->C->D is the shortest path from A to D, then A->B is the shortest path from A to B, B->C is the shortest path from B to C, and C->D is the shortest path from C to D.
+  - Todo:
+    - Initialize each node with distance = infinity except the source node = 0, and with previous = null
+    - Nodes are in explored if all their neighbors are visited
+    - Nodes are in toExplore if they are visited, they have an estimated distance and previous node
+    - Nodes are in neither if they are not visited, they have infinity distance and null previous node
+    - For each toExplore node; find the one with min distance; update its neighbors' distance and mark the nieghbor as unsettled; mark it as settled; repeat until all nodes are settled
