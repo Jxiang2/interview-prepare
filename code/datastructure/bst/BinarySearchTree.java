@@ -1,12 +1,11 @@
 package code.datastructure.bst;
 
-import code.graph.Node;
-
 public class BinarySearchTree {
 
   private BSTNode root;
 
-  // Insert
+  // ========== INSERT ==========
+
   public void insert(final int data) {
     this.root = insertHelper(this.root, new BSTNode(data));
   }
@@ -33,13 +32,14 @@ public class BinarySearchTree {
     }
   }
 
-  // Remove
-  public BSTNode remove(final int data) {
+  // ========== REMOVE ==========
+
+  public void remove(final int data) {
     if (search(data) == null) {
       throw new IllegalArgumentException("Data not found");
     }
 
-    return removeHelper(this.root, data);
+    removeHelper(this.root, data);
   }
 
   private BSTNode removeHelper(BSTNode root, final int toRemoveData) {
@@ -56,18 +56,20 @@ public class BinarySearchTree {
     }
 
     else { // Node to remove found
-      if (root.getLeft() == null && root.getRight() == null) {
+      if (root.getLeft() == null && root.getRight() == null) { // Base case: no children
         root = null;
       }
 
       else if (root.getRight() != null) {
-        root.setData(successor(root)); // replace with successor
-        root.setRight(removeHelper(root.getRight(), root.getData())); // remove successor in right subtree
+        final int successor = successor(root);
+        root.setData(successor); // replace with successor
+        root.setRight(removeHelper(root.getRight(), successor)); // remove successor in right subtree
       }
 
       else if (root.getLeft() != null) {
-        root.setData(predecessor(root)); // replace with predecessor
-        root.setLeft(removeHelper(root.getLeft(), root.getData())); // remove predecessor in left subtree
+        final int predecessor = predecessor(root);
+        root.setData(predecessor); // replace with predecessor
+        root.setLeft(removeHelper(root.getLeft(), predecessor)); // remove predecessor in left subtree
       }
     }
 
@@ -97,7 +99,8 @@ public class BinarySearchTree {
     return root.getData();
   }
 
-  // Search
+  // ========== SEARCH ==========
+
   public BSTNode search(final int data) {
     return searchHelper(this.root, data);
   }
@@ -118,7 +121,8 @@ public class BinarySearchTree {
     return searchHelper(root.getRight(), data);
   }
 
-  // Print
+  // ========== PRINT ==========
+
   public void display() {
     displayHelper(root);
   }
@@ -144,9 +148,10 @@ public class BinarySearchTree {
     tree.insert(4);
     tree.insert(8);
 
-    tree.remove(5);
+    tree.remove(3);
 
     tree.display();
+
   }
 
 }
