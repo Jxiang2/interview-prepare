@@ -1,6 +1,6 @@
 package code.datastructure.bst;
 
-public class Validate {
+public class BSTUtil {
 
   public static boolean validate(final BSTNode root) {
     return false;
