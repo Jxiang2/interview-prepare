@@ -65,4 +65,4 @@
     - Nodes are in explored if all their neighbors are visited
     - Nodes are in toExplore if they are visited, they have an estimated distance and previous node
     - Nodes are in neither if they are not visited, they have infinity distance and null previous node
-    - For each toExplore node; find the one with min distance; update its neighbors' distance and mark the nieghbor as unsettled; mark it as settled; repeat until all nodes are settled
+    - For each toExplore node; find the one with min distance; update its neighbors' distance and mark the nieghbor as toExplore; mark it as settled; repeat until all nodes are settled

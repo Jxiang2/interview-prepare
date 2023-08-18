@@ -37,8 +37,8 @@ public class Dijkstra {
   private void evaluateDistnaceAndPath(
       final Vertex from,
       final Vertex to,
-      final Integer distance) {
-    final int newDistance = from.getDistance() + distance;
+      final Integer edgeWeight) {
+    final int newDistance = from.getDistance() + edgeWeight;
 
     if (newDistance < to.getDistance()) {
       to.setDistance(newDistance);
