@@ -2,6 +2,8 @@ package code.datastructure.bst;
 
 public class BSTUtil {
 
+  // ========== VALIDATE ==========
+
   public static boolean validate(final BSTNode root) {
     return BSTUtil.validateHelper(root, null, null);
   }
