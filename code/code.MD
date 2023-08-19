@@ -48,16 +48,6 @@
   **Reference Copy**: create another variable that point to the same object: var1 --> obj1 0x86 <-- var2
   ![image](../assets/copy.jpg)
 
-- **Heaps**
-
-  - Min Heap: parent node is always smaller than child nodes
-  - Max Heap: parent node is always larger than child nodes
-  - Array representation:
-    - node: `i`
-    - parent: `floor((i-1)/2)`
-    - left child: `2i+1`
-    - right child: `2i+2`
-
 - **Dijkstra**
   - Theory: If A->B->C->D is the shortest path from A to D, then A->B is the shortest path from A to B, B->C is the shortest path from B to C, and C->D is the shortest path from C to D.
   - Todo:
