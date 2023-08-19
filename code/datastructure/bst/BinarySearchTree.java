@@ -121,7 +121,7 @@ public class BinarySearchTree {
     return searchHelper(root.getRight(), data);
   }
 
-  // ========== PRINT ==========
+  // ========== INORDER TRAVERSAL ==========
 
   public void display() {
     displayHelper(root);

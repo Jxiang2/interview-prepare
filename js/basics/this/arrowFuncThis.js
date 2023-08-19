@@ -1,5 +1,5 @@
 // arrow function doesn't define its own execution context (it does not have it's own this )
-// They inherit this from it' parent scope when the arrow function is DEFINED
+// They inherit this from it' parent scope (where the parent is defined) when the arrow function is DEFINED
 // call, apply, bind does not work on arrow function
 
 // Arrow functions as methods (this is defined when arrow function is defined)
