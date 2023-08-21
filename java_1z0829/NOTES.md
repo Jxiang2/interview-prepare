@@ -112,3 +112,13 @@ public static void main(String[] args) {
   - Replace INSERT with: trim() (work with space)
   - Replace INSERT with: strip() (work with whitespace)
   - Replace INSERT with: stripLeading().stripTrailing() (work with whitespace)
+
+```java
+
+```
+
+- **Checkpoint:**
+  - type widening: byte -> short -> int -> long -> float -> double, no data loss, no explicit casting
+  - type narrowing: double -> float -> long -> int -> short -> byte, data loss, explicit casting required
+  - char data type is from 0 to 65535
+  - char has the same size as short, 16 bits
