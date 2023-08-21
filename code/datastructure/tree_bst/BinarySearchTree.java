@@ -1,4 +1,4 @@
-package code.datastructure.bst;
+package code.datastructure.tree_bst;
 
 public class BinarySearchTree {
 

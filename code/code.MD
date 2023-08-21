@@ -49,6 +49,7 @@
   ![image](../assets/copy.jpg)
 
 - **Dijkstra**
+
   - Theory: If A->B->C->D is the shortest path from A to D, then A->B is the shortest path from A to B, B->C is the shortest path from B to C, and C->D is the shortest path from C to D.
   - Todo:
     - Initialize each node with distance = infinity except the source node = 0, and with previous = null
@@ -56,3 +57,8 @@
     - Nodes are in toExplore if they are visited, they have an estimated distance and previous node
     - Nodes are in neither if they are not visited, they have infinity distance and null previous node
     - For each toExplore node; find the one with min distance; update its neighbors' distance and mark the nieghbor as toExplore; mark it as settled; repeat until all nodes are settled
+
+- **BST**
+  - search time complexity:
+    - balanced: height = log(n), O(height) = O(logn)
+    - unbalanced: O(n) The BST will be a linear linked list, and hence the search time complexity will be O(height) = O(n).
