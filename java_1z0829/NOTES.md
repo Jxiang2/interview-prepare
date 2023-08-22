@@ -120,5 +120,86 @@ public static void main(String[] args) {
 - **Checkpoint:**
   - type widening: byte -> short -> int -> long -> float -> double, no data loss, no explicit casting
   - type narrowing: double -> float -> long -> int -> short -> byte, data loss, explicit casting required
+  - Java explicit Numberic operations result type is the wider type of the two operands
+  - ++, --, +=, -=, \*=, /=, %=, result type is the type of the left operand
   - char data type is from 0 to 65535
   - char has the same size as short, 16 bits
+
+```java
+public static void main(String[] args) {
+    m(1);
+}
+
+private static void m(Object obj) {
+    System.out.println("Object version");
+}
+
+private static void m(Number obj) {
+    System.out.println("Number version");
+}
+
+private static void m(Double obj) {
+    System.out.println("Double version");
+}
+```
+
+- **Result**: Number version
+- **Reason**: Compiler either does implicit casting or Wrapping but not both. 1 is int literal, Java compiler can't implicit cast it to double and then box it to Double rather it boxes i to Integer and as Number is the immediate super class of Integer so Number version refers to Integer object.
+
+```java
+public static void main(String[] args) {
+    extractInt(2.7);
+    extractInt(2);
+}
+
+private static void extractInt(Double obj) {
+    System.out.println(obj.intValue());
+}
+```
+
+- **Result**: Compilation error in main method
+- **Reason**: Compiler either does implicit casting or Wrapping but not both. 2.7 is double literal, Java compiler can't implicit cast it to int and then box it to Integer rather it boxes it to Double and as Double is not the sub class of Number so extractInt(Double obj) method can't be invoked.
+
+```java
+
+```
+
+- **Checkpoint:**
+  - Math.random() returns x, where 0.0 <= x < 1.0
+  - Math.round() returns long, but Math.floor() & Math.ceil() returns double
+
+```java
+class A {
+    public String toString() {
+        return null;
+    }
+}
+public class Test {
+    public static void main(String [] args) {
+        String text = null;
+        text = text + new A(); //Line n1
+        System.out.println(text.length()); //Line n2
+    }
+}
+```
+
+- **Result**: 8
+- **Reason**: text + new A() is equivalent to text + new A().toString(), which is null + null since they are both defined as String, not direct null; So the result is "nullnull", which has length 8
+
+```java
+public static void main(String [] args) {
+    String text = "RISE ";
+    text = text + (text = "ABOVE ");
+    System.out.println(text);
+}
+```
+
+- **Result**: RISE ABOVE
+- **Reason**: text + (text = "ABOVE ") is equivalent to text + text = "ABOVE ", which is "RISE " + "ABOVE ", which is "RISE ABOVE "
+- **Note**:
+  - left operand is evaluated first, then right operand
+  - bitwise operators are evaluated before logical operators
+
+```java
+
+```
