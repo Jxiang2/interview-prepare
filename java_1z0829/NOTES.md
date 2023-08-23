@@ -194,12 +194,63 @@ public static void main(String [] args) {
 }
 ```
 
-- **Result**: RISE ABOVE
-- **Reason**: text + (text = "ABOVE ") is equivalent to text + text = "ABOVE ", which is "RISE " + "ABOVE ", which is "RISE ABOVE "
-- **Note**:
+- **Result:** RISE ABOVE
+- **Reason:** text + (text = "ABOVE ") is equivalent to text + text = "ABOVE ", which is "RISE " + "ABOVE ", which is "RISE ABOVE "
+- **Note:**
   - left operand is evaluated first, then right operand
   - bitwise operators are evaluated before logical operators
 
 ```java
 
 ```
+
+- **Checkpoint:** LocalTime.MIN --> {00:00}, LocalTime.MAX --> {23:59:59.999999999}, LocalTime.MIDNIGHT --> {00:00}, LocalTime.NOON --> {12:00}.
+
+```java
+public static void main(String [] args) {
+        LocalDate date = LocalDate.parse("2000-01-01");
+        Period period = Period.ofYears(-3000);
+        System.out.println(date.plus(period));
+    }
+```
+
+- **Result:** -1000-01-01
+
+```java
+public static void main(String [] args) {
+    LocalDate date = LocalDate.parse("1983-06-30");
+    System.out.println(date.plusMonths(8));
+}
+
+// NOTE
+Period.of(int years, int months, int days) // => Returns a Period instance with specified number of years, months and days.
+
+Period.ofDays(int days) // => Returns a Period instance with specified number of days.
+Period.ofWeeks(int weeks) // => Returns a Period instance with specified number of days.
+
+Period.ofMonths(int months) // => Returns a Period instance with specified number of months.
+
+Period.ofYears(int years) // => Returns a Period instance with specified number of years.
+
+// NOTE
+Duration.ofDays(long days) // => Returns a Duration instance with specified number of days converted to hours. -2 days equals to -48 hours.
+
+Duration.ofHours(long hours) // => Returns a Duration instance with specified number of hours.
+
+Duration.ofMinutes(long minutes) // => Returns a Duration instance with specified number of minutes.
+
+Duration.ofSeconds(long seconds) // => Returns a Duration instance with specified number of seconds, nanos field is set to 0. NOTE: if nanos field is 0, toString ignores it.
+
+Duration.ofMillis(long millis) // => Returns a Duration instance with passed value converted to seconds and nano seconds.
+
+Duration.ofNanos(long nanos) // => Returns a Duration instance with passed value converted to seconds and nano seconds.
+
+
+```
+
+- **Result:** 1983-06-30 plus 8 months would result in the invalid date 1984-02-30. Instead of returning an invalid result, the last valid day of the month, 1984-02-29, is returned. Please note, 1984 is leap year and hence last day of February is 29 and not 28.
+
+- **Checkpoint:**
+  - LocalDate.ofEpochDay(0) ==> 1970-01-01, arg can be negative
+  - LocalDate.ofYearDay(2023, 0) ==> 2nd arg is from 1 to 365/366, or runtime exception
+  - Period represents date based amount of time, Duration represents time based amount of time
