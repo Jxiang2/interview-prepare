@@ -245,7 +245,6 @@ Duration.ofMillis(long millis) // => Returns a Duration instance with passed val
 
 Duration.ofNanos(long nanos) // => Returns a Duration instance with passed value converted to seconds and nano seconds.
 
-
 ```
 
 - **Result:** 1983-06-30 plus 8 months would result in the invalid date 1984-02-30. Instead of returning an invalid result, the last valid day of the month, 1984-02-29, is returned. Please note, 1984 is leap year and hence last day of February is 29 and not 28.
@@ -254,3 +253,51 @@ Duration.ofNanos(long nanos) // => Returns a Duration instance with passed value
   - LocalDate.ofEpochDay(0) ==> 1970-01-01, arg can be negative
   - LocalDate.ofYearDay(2023, 0) ==> 2nd arg is from 1 to 365/366, or runtime exception
   - Period represents date based amount of time, Duration represents time based amount of time
+
+```java
+public static void main(String[] args) {
+    final String fName = "James";
+    String lName = "Gosling";
+    String name1 = fName + lName; // lname is computed at runtime, so name1 is computed at runtime too
+    String name2 = fName + "Gosling";
+    String name3 = "James" + "Gosling"; // fname is final, so it is a compile time constant, String literal is also a compile time constant, so name3 is computed at compile time
+    System.out.println(name1 == name2);
+    System.out.println(name2 == name3);
+}
+```
+
+- **Result:** false, true
+- **Reason:** name1 is not a compile time constant, so it is not interned. name2 and name3 are compile time constants, so they are interned. **Please note** that Strings computed by concatenation at run time (if the resultant expression is not constant expression) are newly created and therefore distinct.
+
+```java
+public static void main(String[] args) {
+    m1(null);
+}
+
+static void m1(CharSequence s) {
+    System.out.println("CharSequence");
+}
+
+static void m1(String s) {
+    System.out.println("String");
+}
+
+static void m1(Object s) {
+    System.out.println("Object");
+}
+```
+
+- **Result:** String
+- **Reason:** String is a subclass of CharSequence, so it is the most specific type
+- **Note:** Method overloading is resolved at compile time, so the method with most specific args is chosen at compile time, in this case, **m1(String s)**; If two methods are equally specific, then the method with more specific return type is chosen, if the return type is also equally specific, then it is a compile time error.
+
+```java
+var x = 7, y = 200;
+```
+
+- **Result:** Compilation error, var can't be used in multiple variable declaration, only primitive type or reference type is allowed
+- **Note:** str.replace returns the same String object if no replacement is done, for example, replace "J" with "J" will return the same String object
+
+```java
+
+```

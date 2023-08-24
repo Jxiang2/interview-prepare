@@ -11,6 +11,14 @@ class Test {
     Period period = Period.ofDays(100);
     System.out.println(period);
 
+    String x = "*";
+
+    var str = "PANIC";
+    var sb = new StringBuilder("THET");
+    System.out.println(str.replace('N', 'C')); // Line n1
+
+    var place = "faraway";
+    System.out.println(place.indexOf("a", 3)); // Line n1
   }
 
 }
