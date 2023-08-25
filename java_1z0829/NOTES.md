@@ -299,5 +299,38 @@ var x = 7, y = 200;
 - **Note:** str.replace returns the same String object if no replacement is done, for example, replace "J" with "J" will return the same String object
 
 ```java
+String [] arr1 = {null, null};
+System.out.println("1. " + String.join("::", arr1)); // 1. null::null
 
+String [] arr2 = {};
+System.out.println("2. " + String.join("-", arr2)); // 2.
+
+String [] arr3 = null;
+System.out.println("3. " + String.join(".", arr3)); // NullPointerException at runtime
+
+System.out.println("4. " + String.join(".", null)); // NullPointerException at compile time
+```
+
+```java
+ "JAva".substring(0, 1000); // StringIndexOutOfBoundsException (runtime)
+
+var sb = new StringBuilder("Friends are treasures");
+sb.delete(0, 100); // no exception, end index is equivalent to length of "Friends are treasures"
+System.out.println(sb.length());
+```
+
+```java
+var sb = new StringBuilder();
+System.out.println(sb.append(null).length());
+```
+
+** Result: ** Compilation error, because append() method is overloaded, one of them takes a String, the other takes a char[], so the compiler can't decide which one to use
+
+```java
+var sb = new StringBuilder(20); //Line n1
+sb.append("A".repeat(25)); //Line n2
+System.out.println(sb.toString().length()); //Line n3 => 25
+
+sb.setLength(10); //Line n4
+System.out.println(sb.toString().length()); //Line n5 => 10
 ```
