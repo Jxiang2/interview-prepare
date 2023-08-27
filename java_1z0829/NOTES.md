@@ -334,3 +334,99 @@ System.out.println(sb.toString().length()); //Line n3 => 25
 sb.setLength(10); //Line n4
 System.out.println(sb.toString().length()); //Line n5 => 10
 ```
+
+```java
+/*INSERT*/
+int day = '3';
+switch(day) {
+    case '3':
+        System.out.println("BUY 2 GET 1 FREE");
+        break;
+    default:
+        System.out.println("SORRY!!! NO SALE");
+}// Note: char is compatible with int, so '3' is equivalent to 51, but it's not integer three. This comaptibility only works for primitive type, not wrapper type
+```
+
+**Note:** switch can accept primitive types: byte, short, int, char; wrapper types: Byte, Short, Integer, Character; String and enums. Boolean or boolean is not allowed.
+
+```java
+var amount = 1000;
+var curr = CURRENCY.DOLLAR;
+
+// Wrong version
+switch (curr) {
+    case DOLLAR:
+        String sign = "$";
+        System.out.println(sign + amount);
+    case POUND:
+        String sign = "£";
+        System.out.println(sign + amount);
+    case YEN:
+        String sign = "¥";
+        System.out.println(sign + amount);
+
+}
+
+// Correct version
+switch (curr) {
+    case DOLLAR: {
+        String sign = "$";
+        System.out.println(sign + amount);
+    }
+    case POUND: {
+        String sign = "£";
+        System.out.println(sign + amount);
+    }
+    case YEN: {
+        String sign = "¥";
+        System.out.println(sign + amount);
+    }
+}
+```
+
+**Result:** Compilation error
+**Reason:** Statement inside case labels are within the same scope, which means variable 'sign' created inside 1st case is in scope for other cases as well. This causes compilation error.
+
+```java
+When you use the switch expression (which returns some value), there are few things to keep in mind:
+
+1. All the cases must be exhaustive and non-duplicate, which means it should cater to all the input values without any overlap.
+
+In this case,
+
+1st case handles 1,3,5,7,9
+
+2nd case handles 0,2,4,6,8
+
+default handles all the other int values.
+
+
+
+2. With -> there is no fall-through semantics, therefore break; is not used here. Using break; with switch expression (which returns some value) causes compilation error.
+
+
+
+3. It must end with a semicolon.
+
+// A valid exapmple would be:
+public static void main(String[] args) {
+    var x = 5;
+    var msg = switch(x) {
+        case 1,3,5,7,9 -> "Odd Number";
+        case 0,2,4,6,8 -> "Even Number";
+        default -> "Not in range";
+    }; //NOTE semicolon here
+    System.out.println(msg);
+}
+
+// Old and new switch-case syntaxes can be mixed but mixing of colon [:] and arrow [->] is not allowed.
+var a = 5;
+var x = "+";
+switch(x) {
+    case "+" -> a = a + 2; //Line n1
+    case "-" -> { a = a - 3; break; } //Line n2
+    case "/" -> a = a / 4; //Line n3
+    case "*" : a = a * 3; //Line n4 => Compilation error
+}
+System.out.println(a);
+```
