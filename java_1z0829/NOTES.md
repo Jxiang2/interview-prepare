@@ -374,11 +374,11 @@ switch (curr) {
         System.out.println(sign + amount);
     }
     case POUND: {
-        String sign = "£";
+        sign = "£";
         System.out.println(sign + amount);
     }
     case YEN: {
-        String sign = "¥";
+        sign = "¥";
         System.out.println(sign + amount);
     }
 }
@@ -430,3 +430,19 @@ switch(x) {
 }
 System.out.println(a);
 ```
+
+```java
+do {
+    System.out.print(100);
+} while (true); //Line n1
+System.out.println(200); //Line n2 => Unreachable code exception
+
+// To make this code run infinitely:
+boolean flag = true;
+do {
+    System.out.print(100);
+} while (flag); //Line n1
+System.out.println(200);
+```
+
+**Reason:** Line n2 is unreachable because the do-while loop is an infinite loop and compiler recognizes the true literal as a constant expression and hence it is a compile time constant.
