@@ -369,16 +369,29 @@ switch (curr) {
 
 // Correct version
 switch (curr) {
+    case DOLLAR:
+        String sign = "$";
+        System.out.println(sign + amount);
+    case POUND:
+        sign = "£";
+        System.out.println(sign + amount);
+    case YEN:
+        sign = "¥";
+        System.out.println(sign + amount);
+}
+
+// Correct version 2
+switch (curr) {
     case DOLLAR: {
         String sign = "$";
         System.out.println(sign + amount);
     }
     case POUND: {
-        sign = "£";
+        String sign = "£";
         System.out.println(sign + amount);
     }
     case YEN: {
-        sign = "¥";
+        String sign = "¥";
         System.out.println(sign + amount);
     }
 }
