@@ -1,6 +1,9 @@
 # 1Z0-829 Java 17 Certification
 
-## Exception handling
+```Markdown
+General notes:
+1. static methods can be invoked using class_name or using reference variable
+```
 
 ```java
 private static String s;
@@ -118,12 +121,16 @@ public static void main(String[] args) {
 ```
 
 - **Checkpoint:**
+  - byte: -128 to 127
+    char data type is from 0 to 65535
+  - char has the same size as short, 16 bits
   - type widening: byte -> short -> int -> long -> float -> double, no data loss, no explicit casting
   - type narrowing: double -> float -> long -> int -> short -> byte, data loss, explicit casting required
   - Java explicit Numberic operations result type is the wider type of the two operands
   - ++, --, +=, -=, \*=, /=, %=, result type is the type of the left operand
   - char data type is from 0 to 65535
   - char has the same size as short, 16 bits
+  - int default is 0, double default is 0.0, boolean default is false, char default is '\u0000', float default is 0.0f, long default is 0L, short default is 0, byte default is 0, reference type default is null
 
 ```java
 public static void main(String[] args) {
@@ -200,11 +207,57 @@ public static void main(String [] args) {
   - left operand is evaluated first, then right operand
   - bitwise operators are evaluated before logical operators
 
-```java
+```
+Datetime, Period, Duration
 
+1. period.toString()'s result starts with P, and for non-zero year, Y is appended; for non-zero month, M is appended; and for non-zero day, D is appended. P,Y,M and D are in upper case.
+
+2. Period.of(0, 0, 0) is equivalent to Period.ZERO ==> P0D
+
+3. duration.toString()'s result starts with PT, and for non-zero hour, H is appended; for non-zero minute, M is appended; for non-zero second, S is appended; and for non-zero nano second, N is appended. PT, H, M, S and N are in upper case.
+
+4. PT0S is equivalent to Duration.ZERO ==> Duration.of(0, ChronoUnit)
 ```
 
 - **Checkpoint:** LocalTime.MIN --> {00:00}, LocalTime.MAX --> {23:59:59.999999999}, LocalTime.MIDNIGHT --> {00:00}, LocalTime.NOON --> {12:00}.
+
+```java
+public static void main(String [] args) {
+    LocalDate date = LocalDate.of(2019, 1, 1);
+    LocalTime time = LocalTime.of(0, 0);
+    ZoneId india = ZoneId.of("Asia/Kolkata");
+    ZonedDateTime zIndia = ZonedDateTime.of(date, time, india);  // {2019-01-01T00:00+05:30[Asia/Kolkata]}.
+
+    ZoneId us = ZoneId.of("America/Los_Angeles");
+    ZonedDateTime zUS = /*INSERT*/;
+
+    System.out.println(Duration.between(zIndia, zUS)); //Line 15
+
+    // Line 15 prints the duration for which Los Angeles citizen has to wait to celebrate the new year.
+}
+```
+
+- **Result:** zIndia.withZoneSameLocal(us)
+- **Reason:** zIndia.withZoneSameLocal(us) => {2019-01-01T00:00-08:00[America/Los_Angeles]}. It just changes the Zone but keeps the date and time same and this is what zUS supposed to refer to. Duration.between(zIndia, zUS) returns 'PT13H30M' in this case. So, people of Los Angeles have to wait for 13 hours 30 minutes to celebrate the new year.
+
+```java
+    LocalDate date = LocalDate.of(2019, 1, 1);
+    LocalTime time = LocalTime.of(0, 0);
+
+    ZoneId india = ZoneId.of("Asia/Kolkata");
+    ZonedDateTime zIndia = ZonedDateTime.of(date, time, india); // {2019-01-01T00:00+05:30[Asia/Kolkata]}
+
+    ZoneId us = ZoneId.of("America/Los_Angeles");
+    // withZoneSameLocal vs withZoneSameInstant
+    ZonedDateTime zUS1 = zIndia.withZoneSameLocal(us); // {2019-01-01T00:00-08:00[America/Los_Angeles]}
+    ZonedDateTime zUS2 = zIndia.withZoneSameInstant(us); // {2018-12-31T10:30-08:00[America/Los_Angeles]}
+```
+
+- **Checkpoint**
+  - zonedDateTime.withZoneSameLocal(zoneId) returns a ZonedDateTime object with zoneId's timezone and zonedDateTime' date and time.
+  - zonedDateTime.withZoneSameInstant(zoneId) returns a ZonedDateTime obejct that changes zonedDateTime's date and time according to zoneId's timezone, but keeps the same instant.
+
+````java
 
 ```java
 public static void main(String [] args) {
@@ -212,7 +265,7 @@ public static void main(String [] args) {
         Period period = Period.ofYears(-3000);
         System.out.println(date.plus(period));
     }
-```
+````
 
 - **Result:** -1000-01-01
 
@@ -403,7 +456,7 @@ switch (curr) {
 ```java
 When you use the switch expression (which returns some value), there are few things to keep in mind:
 
-1. All the cases must be exhaustive and non-duplicate, which means it should cater to all the input values without any overlap.
+1. All the cases must be exhaustive and non-duplicate, which means it should cater to all the input values without any overlap. (for enum, all the enum values must be covered, for int, all the int values must be covered)
 
 In this case,
 
@@ -459,3 +512,189 @@ System.out.println(200);
 ```
 
 **Reason:** Line n2 is unreachable because the do-while loop is an infinite loop and compiler recognizes the true literal as a constant expression and hence it is a compile time constant.
+
+```java
+public static void main(String[] args) {
+    String furniture = new String(new char[] {'S', 'o', 'f', 'a'});
+    switch (furniture) {
+        default:
+            System.out.println("CHAIR");
+        case "Recliner":
+            System.out.println("RECLINER");
+        case "Sofa":
+            System.out.println("SOFA");
+        case "Bed":
+            System.out.println("BED");
+            break;
+    }
+}
+```
+
+- **Result:** SOFA BED
+- **Reason:** 'furniture' refers to String object "Sofa". Matching case is AVAILABLE. So SOFA BED.
+- **Checkpoint:** switch can accept primitive types: byte, short, int, char; wrapper types: Byte, Short, Integer, Character; String and enums.
+- **Checkpoint:** In switch statement, char is compatible with int, so '3' is equivalent to 51, but it's not integer three. This comaptibility only works for primitive type, not wrapper type.
+- **Checkpoint:** switch exeuction process: 1. search the cases 2. if find, execute the case and all the following cases until break or end of switch 3. if not find, execute default case if exists, or do nothing
+
+```java
+// Valid switch syntax
+
+// 1
+int day = 5;
+String dayName = switch(day) {
+    case 1 : yield "SUNDAY";
+    case 2 : yield "MONDAY";
+    case 3 : yield "TUESDAY";
+    case 4 : yield "WEDNESDAY";
+    case 5 : yield "THURSDAY";
+    case 6 : yield "FRIDAY";
+    case 7 : yield "SATURDAY";
+    default : yield "NA";
+};
+
+// 2
+int day = 5;
+String dayName = switch(day) {
+    case 1 -> "SUNDAY";
+    case 2 -> "MONDAY";
+    case 3 -> "TUESDAY";
+    case 4 -> "WEDNESDAY";
+    case 5 -> "THURSDAY";
+    case 6 -> "FRIDAY";
+    case 7 -> "SATURDAY";
+    default -> "NA";
+};
+```
+
+- **Checkpoint:** Mixing of colon [:] and arrow [->] causes compilation error.
+- **Checkpoint:** in new syntax, : must come with yield
+
+```java
+public class Test {
+    static var arr = new Boolean[1]; // line1
+    public static void main(String[] args) {
+        if(arr[0]) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
+    }
+}
+```
+
+- **Checkpoint:** Local variable Type inference is applicable only for local variables, thus compilation error in line n1.
+
+```java
+public class Test {
+    class A {
+        void m() {
+            System.out.println("OVER AND OUT");
+        }
+    }
+
+    public static void main(String [] args) {
+        //Insert statement here to print OVER AND OUT
+
+        // Opt 1
+        A a1 = new Test().new A();
+        a1.m();
+
+        // Opt 2
+        Test.A a2 = new Test().new A();
+        a2.m();
+
+        // Opt 3
+        var a3 = new Test().new A();
+        a3.m();
+    }
+}
+```
+
+<Br/>
+<Br/>
+
+```java
+class Foo {
+    static { //static initializer block
+        System.out.print("A");
+    }
+    class Bar {
+        static { //static initializer block
+            System.out.print("B");
+        }
+    }
+}
+
+public class Test {
+    public static void main(String [] args) {
+        new Foo().new Bar(); // => BA
+    }
+}
+```
+
+- **Result:** BA, note that static initializer block is executed when the class is loaded, so it is executed before the constructor. static initializer block of regular inner class is executed before the static initializer block of enclosing class.
+- **Checkpoint** Excution order:
+
+  1. static initializer block of regular inner class
+  2. static initializer block of enclosing class
+
+  3. instance initializer block of enclosing class
+  4. constructor of enclosing class
+  5. instance initializer block of regular inner class
+  6. constructor of regular inner class
+
+```java
+class Outer {
+    public void print(int x) {
+        class Inner {
+            public void getX() {
+                System.out.println(++x);
+            }
+        }
+        Inner inner = new Inner();
+        inner.getX();
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new Outer().print(100);
+    }
+}
+```
+
+- **Result:** Compilation error
+- **Checkpoint:** a method local inner class can access local variables and parameters of the enclosing block that are final or effectively final.
+
+```java
+class A {
+    public void someMethod(final String name) {
+        /*INSERT*/ { // => class B    // => final Class B
+            void print() {
+                System.out.println("Hello " + name);
+            }
+        }
+        new B().print();
+
+    }
+
+    public static void sayHi() {
+        System.out.print("Hi");
+    }
+    static {
+        System.out.print("On Static Init");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new A().someMethod("World!");
+
+        A.sayHi(); // => On Static InitHi
+    }
+}
+```
+
+- **Checkpoint:**
+  - Method-local inner classes cannot be defined using explicit access modifiers (public, protected and private) but non-access modifiers: final and abstract can be used with method-local inner class.
+  - When a static method of a class is called, the class is loaded and initialized. So, static initializer block is executed before the method is called.
