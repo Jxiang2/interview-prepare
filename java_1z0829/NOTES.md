@@ -681,20 +681,68 @@ class A {
     public static void sayHi() {
         System.out.print("Hi");
     }
-    static {
-        System.out.print("On Static Init");
-    }
 }
 
 public class Test {
     public static void main(String[] args) {
         new A().someMethod("World!");
-
-        A.sayHi(); // => On Static InitHi
     }
 }
 ```
 
 - **Checkpoint:**
   - Method-local inner classes cannot be defined using explicit access modifiers (public, protected and private) but non-access modifiers: final and abstract can be used with method-local inner class.
-  - When a static method of a class is called, the class is loaded and initialized. So, static initializer block is executed before the method is called.
+
+```java
+class A {
+    public void print(String name) {
+        class B {
+            B() {
+                System.out.println(name); //Line n1
+            }
+        }
+    }
+    B obj = new B(); //Line n2 ==> Compilation error
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new A().print("OCP"); //Line n3
+    }
+}
+```
+
+- **Checkpoint**: Instance of method-local inner class can only be created within the boundary of enclosing initializer block or enclosing method.
+
+```java
+class Outer {
+    private String msg = "A";
+
+    public void print() {
+        final String msg = "B";
+
+        class Inner {
+            public void print() {
+                System.out.println(this.msg); // Compilation error
+            }
+        }
+
+        Inner obj = new Inner();
+        obj.print();
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new Outer().print();
+    }
+}
+```
+
+- **Checkpoint**: Keyword 'this' inside method-local inner class refers to the instance of inner class.
+- **Reason**: this.msg refers to the instance variable of inner class, which is not defined.
+
+```java
+
+
+```
