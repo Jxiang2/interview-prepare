@@ -743,6 +743,92 @@ public class Test {
 - **Reason**: this.msg refers to the instance variable of inner class, which is not defined.
 
 ```java
+interface Flyable {
+    void fly();
+}
 
+public class Test {
+    public static void main(String[] args) {
+        /*INSERT*/
+        // Opt 1
+        var flyable = new Flyable() {
+            public void fly() {
+                System.out.println("Flying high");
+            }
+        };
 
+        // Opt 2
+        var flyable = new Flyable() {
+            @Override
+            public void fly() {
+                System.out.println("Flying high");
+            }
+            public void stop() {
+                System.out.println("Stopping");
+            }
+        };
+    }
+}
 ```
+
+- **Checkpoint**: Interfaces can be implemented using anonymous inner classes. But it has to provide implementation for all the methods of the interface.
+
+```java
+class Outer {
+    interface I1 {
+        void m1();
+    }
+}
+// it compiles or not
+```
+
+- **Result**: It compiles successfully
+- **Checkpoint**: Interfaces can be defined within a class or interface. Such interfaces are called nested interfaces. They are implicitly public and static.
+
+```java
+interface I1 {
+    void m1();
+
+    interface I2 {
+        void m2();
+    }
+
+    abstract class A1 {
+        public abstract void m3();
+    }
+
+    class A2 {
+        public void m4() {
+            System.out.println(4);
+        }
+    }
+}
+// it compiles or not
+```
+
+- **Result**: It compiles successfully
+- **Checkpoint**:
+  - interface I2 is implicitly public and static (Nested interface). class A1 is implicitly public and static (Nested class). class A2 is implicitly public and static (Nested class).
+  - You cannot explicitly specify protected and private for nested classes and nested interfaces inside an interface.
+
+```java
+public class Test {
+    private static void m(int x) {
+        System.out.println("INT VERSION");
+    }
+
+    private static void m(char x) {
+        System.out.println("CHAR VERSION");
+    }
+
+    public static void main(String [] args) {
+        int i = '5';
+        m(i); // => INT VERSION
+        m('5'); // => CHAR VERSION
+    }
+}
+```
+
+**Checkpoint:** Method m is overloaded and which overloaded method to invoke, is decided at compile time.
+
+m(i) is tagged to m(int) as i is of int type and m('5') is tagged to m(char) as '5' is char literal.
