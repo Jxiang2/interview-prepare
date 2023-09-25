@@ -3,6 +3,10 @@
 ```Markdown
 General notes:
 1. static methods can be invoked using class_name or using reference variable
+2. 0/0 throws a runtime Arithmatic exception
+3. ExceptionInInitializerError is thrown if static initializer block throws an exception, or if a static variable initializer throws an exception
+4. Local variable must be initialized before use
+5. Top-level class can use only two access modifiers [public and default(don't specify anything)]. private and protected cannot be used.
 ```
 
 ```java
@@ -832,3 +836,29 @@ public class Test {
 **Checkpoint:** Method m is overloaded and which overloaded method to invoke, is decided at compile time.
 
 m(i) is tagged to m(int) as i is of int type and m('5') is tagged to m(char) as '5' is char literal.
+
+```java
+class Employee {
+    String name;
+    int age;
+
+    Employee() {
+        Employee("Michael", 22); //Line n1
+    }
+
+    Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class TestEmployee {
+    public static void main(String[] args) {
+        Employee emp = new Employee();
+        System.out.println(emp.name + ":" + emp.age); //Line n2
+    }
+}
+```
+
+- **Result:** Compilation error at line n1
+- **Reason:** A constructor can call another constructor by using this(...) and not the constructor name. Therefore, Line n1 causes compilation error.
