@@ -7,6 +7,9 @@ General notes:
 3. ExceptionInInitializerError is thrown if static initializer block throws an exception, or if a static variable initializer throws an exception
 4. Local variable must be initialized before use
 5. Top-level class can use only two access modifiers [public and default(don't specify anything)]. private and protected cannot be used.
+6. A Record can not have instance fields and instance initializer blocks. It can have static fields and static initializer blocks.
+7. final or effective final will never apply to static variables or instance variables. It only applies to local variables.
+8. ClassCastException is thrown when you try to cast an object to a type that is not its subclass. It happens at runtime.
 ```
 
 ```java
@@ -862,3 +865,44 @@ public class TestEmployee {
 
 - **Result:** Compilation error at line n1
 - **Reason:** A constructor can call another constructor by using this(...) and not the constructor name. Therefore, Line n1 causes compilation error.
+
+```java
+// BAD
+class Number {
+    public void find() {
+        final int x = 10;
+        record Calculator(int num){ //Line n1
+            int calc() {
+                return num * x; //Line n2 ==> Compilation error
+            }
+        }
+        System.out.println(new Calculator(10).calc()); //Line n3
+    }
+}
+
+// GOOD
+class Number {
+    public void find() {
+        class Calculator { //Line n1
+            int x;
+            Calculator(int x) {
+                this.x = x;
+            }
+            int calc() {
+                return 10 * x; //Line n2 ==> Compilation error
+            }
+        }
+
+        System.out.println(new Calculator(10).calc()); //Line n3
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new Number().find(); //Line n4
+    }
+}
+```
+
+- **Result:** Compilation error at line n2
+- **Reason:** Local record type are implicitly static, they can't access non-static members of the enclosing class, or local variable. Therefore, Line n2 causes compilation error. BUT, local class can access non-static members of the enclosing class and local variable.
