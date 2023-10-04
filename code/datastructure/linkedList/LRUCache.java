@@ -9,19 +9,19 @@ import java.util.Map;
 // 2. need to refer to both head and tail nodes, so need to use DoubleLinkedList
 public class LRUCache<K, V> {
 
-  static class Node<K, V>  {
+  private static class Node<K, V>  {
     K key;
     V value;
     Node<K, V> prev;
     Node<K, V> next;
   }
 
-  Map<K, Node<K, V>> nodeMap;
-  int cacheCapacity;
+  private Map<K, Node<K, V>> nodeMap;
+  private int cacheCapacity;
 
   // head and tail are dummy nodes, they should not be removed
-  final Node<K, V> head = new Node<K, V>();
-  final Node<K, V> tail = new Node<K, V>();
+  private final Node<K, V> head = new Node<K, V>();
+  private final Node<K, V> tail = new Node<K, V>();
 
   public LRUCache(int capacity) {
     this.nodeMap = new HashMap<K, Node<K, V>>();
