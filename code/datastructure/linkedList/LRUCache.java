@@ -3,7 +3,7 @@ package code.datastructure.linkedList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+// Least Recently Used (LRU) cache
 // use DoubleLinkedList beacuse:
 // 1. add and delete are O(1) for LinkedList
 // 2. need to refer to both head and tail nodes, so need to use DoubleLinkedList
